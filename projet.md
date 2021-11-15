@@ -50,6 +50,7 @@ Ce site pourra permettre aux utilisateurs de prêter/donner des livres, DVD, BD,
 - système de blocage en cas d'abus
 - messagerie privée
 - système de prise de rdv.
+- Système d'alerte de disponibilité
 
 ## Procédé: Wireframing & UML
 _**Parce que tout commence par un peu de planification de l'interface.**_
