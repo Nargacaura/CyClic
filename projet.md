@@ -22,7 +22,7 @@
   - [Tests d'intégration](#tests-dintégration)
 
 ## Liens du projet: Git & autres ressources <!-- omit in toc -->
-- Git: [Répertoire](https://github.com/Nargacaura/Projet-CDA.git) (inutile de cliquer si vous êtes *déjà* sur GitHub)
+- Git: [Répertoire](https://github.com/Nargacaura/Projet-CDA.git) (inutile de cliquer si vous êtes *déjà* sur le répertoire)
 
 - Logiciels et API utilisés:
   - [Visual Studio Code](https://code.visualstudio.com), pour le codage du site et l'écriture des documentations en Markdown
@@ -47,7 +47,7 @@ Ce site pourra permettre aux utilisateurs de **prêter/donner des objets de faib
 - l'option d'emprunter l'objet en vedette
 - donner/recevoir l'objet
 - système de notation du média et des utilisateurs
-  --> notation possible uniquement après reception du média
+  &rarr; notation possible uniquement après reception du média
 - système de caution
   - validation de l'expédition du média
   - remboursement au prêteur si compte emprunteur suspendu
@@ -57,7 +57,7 @@ Ce site pourra permettre aux utilisateurs de **prêter/donner des objets de faib
 - système d'alerte de disponibilité
 
 ## Cahier des charges
-(Disponible ici --> [Cahier des charges](Charges.md))
+(Disponible ici &rarr; [Cahier des charges](Charges.md))
 
 ## Planification: Wireframing, UML & MEA
 _**Parce que tout commence par un peu de planification de l'interface.**_

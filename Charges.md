@@ -15,9 +15,11 @@ L'annonce contient les catégories de l'objet, la photo, le descriptif, le statu
       - en cas de respect des délais, le prêteur valide la restitution du prêt et le site propose au prêteur de remettre l'offre en disponibilité, le prêteur et l'emprunteur sont invités à se noter mutuellement. 
       - en cas de retard, l'emprunteur et le prêteur reçoivent une notification de retard. Les deux parties sont invitées à communiquer
         - l'emprunteur peut demander un délai supplémentaire, le prêteur valide ou refuse le délai
-      - en cas de situation de retard, le prêteur signale le retard, si l'objet est toujours en retard un mois plus tard (par exemple), le compte de l'emprunteur est suspendu et la caution est versée au prêteur
+      - en cas de situation de retard, le prêteur effectue un signalement qui lance un décompte, si l'objet est toujours en retard à la fin du compte ( un mois par exemple), le compte de l'emprunteur est suspendu et la caution est versée au prêteur
       - En cas de problème, un utilisateur (prêteur ou emprunteur) peut envoyer un message à l'administrateur du site
-- A n'importe quel moment, un utilisateur qui n'a pas d'emprunts en cours peut reprendre sa caution (mais à ce moment-là il ne peut pas faire de nouveaux emprunts, à moins de verser à nouveau une caution).
+- À n'importe quel moment, un utilisateur qui n'a pas d'emprunts en cours peut reprendre sa caution (mais à ce moment-là il ne peut pas faire de nouveaux emprunts, à moins de verser à nouveau une caution).
 - Un utilisateur peut avoir seulement un certain nombre (exemple : 3) d'objets empruntés simultanément
+- système d'alerte : un utilisateur met en place une alerte sur un objet attendu et spécifié comme il veut. A chaque publication d'une nouvelle annonce, on vérifie si l'annonce correspond à l'alerte, si c'est le cas il est notifié avec un lien vers l'annonce.S
+- notifications : envois d'emails par défaut à l'utilisateur
 
-_**A signaler que le site est destiné à l'échange ou au don d'objets de valeur faible et décline toute responsabilité en cas d'échange qui ne respecte pas cette charte.**_
+_**À signaler que le site est destiné à l'échange ou au don d'objets de valeur faible et décline toute responsabilité en cas d'échange qui ne respecte pas cette charte.**_
