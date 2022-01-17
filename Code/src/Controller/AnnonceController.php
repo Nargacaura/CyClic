@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Photo;
 use App\Entity\Annonce;
 use App\Form\PhotoType;
+use App\Repository\AnnonceRepository;
+use App\Repository\CategorieRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,10 +18,20 @@ class AnnonceController extends AbstractController
     /**
      * @Route("/annonce", name="annonce")
      */
-    public function index(): Response
+    public function index(AnnonceRepository $annonceRepo, CategorieRepository $categRepo): Response
     {
+        $annonces = $annonceRepo->findAll();
+        $categories = $categRepo->findAll();
+        $grandEst = ['id' => 1, 'nom' => 'Grand Est'];
+        $Bretagne = ['id' => 2, 'nom' => 'Bretagne'];
+        $Occitanie = ['id' => 3, 'nom' => 'Occitanie'];
+
+        $lieux = [$grandEst, $Bretagne, $Occitanie];
+
         return $this->render('annonce/index.html.twig', [
-            'controller_name' => 'AnnonceController',
+            'annonces' => $annonces,
+            'categories' => $categories,
+            'lieux' => $lieux
         ]);
     }
 

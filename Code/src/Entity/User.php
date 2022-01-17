@@ -88,6 +88,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $receptions;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $avatar;
+
     public function __construct()
     {
         $this->locUser = new ArrayCollection();
@@ -402,6 +407,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $reception->setDestinataire(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(string $avatar): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }
