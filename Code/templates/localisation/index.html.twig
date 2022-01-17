@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Localisation{% endblock %}
+
+{% block body %}
+    {{ form_start(localisationForm) }}
+        {{ form_row(localisationForm.rue, {
+            label: 'Voie'
+        }) }}
+        {{ form_row(localisationForm.codePostal, {
+            label: 'CP'
+        }) }}
+        {{ form_row(localisationForm.ville, {
+            label: 'Ville'
+        }) }}
+        <button type="submit" class="btn">Se localiser ici</button>
+    {{ form_end(localisationForm) }}
+{% endblock %}
