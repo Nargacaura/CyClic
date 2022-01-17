@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+
+    <h1  class="text-center">Phrase d'accroche</h1>
+
+    {# {{ form(form) }} #}
+
+    {# {{ form_start(form) }}
+        {{ form_row(form.search, {
+            label: 'Recherche'
+        }) }}
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(form) }} #}
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque iure at accusantium nemo quibusdam cumque voluptatem alias labore blanditiis. Laudantium recusandae optio culpa iste dignissimos sit hic quisquam quod!</p>
+
+
+    <h1>Annonces récentes</h1>
+
+    <a href="">voir plus d'annonce</a>
+    
+    
+    <h1>Questions frequente</h1>
+
+    <div class="container">
+        <ul class="row">
+            <li  class="col">
+                <h2>Questions sur les dons</h2>
+                <ul>
+                    <li>Une question à poser?</li>
+                    <li>Une question à poser?</li>
+                    <li>Une question à poser?</li>
+                </ul>
+            </li>
+            <li class="col">
+                <h2>Questions sur les RDV</h2>
+                <ul>
+                    <li>Une question à poser?</li>
+                    <li>Une question à poser?</li>
+                    <li>Une question à poser?</li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="row">
+            <li  class="col">
+                <h2>Questions sur la messagerie</h2>
+                <ul>
+                    <li>Une question à poser?</li>
+                    <li>Une question à poser?</li>
+                    <li>Une question à poser?</li>
+                </ul>
+            </li>
+            <li  class="col">
+                <h2>Autres questions</h2>
+                <ul>
+                    <li>Une question à poser?</li>
+                    <li>Une question à poser?</li>
+                    <li>Une question à poser?</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+    
+
+    <h1>A Propos</h1>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque iure at accusantium nemo quibusdam cumque voluptatem alias labore blanditiis. Laudantium recusandae optio culpa iste dignissimos sit hic quisquam quod!</p>
+
+    {# This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'D:/Dev/project/site/CroustiRecycle/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'D:/Dev/project/site/CroustiRecycle/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
+    </ul> #}
+</div>
+{% endblock %}
