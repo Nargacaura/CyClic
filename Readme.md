@@ -11,7 +11,11 @@
 
 <h1 style="color:#1844ed; font-weight: bold; font-size:48px; font-family: 'Cy', 'Franklin Gothic', sans-serif; text-align:center;">Qu'est-ce que Cy<span style="color:#ee7c01; font-family: 'Outfit';">Clic</span>?</h1>
 
+<<<<<<< HEAD
 <span style="color:#1844ed; font-family:'Cy';">Cy</span><span style="color:#ee7c01">Clic</span> est **un site d'échange/de don d'objets** qui a été créé durant la formation de CDA PHP orienté objet de la <a href="https://ccicampus.fr" style="color: #ee7c01; text-decoration: none;">Chambre de Commerce et d'Industrie</a> en tant que projet principal de celle-ci, aux côtés des sites <a href="https://dev.azure.com/CCICampus/CampingSavoie" style="color: #ee7c01; text-decoration: none;">d'un camping</a> et <a href="https://dev.azure.com/CCICampus/FCRosheim" style="color: #ee7c01; text-decoration: none;">d'un club de football</a>, réalisés par les deux autres groupes de la promotion 2021-2022. *Allez y jeter un coup d'oeil là-bas aussi, ils en valent aussi le coup.*
+=======
+<span style="color:#1844ed; font-family:'Cy';">Cy</span><span style="color:#ee7c01">Clic</span> est **un site d'échange/de don d'objets** qui a été créé durant la formation de CDA PHP orientée objet de la <a href="https://ccicampus.fr" style="color: #ee7c01; text-decoration: none;">Chambre de Commerce et d'Industrie</a> en tant que projet principal de celle-ci, aux côtés des sites <a href="https://dev.azure.com/CCICampus/CampingSavoie" style="color: #ee7c01; text-decoration: none;">d'un camping</a> et <a href="https://dev.azure.com/CCICampus/FCRosheim" style="color: #ee7c01; text-decoration: none;">d'un club de football</a>, réalisés par les deux autres groupes de la promotion 2021-2022. *Allez y jeter un coup d'oeil là-bas aussi, ils en valent aussi le coup.*
+>>>>>>> fc7745b2233c44327ba702ffdab36e5076e3fe2d
 
 <h1 style="color:#1844ed; font-weight: bold; font-size:48px; font-family: 'Cy', 'Franklin Gothic', sans-serif; text-align:center;">À quoi ça ressemble?</h1>
 
