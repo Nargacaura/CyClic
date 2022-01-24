@@ -3,5 +3,13 @@
 #    controller: App\Controller\DefaultController::index
 
 categories:
-   path: /categories
+   path: /category
    controller: App\Controller\CategorieController::list
+
+delete_category:
+   path: /category/delete/{id}
+   controller: App\Controller\CategorieController::delete
+
+edit_category:
+   path: /category/edit/{id}
+   controller: App\Controller\CategorieController::edit

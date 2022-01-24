@@ -1,33 +1,51 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout/auth.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
-{% block body %}
-    <h1>Register</h1>
+{% block container %}
+    <h1>Inscription</h1>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.nom, {
-            label: 'Nom'
+            attr: {
+                'placeholder': 'Nom'
+                }
         }) }}
         {{ form_row(registrationForm.prenom, {
-            label: 'Prénom'
+            attr: {
+                'placeholder': 'Prénom'
+                }
         }) }}
-        {{ form_row(registrationForm.date_naissance, {
-            label: 'Date de naissance'
-        }) }}
+        <div class="date_naissance">
+            <span>Date de naissance : </span>
+            {{ form_row(registrationForm.date_naissance, {
+                attr: {
+                    'placeholder': 'Date de naissance'
+                    }
+            }) }}
+        </div>
         {{ form_row(registrationForm.pseudo, {
-            label: 'Nom d\'utilisateur'
+            attr: {
+                'placeholder': 'Nom d\'utilisateur'
+                }
         }) }}
         {{ form_row(registrationForm.email, {
-            label: 'Adresse e-mail'
+            attr: {
+                'placeholder': 'Adresse e-mail'
+                }
         }) }}
         {{ form_row(registrationForm.plainPassword, {
-            label: 'Mot de passe'
+            attr: {
+                'placeholder': 'Mot de passe'
+                }
         }) }}
         {{ form_row(registrationForm.agreeTerms, {
             label: 'J\'ai compris les termes d\'utilisation de CyClic'
         }) }}
-
-        <button type="submit" class="btn">Register</button>
+        <div class="button">
+            <button type="submit" class="auth_btn">S'inscrire</button>
+        </div>
     {{ form_end(registrationForm) }}
+
+    <p class="has_account">Vous avez déjà un compte? <a href="/login">Se connecter</a></p>
 {% endblock %}

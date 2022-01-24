@@ -1,0 +1,18 @@
+.bouton {
+  @include bouton(white, $turquoise, 5px, 0.3rem);
+}
+
+.auth_btn {
+  font-family: $font-header;
+  font-weight: bold;
+  @include bouton(white, $orange, 10px, 0.3rem);
+  font-size: 32px;
+}
+
+button:hover, .auth_btn:hover {
+  background-color: $jaune;
+}
+
+button[data-bs-toggle="dropdown"] {
+  background-color: $turquoise;
+}

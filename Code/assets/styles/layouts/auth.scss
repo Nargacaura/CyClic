@@ -1,0 +1,26 @@
+.authenticator {
+    background-color: $background_auth;
+    @include flex(flex-start, center);
+    @include flex-flow(column);
+}
+
+.auth_container {
+    background-color: $blanc;
+    border-radius: 25px;
+    margin-top: 3%;
+    width: 40%;
+    text-align: center;
+}
+
+div .auth_container {
+    @include flexbox;
+}
+
+.date_naissance {
+    text-align: left;
+    padding-left: 5%;
+}
+
+.button {
+    padding-top: 5%;
+}

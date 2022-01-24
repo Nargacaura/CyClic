@@ -25,13 +25,13 @@
 		</aside>
 		<main>
 			<div class="entete">
-				<form action="" method="get">
+			<div></div>
+				<form action="" method="get" class="entete__form">
+				<div class="form__blocDropdowns">
 					<div class="dropdown">
-						<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-							catégorie
-						</button>
-						<select name="etat" id="etat-objet">
+						<select name="etat" id="etat-objet" class="bouton">
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+								<li><option selected class="dropdown-item">Catégorie</option></li>
 								{% for categorie in categories %}
 									<li>
 										<option value="{{ categorie.id }}" class="dropdown-item">{{ categorie.nom }}</option>
@@ -41,8 +41,9 @@
 						</select>
 					</div>
 					<div class="dropdown">
-						<select name="lieu" id="lieu-objet">
+						<select name="lieu" id="lieu-objet" class="bouton">
 							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+								<li><option selected class="dropdown-item">Lieu</option></li>
 								{% for lieu in lieux %}
 									<li>
 										<option value="{{ lieu.id }}" class="dropdown-item">{{ lieu.nom }}</option>
@@ -51,25 +52,30 @@
 							</ul>
 						</select>
 					</div>
-					<input type="search" name="site-search" id="site-search" placeholder="que recherchez-vous ?">
-					<button>Search</button>
+				</div>
+					<div class="searchBar">										
+						<input type="search" name="site-search" id="site-search" placeholder="que recherchez-vous ?">
+						<button><i class="fas fa-search"></i></button>
+					</div>
 				</form>
-				<button class="btn">Tri/affichage</button>
+				<button class="bouton">Tri/affichage</button>
 			</div>
-			<div class="d-flex flex-wrap">
+			<div class="d-flex flex-wrap blocAnnonces">
 				{% for annonce in annonces %}
-					<a href="#">
+					<a href="#" class="annonceCard">
 						<div class="card">
 							<img class="card-img-top" src="https://fr.web.img6.acsta.net/medias/nmedia/18/78/95/70/19485155.jpg" alt="{{ annonce.titre }}">
 							<div class="card-body">
-								<div class="card_text">
-									<h5 class="card-title">{{ annonce.titre }}</h5>
-									<p class="card-text">{{ annonce.etat.nom }}</p>
-									<p class="card-text">{{ annonce.contenu|u.truncate(20, '…') }}</p>
+								<div class="d-flex">
+									<div class="card_text">
+										<h5 class="card-title">{{ annonce.titre }}</h5>
+										<p class="card-text">{{ annonce.etat.nom }}</p>
+									</div>
+									<div class="card_profilePic">
+										<img src="{{ annonce.auteur.avatar }}" alt="avatar du donneur">
+									</div>
 								</div>
-								<div class="card_profilePic">
-									<img src="{{ annonce.auteur.avatar }}" alt="avatar du donneur">
-								</div>
+								<p>{{ annonce.contenu|u.truncate(20, '…') }}</p>
 							</div>
 						</div>
 					</a>

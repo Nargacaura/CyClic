@@ -38,6 +38,25 @@ Les membres de ce groupe sont:
 
 Mais si voulez plus de précisions sur chacun d'entre nous, faudra voir s'ils sont d'accord pour s'introduire un peu ici ou dans la doc utilisateur.
 
+<h1 style="color:#1844ed; font-weight: bold; font-size:48px; font-family: 'Cy', 'Franklin Gothic', sans-serif; text-align:center;">Comment le faire fonctionner?</h1>
+
+Pour le faire fonctionner, vous aurez besoin de:
+- **<a href="https://symfony.com" style="color: #ee7c01; text-decoration: none;">Symfony</a>**,
+- **<a href="https://getcomposer.org" style="color: #ee7c01; text-decoration: none;">Composer</a>**,
+- **<a href="https://php.net" style="color: #ee7c01; text-decoration: none;">PHP</a>** (&ge; 7.4),
+- **<a href="https://nodejs.org" style="color: #ee7c01; text-decoration: none;">Node.js</a>**,
+- **<a href="https://yarnpkg.org" style="color: #ee7c01; text-decoration: none;">Yarn</a>**.
+
+Une fois ces pré-requis installés, lancez dans l'ordre:
+- `composer i` pour installer les dépendances Composer,
+- `npm install` pour ajouter les dépendances NPM,
+- `yarn install` pour avoir celles de Yarn,
+- `php bin/console d:d:c` pour créer la base de données,
+- `php bin/console m:mi; php bin/console d:m:m` pour exécuter les migrations,
+- `symfony serve` pour lancer le serveur.
+
+> :pencil2: Si `php bin/console d:m:m` ne fonctionne pas, remplacez-le par `php bin/console d:s:u --force`.
+
 <h1 style="color:#1844ed; font-weight: bold; font-size:48px; font-family: 'Cy', 'Franklin Gothic', sans-serif; text-align:center;">Uhh... is there an english version of this?</h1>
 
 Not yet, but we'll be working on it, as it may be required in a moment or another. We'll let you know when <span style="color:#1844ed; font-family:'Cy';">Cy</span><span style="color:#ee7c01">Clic</span>'s available in that language, so don't worry about this.

@@ -1,0 +1,38 @@
+.entete {
+  @include flex(space-between, flex-start);
+  margin: 2rem;
+}
+.entete__form {
+  display: flex;
+  width: 500px;
+  flex-wrap: wrap;
+}
+
+.form__blocDropdowns {
+  @include flex(space-between, flex-start);
+  width: 100%;
+  select {
+    margin: 0rem 0rem 2rem 0rem;
+  }
+}
+
+.searchBar {
+  display: flex;
+  width: 100%;
+  input {
+    width: 100%;
+    background-color: rgb(232, 232, 232);
+    border: none;
+    padding: 1rem;
+    color: gray;
+    border-radius: 5px 0px 0px 5px;
+  }
+  button {
+    background-color: $orange;
+    border: none;
+    color: white;
+    font-size: xx-large;
+    border-radius: 0px 5px 5px 0px;
+    padding: 0rem 0.5rem;
+  }
+}
