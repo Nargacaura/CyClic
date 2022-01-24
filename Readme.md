@@ -30,11 +30,11 @@ Ce Git servira de **backup au projet disponible sur <a href="https://dev.azure.c
 Les **Symfonistes Croustillants** font référence à <a href="https://symfony.com" style="color: #ee7c01; text-decoration: none;">Symfony</a>, le framework utilisé pour ce projet, et aux Croustillants (et les Semi-croustillants, faut pas les oublier) de *Kaamelott*, série qu'on aime bien (au moins, on a un truc en commun, mise à part le fait d'être dans la même formation pour ce projet). *Parce que oui, on a des goûts différents. __Très__ différents.
 
 Les membres de ce groupe sont:
-- <a href="https://github.com/FlorianDuchesne" style="color: #ee7c01; text-decoration: none;">DUCHESNE Florian</a>,
-- <a href="https://github.com/matiland" style="color: #ee7c01; text-decoration: none;">LANDAUER Mathieu</a>,
-- <a href="https://github.com/Nargacaura" style="color: #ee7c01; text-decoration: none;">LEDDA Damien</a>,
-- <a href="https://github.com/sStratioSs" style="color: #ee7c01; text-decoration: none;">MOUGENOT Antonin</a>,
-- <a href="https://github.com/Sielfyr" style="color: #ee7c01; text-decoration: none;">SCHAEFFER Léonard</a>.
+- **<a href="https://github.com/FlorianDuchesne" style="color: #ee7c01; text-decoration: none;">DUCHESNE Florian</a>**,
+- **<a href="https://github.com/matiland" style="color: #ee7c01; text-decoration: none;">LANDAUER Mathieu</a>**,
+- **<a href="https://github.com/Nargacaura" style="color: #ee7c01; text-decoration: none;">LEDDA Damien</a>**,
+- **<a href="https://github.com/sStratioSs" style="color: #ee7c01; text-decoration: none;">MOUGENOT Antonin</a>**,
+- **<a href="https://github.com/Sielfyr" style="color: #ee7c01; text-decoration: none;">SCHAEFFER Léonard</a>**.
 
 Mais si voulez plus de précisions sur chacun d'entre nous, faudra voir s'ils sont d'accord pour s'introduire un peu ici ou dans la doc utilisateur.
 
@@ -48,12 +48,14 @@ Pour le faire fonctionner, vous aurez besoin de:
 - **<a href="https://yarnpkg.org" style="color: #ee7c01; text-decoration: none;">Yarn</a>**.
 
 Une fois ces pré-requis installés, lancez dans l'ordre:
-- `composer i` pour installer les dépendances Composer,
-- `npm install` pour ajouter les dépendances NPM,
-- `yarn install` pour avoir celles de Yarn,
-- `php bin/console d:d:c` pour créer la base de données,
-- `php bin/console m:mi; php bin/console d:m:m` pour exécuter les migrations,
-- `symfony serve` pour lancer le serveur.
+- **`composer i`** pour installer les dépendances Composer,
+- **`npm install`** pour ajouter les dépendances NPM,
+- **`yarn install`** pour avoir celles de Yarn,
+- **`yarn encore dev`** pour compiler les styles SCSS et les scripts JS,
+- **`php bin/console d:d:c`** pour créer la base de données si elle n'est pas encore présente dans votre collection de bases,
+- **`php bin/console m:mi; php bin/console d:m:m`** pour exécuter les migrations,
+- **`php bin/console d:f:l`** pour charger les fixtures,
+- **`symfony serve`** pour lancer le serveur.
 
 > :pencil2: Si `php bin/console d:m:m` ne fonctionne pas, remplacez-le par `php bin/console d:s:u --force`.
 
