@@ -1,0 +1,22 @@
+
+<div class="d-flex flex-wrap blocAnnonces">
+    {% for annonce in annonces %}
+        <a href="#" class="annonceCard">
+            <div class="card">
+                <img class="card-img-top" src="https://fr.web.img6.acsta.net/medias/nmedia/18/78/95/70/19485155.jpg" alt="{{ annonce.titre }}">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div class="card_text">
+                            <h5 class="card-title">{{ annonce.titre }}</h5>
+                            <p class="card-text">{{ annonce.etat.nom }}</p>
+                        </div>
+                        <div class="card_profilePic">
+                            <img src="{{ annonce.auteur.avatar }}" alt="avatar du donneur">
+                        </div>
+                    </div>
+                    <p>{{ annonce.contenu|u.truncate(20, '…') }}</p>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>

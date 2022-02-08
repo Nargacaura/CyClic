@@ -2,16 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
+ * @UniqueEntity("email", message="Désolé, vous ne pouvez pas utiliser le même mail pour 2 comptes différents.")
+ * @UniqueEntity("pseudo", message="Ce nom d'utilisateur est déjà attribué.")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -24,6 +28,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Email(message="Désolé, cet e-mail est invalide.")
      */
     private $email;
 
@@ -91,7 +96,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $avatar;
+    private $avatar ="img/avatar.png";
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $ban;
 
     public function __construct()
     {
@@ -419,6 +429,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(string $avatar): self
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    public function getBan(): ?bool
+    {
+        return $this->ban;
+    }
+
+    public function setBan(bool $ban): self
+    {
+        $this->ban = $ban;
 
         return $this;
     }

@@ -4,28 +4,26 @@ namespace App\Form;
 
 use App\Entity\Photo;
 use App\Entity\Annonce;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PhotoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('path', TextType::class)
-            // ->add('annonce')
-            ->add('submit', SubmitType::class, [
-                'attr' => [
-                    'class' => 'bouton'
-                ]
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'allow_delete' => true,
+                'download_uri' => true,
+                'image_uri' => true,
+                'asset_helper' => true,
             ]);
-        // ->add('annonce', EntityType::class, [
-        //     'class' => Annonce::class
-        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

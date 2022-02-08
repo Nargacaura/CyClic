@@ -1,0 +1,23 @@
+<aside class="aside_filtre">
+    <div class="bouton">mes annonces</div>
+    <a href="/messagerie/other" class="bouton">contacts</a>
+    <ul>
+    {% for contact in contacts %}
+        <li>
+            {{contact.annonce.titre }}
+            <ul>
+                <li>
+                    {% for user in contact.contacts %}
+                    <form method="post" action="{{ path('message_from', {'annonceId': contact.annonce.id, 'userId': user.id}) }}">
+                        {# <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.annonce.id) }}"> #}
+                        <button class="bouton">
+                            {{user.pseudo }} 
+                        </button>
+                    </form>
+                    {% endfor %}
+                </li>
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+</aside>

@@ -1,3 +1,4 @@
+@import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "./variables.scss";
 @import "./fonts.scss";
 @import "./mixins.scss";
@@ -10,5 +11,9 @@
 @import "./components/form.scss";
 @import "./components/images.scss";
 @import "./layouts/auth.scss";
+@import "./components/grid.scss";
+@import "./components/nav.scss";
+@import "./layouts/product.scss";
+@import "./components/text.scss";
 @import "/node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "/node_modules/@fortawesome/fontawesome-free/css/all.min.css";

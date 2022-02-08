@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AnnonceController!
+{% block title %}Annonces disponibles
 {% endblock %}
 
 {% block body %}
@@ -18,69 +18,57 @@
 					<option value="1">Excellent état</option>
 				</select>
 				<div>
-					<label for="distance-objet"><h6 class="aside__h6">Distance :</h6></label>
+					<label for="distance-objet">
+						<h6 class="aside__h6">Distance :</h6>
+					</label>
 					<input type="range" id="distance" name="distance" min="0" max="11">
 				</div>
 			</form>
 		</aside>
 		<main>
 			<div class="entete">
-			<div></div>
+				<div></div>
 				<form action="" method="get" class="entete__form">
-				<div class="form__blocDropdowns">
-					<div class="dropdown">
-						<select name="etat" id="etat-objet" class="bouton">
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-								<li><option selected class="dropdown-item">Catégorie</option></li>
-								{% for categorie in categories %}
+					<div class="form__blocDropdowns">
+						<div class="dropdown">
+							<select name="etat" id="etat-objet" class="bouton">
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 									<li>
-										<option value="{{ categorie.id }}" class="dropdown-item">{{ categorie.nom }}</option>
+										<option selected class="dropdown-item">Catégorie</option>
 									</li>
-								{% endfor %}
-							</ul>
-						</select>
-					</div>
-					<div class="dropdown">
-						<select name="lieu" id="lieu-objet" class="bouton">
-							<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-								<li><option selected class="dropdown-item">Lieu</option></li>
-								{% for lieu in lieux %}
+									{% for categorie in categories %}
+										<li>
+											<option value="{{ categorie.id }}" class="dropdown-item">{{ categorie.nom }}</option>
+										</li>
+									{% endfor %}
+								</ul>
+							</select>
+						</div>
+						<div class="dropdown">
+							<select name="lieu" id="lieu-objet" class="bouton">
+								<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 									<li>
-										<option value="{{ lieu.id }}" class="dropdown-item">{{ lieu.nom }}</option>
+										<option selected class="dropdown-item">Lieu</option>
 									</li>
-								{% endfor %}
-							</ul>
-						</select>
+									{% for lieu in lieux %}
+										<li>
+											<option value="{{ lieu.id }}" class="dropdown-item">{{ lieu.nom }}</option>
+										</li>
+									{% endfor %}
+								</ul>
+							</select>
+						</div>
 					</div>
-				</div>
-					<div class="searchBar">										
+					<div class="searchBar">
 						<input type="search" name="site-search" id="site-search" placeholder="que recherchez-vous ?">
-						<button><i class="fas fa-search"></i></button>
+						<button>
+							<i class="fas fa-search"></i>
+						</button>
 					</div>
 				</form>
 				<button class="bouton">Tri/affichage</button>
 			</div>
-			<div class="d-flex flex-wrap blocAnnonces">
-				{% for annonce in annonces %}
-					<a href="#" class="annonceCard">
-						<div class="card">
-							<img class="card-img-top" src="https://fr.web.img6.acsta.net/medias/nmedia/18/78/95/70/19485155.jpg" alt="{{ annonce.titre }}">
-							<div class="card-body">
-								<div class="d-flex">
-									<div class="card_text">
-										<h5 class="card-title">{{ annonce.titre }}</h5>
-										<p class="card-text">{{ annonce.etat.nom }}</p>
-									</div>
-									<div class="card_profilePic">
-										<img src="{{ annonce.auteur.avatar }}" alt="avatar du donneur">
-									</div>
-								</div>
-								<p>{{ annonce.contenu|u.truncate(20, '…') }}</p>
-							</div>
-						</div>
-					</a>
-				{% endfor %}
-			</div>
+			{{ include('annonce/_card.html.twig') }}
 		</main>
 	</div>
 {% endblock %}

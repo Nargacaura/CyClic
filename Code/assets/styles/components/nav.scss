@@ -1,0 +1,34 @@
+.main_navbar {
+    background-color: white;
+    filter: drop-shadow(0 1mm 1mm #b6b6b6);
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+
+}
+
+.CyClic_navbar {
+    @include flex(space-between, baseline);
+    @include flex-flow(row);
+}
+
+.nav_logo {
+    width: 150px;
+    height: auto;
+    padding-left: 10px;
+}
+
+.nav_menu {
+    right: 0%;
+    @include flex(space-between, baseline);
+    @include flex-flow(row);
+}
+
+.nav_menu li {
+    list-style-type: none;
+    @include flexbox;
+    padding: 0 20px;
+}
+
+li.col {
+    list-style-type: none;
+}

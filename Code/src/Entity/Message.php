@@ -39,6 +39,12 @@ class Message
      */
     private $destinataire;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="messages")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $annonce;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -88,6 +94,18 @@ class Message
     public function setDestinataire(?User $destinataire): self
     {
         $this->destinataire = $destinataire;
+
+        return $this;
+    }
+
+    public function getAnnonce(): ?Annonce
+    {
+        return $this->annonce;
+    }
+
+    public function setAnnonce(?Annonce $annonce): self
+    {
+        $this->annonce = $annonce;
 
         return $this;
     }

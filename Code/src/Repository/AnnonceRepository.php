@@ -3,8 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Annonce;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use App\Entity\Categorie;
+use App\Entity\Localisation;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Annonce|null find($id, $lockMode = null, $lockVersion = null)
@@ -22,7 +25,29 @@ class AnnonceRepository extends ServiceEntityRepository
     // /**
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */
-    /*
+    
+    public function searchAnnonce($search)
+    {
+        return $this->createQueryBuilder('a')
+        
+            
+            ->where('a.titre = :titre')
+            ->setParameter('titre', $search['titre'])
+           
+            ->innerJoin(categorie::class, 'c', Join::WITH, 'a.categorie = c.id')
+            ->andWhere('c.nom = :nom')
+            ->setParameter('nom', $search['categorie']->getNom())
+        
+            ->innerJoin(localisation::class, 'l', Join::WITH, 'a.localisation = l.id')
+            ->andWhere('l.ville = :ville')
+            ->setParameter('ville', $search['localisation'])
+        
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+     /*
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('a')
@@ -35,6 +60,7 @@ class AnnonceRepository extends ServiceEntityRepository
         ;
     }
     */
+    
 
     /*
     public function findOneBySomeField($value): ?Annonce

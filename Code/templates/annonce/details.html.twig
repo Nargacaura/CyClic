@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ offre.titre }}{% endblock %}
+
+{% block body %}
+<div class="product">
+    <div class="slideshow">
+        <!--slideshow-->
+        <div class="all_product_images">
+            <div class="select_images">
+                <img class="product_image_1" src="https://th.bing.com/th/id/R.0c12d2fd4673dee91a743aecb340d6e6?rik=B1IyQZsF2%2fF6vA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_148071.png&ehk=wacpDthkV%2fQSfOLelWSsYQFabLKAVjXh1pZAq0%2fe3gU%3d&risl=&pid=ImgRaw&r=0" alt="Image"></img>
+                <img class="product_image_2" src="https://th.bing.com/th/id/R.0c12d2fd4673dee91a743aecb340d6e6?rik=B1IyQZsF2%2fF6vA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_148071.png&ehk=wacpDthkV%2fQSfOLelWSsYQFabLKAVjXh1pZAq0%2fe3gU%3d&risl=&pid=ImgRaw&r=0" alt="Image"></img>
+                <img class="product_image_3" src="https://th.bing.com/th/id/R.0c12d2fd4673dee91a743aecb340d6e6?rik=B1IyQZsF2%2fF6vA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_148071.png&ehk=wacpDthkV%2fQSfOLelWSsYQFabLKAVjXh1pZAq0%2fe3gU%3d&risl=&pid=ImgRaw&r=0" alt="Image"></img>
+            </div>
+        </div>
+        <img class="product_image" src="https://th.bing.com/th/id/R.0c12d2fd4673dee91a743aecb340d6e6?rik=B1IyQZsF2%2fF6vA&riu=http%3a%2f%2fcdn.onlinewebfonts.com%2fsvg%2fimg_148071.png&ehk=wacpDthkV%2fQSfOLelWSsYQFabLKAVjXh1pZAq0%2fe3gU%3d&risl=&pid=ImgRaw&r=0" alt="Image"></img>
+    </div>
+    <div class="product_info">
+        <h1 class="product_title">{{ offre.titre }}</h1>
+        <h2 class="product_proposed_by">proposé par <span class="product_owner">{{ user.pseudo }}</span></h2>
+        <h3><ul class="product_state">
+            <li>{{ status.nom }}</li> &middot;
+            <li>{{ category.nom }}</li> &middot;
+            <li>{{ state.nom }}</li>
+        </ul></h3>
+
+        <p class="product_description">{{ offre.contenu }}</p>
+    </div>
+</div>
+<div class="product_user">
+    <div class="user_info">
+        <div class="user_details">
+            <img class="user_avatar" alt="Avatar" src = "{{ user.avatar }}"></img>
+            <h5 class="user_name">{{ user.pseudo }}</h5>
+            <p class="user_ratings"><span class="rating_stars"></span> <span class="rated_by">N/A</span> avis d'utilisateurs</p>
+        </div>
+        <form method="post" action="{{ path('message_to', {'annonceId': offre.id}) }}" class="interactions">
+            <button type="submit" class="interesting">Contacter ce donneur</button>
+            <button type="button" class="inappropriate">Signaler</button>
+        </form>
+    </div>
+    <div class="user_map">
+        <h4>Map coming soon</h4>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Messagerie{% endblock %}
+
+{% block body %}
+	<div class="d-flex">
+        {{ include('messagerie/_aside_from.html.twig') }}
+                <div>
+                        {{ include('messagerie/_messages.html.twig') }}
+                        {{ include('messagerie/_form_send.html.twig') }}
+	        </div>
+	</div>
+{% endblock %}

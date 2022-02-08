@@ -22,6 +22,21 @@ class CategorieRepository extends ServiceEntityRepository
     // /**
     //  * @return Categorie[] Returns an array of Categorie objects
     //  */
+
+    /*
+    public function searchAnnonce($search){
+
+        return $this->createQueryBuilder('c')
+
+            ->andWhere('c.nom = :nom')
+            ->setParameter('nom', $search['categorie']->getNom())
+            ->getQuery()
+            ->getResult()
+            
+        ;
+    }
+    */
+    
     /*
     public function findByExampleField($value)
     {
@@ -35,6 +50,7 @@ class CategorieRepository extends ServiceEntityRepository
         ;
     }
     */
+    
 
     /*
     public function findOneBySomeField($value): ?Categorie

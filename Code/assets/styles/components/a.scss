@@ -1,3 +1,15 @@
 a {
   color: $orange;
+  font-family: $font-header;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  color: $jaune;
+}
+
+a > .fa-map-marker-alt {
+  font-size: xx-large;
+  margin-left: 0.5rem;
 }

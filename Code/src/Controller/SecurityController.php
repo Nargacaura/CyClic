@@ -15,7 +15,7 @@ class SecurityController extends AbstractController
      */
     public function success()
     {
-        dd('ça marche');
+        return $this->redirectToRoute('home');
     }
 
 

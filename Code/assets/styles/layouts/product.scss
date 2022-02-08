@@ -1,0 +1,127 @@
+.product,
+.product_user,
+.user_details {
+    @include flex-flow(row);
+}
+
+.product {
+    @include flex(center, stretch);
+}
+
+.slideshow, .product_info,
+.user_info, .user_map, .user_details {
+    margin: 0.5rem;
+}
+
+.slideshow,
+.user_map, .user_details {
+    @include flex(space-evenly, flex-start);
+}
+
+.product_info {
+    @include flex(flex-start, flex-start);
+}
+
+.select_images {
+    @include flex(space-between, flex-start);
+}
+
+.product_user {
+    @include flex(space-around, flex-start);
+}
+
+.slideshow, .product_info,
+.user_info, .user_map {
+    width: 45%;
+}
+
+.product_info, .user_details, .select_images {
+    @include flex-flow(column);
+    @include flex-wrap(wrap);
+}
+
+.product_image,
+.product_image_1,
+.product_image_2,
+.product_image_3 {
+    background-color: $turquoise;
+}
+
+// .user_info, .user_map, .product_info {
+//     background-color: #cdcdcd;
+// }
+
+// .slideshow, .product_image {
+//     border-top-left-radius: 25px;
+//     border-radius: 25px;
+// }
+
+.product_image_1,
+.product_image_2,
+.product_image_3 {
+    height: 128px;
+    width: 128px;
+    margin: 0.5rem 0;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.select_images {
+    margin: 2rem 0;
+}
+
+.product_image {
+    height: 660px;
+    width: 660px;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 25px;
+}
+// .product_info {
+//     border-top-right-radius: 25px;
+// }
+// .user_info {
+//     border-bottom-left-radius: 25px;
+// }
+
+// .user_map {
+//     border-bottom-right-radius: 25px;
+// }
+
+.product_state {
+    font-size: 20px;
+    list-style-type: none;
+    li {
+        display:inline;
+    }
+    text-align: center;
+}
+
+.user_avatar {
+    border-radius: 100%;
+    display: inline;
+    height: 50px;
+    width: 50px;
+}
+
+.product_title, .product_owner, .user_name {
+    color: $orange;
+}
+
+.product_owner, .user_name {
+    font-family: $font-header;
+}
+
+.product_proposed_by {
+    font-weight: lighter;
+    font-size: 24px;
+}
+
+.product_owner {
+    font-size: 30px;
+}
+
+.product_owner, .user_name, .rated_by {
+    font-weight: bold;
+}

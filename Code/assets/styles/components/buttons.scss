@@ -1,18 +1,68 @@
 .bouton {
-  @include bouton(white, $turquoise, 5px, 0.3rem);
+	@include bouton(white, $turquoise, 5px, 0.3rem);
+	&-localisation {
+		width: 90%;
+		margin: 1rem auto;
+	}
+}
+.homedropdown,
+.geolocation,
+.localize_me_there {
+	@include bouton(white, $turquoise, 5px, 0.3rem);
+	height: 40px;
+}
+
+.homedropdown,
+.localize_me_there {
+	border-top-right-radius: 0%;
+	border-bottom-right-radius: 0%;
+}
+
+.auth_btn,
+.btn_fixed_width,
+.interesting,
+.inappropriate {
+	font-family: $font-header;
+	font-weight: bold;
+	font-size: 24px;
+	padding: 10px;
+	margin: 1rem;
+	&-annulation {
+		background-color: $jaune;
+	}
+}
+
+.auth_btn,
+.btn_fixed_width,
+.interesting {
+	@include bouton(white, $orange, 10px, 0.3rem);
+}
+
+.inappropriate {
+	@include bouton(white, $rouge, 10px, 0.3rem);
 }
 
 .auth_btn {
-  font-family: $font-header;
-  font-weight: bold;
-  @include bouton(white, $orange, 10px, 0.3rem);
-  font-size: 32px;
+	padding: 10px;
 }
 
-button:hover, .auth_btn:hover {
-  background-color: $jaune;
+.btn_fixed_width {
+	width: 350px;
+	height: 60px;
+	margin: 10px;
+	display: inline;
 }
 
-button[data-bs-toggle="dropdown"] {
-  background-color: $turquoise;
+button:hover,
+.auth_btn:hover {
+	background-color: $jaune;
+}
+
+button[data-bs-toggle="dropdown"],
+.homedropdown[data-bs-toggle="dropdown"] {
+	background-color: $turquoise;
+}
+.geolocation {
+	border-top-left-radius: 0%;
+	border-bottom-left-radius: 0%;
 }

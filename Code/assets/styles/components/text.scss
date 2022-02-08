@@ -1,0 +1,24 @@
+.message{
+    color: black;
+    padding: 1em;
+    border-radius: 5px;
+    width: 60%;
+    margin:1em;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+.message_own {
+    @extend .message;
+    background-color: $turquoise;
+    text-align: right;
+    float:right;
+  }
+
+  .message_other {
+    @extend .message;
+    background-color: $gris;
+    text-align: left;
+    float:left;
+  }
+  

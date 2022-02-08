@@ -36,6 +36,14 @@
   -ms-flex-pack: $alignment;
 }
 
+@mixin flex-wrap($should_wrap) {
+	-webkit-flex-wrap: $should_wrap;
+	-moz-flex-wrap: $should_wrap;
+	-ms-flex-wrap: $should_wrap;
+	flex-wrap: $should_wrap;
+	-ms-flex-pack: $should_wrap;
+}
+
 @mixin bouton($couleur, $couleurBG, $border-radius, $padding) {
   background-color: $couleurBG;
   color: $couleur;
@@ -44,16 +52,22 @@
   border: none;
 }
 
-@mixin avatar($taille, $border) {
-  width: $taille;
-  height: $taille;
-  border-radius: 100%;
+@mixin avatar($border) {
   border: $border;
   border-width: 3px;
   border-color: white;
   overflow: hidden;
   img {
-    width: $taille;
+    width: 100%;
     height: auto;
+    border-radius: 100%;
   }
+}
+
+@mixin formContainer() {
+  background-color: $blanc;
+  border-radius: 25px;
+  margin: 5rem auto;
+  width: 40%;
+  text-align: center;
 }

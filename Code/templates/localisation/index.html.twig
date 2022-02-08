@@ -5,14 +5,24 @@
 {% block body %}
     {{ form_start(localisationForm) }}
         {{ form_row(localisationForm.rue, {
-            label: 'Voie'
+            attr: {
+                'placeholder': 'Voie',
+                'class': 'voie'
+            }
         }) }}
         {{ form_row(localisationForm.codePostal, {
-            label: 'CP'
+            attr: {
+                'placeholder': 'CP',
+                'class': 'CP'
+            }
         }) }}
         {{ form_row(localisationForm.ville, {
-            label: 'Ville'
+            attr: {
+                'placeholder': 'Ville',
+                'class': 'ville'
+            }
         }) }}
-        <button type="submit" class="btn">Se localiser ici</button>
+    <button type="submit" class="btn localize_me_there">Se localiser ici</button>
+    <button type="button" class="geolocation"><i class="fas fa-map-marker-alt" ></i></button>
     {{ form_end(localisationForm) }}
 {% endblock %}

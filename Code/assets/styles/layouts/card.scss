@@ -1,37 +1,42 @@
 .blocAnnonces {
-  margin: 1rem 0rem 1rem 3rem;
+	margin: 1rem 0rem 1rem 3rem;
 }
 
 .annonceCard {
-  text-decoration: none;
-  width: 20%;
-  padding: 1rem;
-  h5 {
-    font-size: medium;
-    color: black;
-  }
-  p {
-    color: black;
-    font-size: smaller;
-    margin: 0;
-  }
-  .card_profilePic {
-    @include avatar(50px, none);
-  }
+	text-decoration: none;
+	width: 20%;
+	padding: 1rem;
+	h5 {
+		font-size: medium;
+		color: black;
+	}
+	p {
+		color: black;
+		font-size: smaller;
+		margin: 0;
+	}
+	.card_profilePic {
+		@include avatar(none);
+		width: 20%;
+	}
 }
 
 .card {
-  border: none;
-  border-radius: 20px 20px 20px 20px;
-  overflow: hidden;
-}
-
-.card-title,
-.card-text {
-  width: 120px;
+	border: none;
+	border-radius: 20px;
+	overflow: hidden;
 }
 
 .card-body {
-  background-color: $orange;
-  height: 120px;
+	background-color: $orange;
+	height: 120px;
+}
+
+.card_text {
+	width: 80%;
+	color: $turquoise;
+}
+
+.card-title {
+	width: 100%;
 }

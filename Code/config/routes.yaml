@@ -13,3 +13,7 @@ delete_category:
 edit_category:
    path: /category/edit/{id}
    controller: App\Controller\CategorieController::edit
+
+annonce_info:
+   path: /annonce/{id}
+   controller: App\Controller\AnnonceController::show

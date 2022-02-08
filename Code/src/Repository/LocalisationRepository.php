@@ -22,6 +22,20 @@ class LocalisationRepository extends ServiceEntityRepository
     // /**
     //  * @return Localisation[] Returns an array of Localisation objects
     //  */
+    
+    
+    public function searchAnnonce($search)
+    {
+        return $this->createQueryBuilder('l')
+
+            ->where('l.ville = :ville')
+            ->setParameter('ville', $search['localisation'])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+     
+
     /*
     public function findByExampleField($value)
     {
