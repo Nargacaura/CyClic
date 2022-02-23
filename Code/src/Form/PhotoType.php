@@ -8,6 +8,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -23,6 +24,19 @@ class PhotoType extends AbstractType
                 'download_uri' => true,
                 'image_uri' => true,
                 'asset_helper' => true,
+                'constraints' => [
+                    new Image([
+                        'maxWidth' => '1000',
+                        'maxWidthMessage' => 'L\'image doit être inférieur à 1000 pixels de large',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png'
+                        ],
+                        'mimeTypesMessage' => 'Veuillez mettre une image de type jpeg ou png',
+                        'minHeight' => '300',
+                        'minHeightMessage' => 'La longueur de l\'image doit faire au moins 300 pixels'
+                    ])
+                ]
             ]);
     }
 

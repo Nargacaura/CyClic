@@ -4,28 +4,23 @@
 
 {% block body %}
 
-        <div class="row">
-            <div class="col">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Tim_Berners-Lee_closeup.jpg/160px-Tim_Berners-Lee_closeup.jpg" />
-                <h4>Pseudo</h4>
+        <div class="profile">
+            <div class="imagePro">
+                <img src="{{users.avatar}}" />
+                <h4>{{users.pseudo}}</h4>
             </div>
-            <div class="col">
-                <h2 class="profil__h2">Description</h2> 
+            <div class="desc">
+                <h2>Description</h2> 
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque iure at accusantium nemo quibusdam cumque voluptatem alias labore blanditiis. Laudantium recusandae optio culpa iste dignissimos sit hic quisquam quod!</p>
             
-                <h2 class="profil__h2">Votre adresse</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                <h2>Votre adresse</h2>
+                <p>{{ localisation.rue }} {{ localisation.codePostal }} {{ localisation.ville }}</p>
             </div>
         </div>
-
-        <div id="annonce">
-            <div>
-                <h2 class="profil__h2">Vos Annonces</h2>
-            </div>
-            <div>
-                <!-- les annonces de l'utilisateur du coup en attendant une image-->
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Tim_Berners-Lee_closeup.jpg/160px-Tim_Berners-Lee_closeup.jpg" />
-            </div>
-        </div>
-
+        <h2>Vos Annonces</h2
+        <div class="container">
+			<div class="row align-items-center justify-content-center">
+				{{ include('annonce/_card.html.twig') }}
+			</div>
+		</div>
 {% endblock %}

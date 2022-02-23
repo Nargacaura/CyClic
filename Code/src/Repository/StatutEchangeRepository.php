@@ -19,6 +19,18 @@ class StatutEchangeRepository extends ServiceEntityRepository
         parent::__construct($registry, StatutEchange::class);
     }
 
+    private $indexed;
+    
+    public function getStatusFromName(string $nom) : StatutEchange
+    {
+        if($this->indexed) return $this->indexed[$nom];
+        $allstatus = $this->findAll();
+        foreach ($allstatus as $value) {
+            $this->indexed[$value->getNom()] = $value;
+        }
+        return $this->indexed[$nom];
+    }
+
     // /**
     //  * @return StatutEchange[] Returns an array of StatutEchange objects
     //  */

@@ -74,6 +74,11 @@ class Annonce
      */
     private $messages;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Transaction::class, mappedBy="annonce", cascade={"persist", "remove"})
+     */
+    private $transaction;
+
     public function __construct()
     {
         $this->photos = new ArrayCollection();
@@ -237,6 +242,23 @@ class Annonce
                 $message->setAnnonce(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getTransaction(): ?Transaction
+    {
+        return $this->transaction;
+    }
+
+    public function setTransaction(Transaction $transaction): self
+    {
+        // set the owning side of the relation if necessary
+        if ($transaction->getAnnonce() !== $this) {
+            $transaction->setAnnonce($this);
+        }
+
+        $this->transaction = $transaction;
 
         return $this;
     }

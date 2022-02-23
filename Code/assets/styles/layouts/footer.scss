@@ -1,0 +1,33 @@
+footer 
+{
+    @include flex(stretch, center);
+    padding: 15px;
+    background-color: $footer_bg;
+    color: #fff;
+}
+
+.logo_social {
+    @include flexbox();
+    img {
+        width: 32px;
+        height: 32px;
+        margin: 0.7rem;
+    }
+}
+
+.logo_footer {
+    @include flexbox();
+    img {
+        width: 64px;
+        height: 64px;
+    }
+    right: 0%;
+}
+
+.list_flex {
+    @include flex(space-evenly, stretch);
+    li {
+        @include flexbox();
+    }
+    width: 80%;
+}

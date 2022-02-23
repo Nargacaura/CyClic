@@ -27,18 +27,20 @@ class AnnonceFixtures extends Fixture implements DependentFixtureInterface
         $localisations = $manager->getRepository(Localisation::class)->findAll();
         $categories = $manager->getRepository(Categorie::class)->findAll();
         $etats = $manager->getRepository(Etat::class)->findAll();
-        $statuts = $manager->getRepository(StatutEchange::class)->findAll();
+        // $statuts = $manager->getRepository(StatutEchange::class)->findAll();
+        $statuts = $manager->getRepository(StatutEchange::class)->findOneBy(array("nom" => StatutEchange::open));
 
-      for ($i = 0; $i < 20; $i++) {
+      for ($i = 0; $i < 45; $i++) {
         $annonce = new Annonce();
-        $annonce->setTitre($faker->word());
+        $annonce->setTitre($faker->text(rand(7,40)));
         $annonce->setDatePublication($faker->dateTime());
-        $annonce->setContenu($faker->paragraph(1));
+        $annonce->setContenu($faker->paragraph(3));
         $annonce->setAuteur($users[(array_rand($users, 1))]);
         $annonce->setLocalisation($localisations[(array_rand($localisations, 1))]);
         $annonce->setCategorie($categories[(array_rand($categories, 1))]);
         $annonce->setEtat($etats[(array_rand($etats, 1))]);
-        $annonce->setStatut($statuts[(array_rand($etats, 1))]);
+        // $annonce->setStatut($statuts[(array_rand($etats, 1))]);
+        $annonce->setStatut($statuts);
         $manager->persist($annonce);
         }
 

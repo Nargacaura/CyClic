@@ -6,15 +6,17 @@ use App\Entity\Categorie;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Faker;
 
 class CategoriesFixtures extends Fixture 
 {
     public function load(ObjectManager $manager): void
     {
 
-        for ($i = 0; $i < 10; $i++) {
+        $faker = Faker\Factory::create('fr_FR');
+        for ($i = 0; $i < 6; $i++) {
             $categorie = new Categorie();
-            $categorie->setNom('categorie' . $i);
+            $categorie->setNom($faker->word());
             $manager->persist($categorie);
         }
 

@@ -22,6 +22,11 @@ Encore
    */
   .addEntry("app", "./assets/app.js")
   .addEntry("collectionType", "./assets/js/collectionType.js")
+  .addEntry("triAnnonces", "./assets/js/triAnnonces.js")
+  .addEntry("detailAnnonce", "./assets/js/detailAnnonce.js")
+  .addEntry("geolocation", "./assets/js/geolocation.js")
+
+  .autoProvidejQuery()
 
   // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
   .enableStimulusBridge("./assets/controllers.json")

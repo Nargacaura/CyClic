@@ -16,12 +16,12 @@ class PhotoFixtures extends Fixture implements DependentFixtureInterface
 
       $annonces = $manager->getRepository(Annonce::class)->findAll();
 
-      for ($i = 0; $i < 10; $i++) {
-        $photo = new Photo();
-        $photo->setPath('/public_html/img/ '.$i);
-        $photo->setAnnonce($annonces[(array_rand($annonces, 1))]);
-        $manager->persist($photo);
-    }
+    //   for ($i = 0; $i < 10; $i++) {
+    //     $photo = new Photo();
+    //     $photo->setPath('/public_html/img/ '.$i);
+    //     $photo->setAnnonce($annonces[(array_rand($annonces, 1))]);
+    //     $manager->persist($photo);
+    // }
 
     $manager->flush();
   }

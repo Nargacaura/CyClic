@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -40,6 +41,7 @@ class RegistrationFormType extends AbstractType
         ])
         ->add('date_naissance', DateType::class, [
             'format' => 'dd/MM/yyyy',
+            'years' => range(date('Y')-13, 1900),
             'label' => false
         ])
         ->add('pseudo', TextType::class, [
@@ -58,6 +60,16 @@ class RegistrationFormType extends AbstractType
                 ])
             ]
         ])
+        ->add('locUser', CollectionType::class, [
+          'entry_type' => LocalisationType::class,
+          'label' => 'cliquez sur le bouton ci-dessous pour vous localiser',
+          'allow_add' => true
+        ])
+        ->add('autoCompleteLocalisation', TextType::class, [
+          'mapped' => false,
+          'label' => false,
+          'required' => true
+        ])
         ->add('plainPassword', PasswordType::class, [
             // instead of being set onto the object directly,
             // this is read and encoded in the controller
@@ -75,7 +87,7 @@ class RegistrationFormType extends AbstractType
                     'max' => 4096,
                 ]),
                 new Regex([
-                    'pattern' => '/^(?=.*?[A-Z])|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$/',
+                    'pattern' => '/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{6,}$/',
                     'message' => 'Votre mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et une ponctuation!',
                     'match' => true,
                 ]),

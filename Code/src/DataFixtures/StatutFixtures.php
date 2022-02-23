@@ -10,13 +10,11 @@ class StatutFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-
-      for ($i = 0; $i < 10; $i++) {
-        $statut = new StatutEchange();
-        $statut->setNom($i);
-        $manager->persist($statut);
-    }
-
+        foreach (StatutEchange::status as $value) {
+            $statut = new StatutEchange();
+            $statut->setNom($value);
+            $manager->persist($statut);
+        }
         $manager->flush();
     }
 }

@@ -1,111 +1,135 @@
+
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+{% if (app.user and app.user.ban == 0) or not app.user %}
 <div class="example-wrapper">
 
-    <h1  class="text-center">Bienvenue !</h1>
+		<br>
+		<h2 class="text-center">Bienvenue{% if app.user %} {{ app.user.prenom }} {{ app.user.nom }} ({{ app.user.pseudo }}){% endif %}!
 
-    {# {{ form(form) }} #}
-
-    {{ form_start(form) }}
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-md-auto">
-                    {# <div class="dropdown"> #}
-                        {{ form_widget(form.categorie, { 'attr': {'class': 'homedropdown'} }) }}
-                    {# </div> #}
-                </div>
-                <div class="col-md-auto">
-                    <div class="home">
-                        {{ form_widget(form.localisation, { 'attr': {'class': 'form-control coordonnees'} }) }}
-                    </div>
-                </div>
-                <div class="col-md-auto">
-                    <button type="button" class="geolocation"><i class="fas fa-map-marker-alt" ></i></button>
-                </div>
-            </div>
-            <div class="row d-flex justify-content-center">
-            
-                <div class="text-center">
-                    <div class="home">
-                        {# {{ form_widget(form.titre) }} #}
-                        {{ form_widget(form.titre, { 'attr': {'class': 'form-control'} }) }}
-                    </div>
-                </div>
-                <div class="text-center">
-                    {{ form_widget(form.save, { 'attr': {'class': 'btn_fixed_width'} }) }}
-                
-                </div>
-    {{ form_end(form) }}
-                <div class="text-center">
-                    <button type="button" class="btn_fixed_width">Déposer une annonce</button>
-                </div>
-            </div>
-        </div>
-    {# {{ include('categorie/_dropdown.html.twig') }} #}
-
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque iure at accusantium nemo quibusdam cumque voluptatem alias labore blanditiis. Laudantium recusandae optio culpa iste dignissimos sit hic quisquam quod!</p>
+		</h2>
 
 
-    <h1>Annonces récentes</h1>
-    
-    {{ include('annonce/_card.html.twig') }}
+		<div class="container">
+			{{ form_start(form) }}
+			<div class="row align-items-center justify-content-center">
 
-    <a href="/annonce" class="text-right">Trouver plus d'annonces</a>
-    
-    <h1>FAQ</h1>
+				<div class="col-md-auto">
 
-    <div class="container">
-        <ul class="row">
-            <li  class="col">
-                <h2>Questions sur les dons</h2>
-                <ul>
-                    <li>Une question à poser?</li>
-                    <li>Une question à poser?</li>
-                    <li>Une question à poser?</li>
-                </ul>
-            </li>
-            <li class="col">
-                <h2>Questions sur les RDV</h2>
-                <ul>
-                    <li>Une question à poser?</li>
-                    <li>Une question à poser?</li>
-                    <li>Une question à poser?</li>
-                </ul>
-            </li>
-        </ul>
+					<div class="dropdown">
+					{{ form_widget(form.categorie, { 'attr': {'class': 'homedropdown'} }) }}
+					</div>
+				</div>
+				<div class="col-md-auto">
+					<div class="home">
+						{{ form_widget(form.localisation, { 'attr': {'class': 'form-control coordonnees'} }) }}
+					</div>
+				</div>
+				<div class="col-md-auto">
+					<button type="button" class="geolocation">
+						<i class="fas fa-map-marker-alt"></i>
+					</button>
+				</div>
+			</div>
+			<div class="row d-flex justify-content-center">
 
-        <ul class="row">
-            <li  class="col">
-                <h2>Questions sur la messagerie</h2>
-                <ul>
-                    <li>Une question à poser?</li>
-                    <li>Une question à poser?</li>
-                    <li>Une question à poser?</li>
-                </ul>
-            </li>
-            <li  class="col">
-                <h2>Questions diverses</h2>
-                <ul>
-                    <li>Une question à poser?</li>
-                    <li>Une question à poser?</li>
-                    <li>Une question à poser?</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    
-    
+				<div class="text-center">
+					<div class="home">
+						{# {{ form_widget(form.titre) }} #}
+						{{ form_widget(form.titre, { 'attr': {'class': 'form-control'} }) }}
+					</div>
+				</div>
+				<div class="text-center">
+					{{ form_widget(form.save, { 'attr': {'class': 'btn_fixed_width'} }) }}
 
-    <h1>À propos de CyClic</h1>
+				</div>
+				<div class="text-center">
+					<a href="annonce/new">
+						<button  type="button" class="btn_fixed_width">Déposer une annonce</button> 
+					</a>
+				</div>
+			</div>
+				{{ form_end(form) }}
+		</div>
+		{# {{ include('categorie/_dropdown.html.twig') }} #}
 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque iure at accusantium nemo quibusdam cumque voluptatem alias labore blanditiis. Laudantium recusandae optio culpa iste dignissimos sit hic quisquam quod!</p>
+		<br>
+		<p  class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque iure at accusantium nemo quibusdam cumque voluptatem alias labore blanditiis. Laudantium recusandae optio culpa iste dignissimos sit hic quisquam quod!</p>
 
-    {# This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Dev/project/site/CroustiRecycle/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Dev/project/site/CroustiRecycle/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul> #}
+
+		<br>
+		<br>
+		<h1>Annonces récentes</h1>
+		<br>
+
+		<div class="container">
+			<div class="row align-items-center justify-content-center">
+				{{ include('annonce/_card.html.twig') }}
+				<a href="/annonce" class="text-right">Trouver plus d'annonces</a>
+			</div>
+		</div>
+
+		<br>
+		<br>
+		<h1>FAQ</h1>
+		<br>
+
+		<div class="container">
+			<ul class="row">
+				<li class="col">
+					<h2>Questions sur les dons</h2>
+					<ul>
+						<li>Une question à poser?</li>
+						<li>Une question à poser?</li>
+						<li>Une question à poser?</li>
+					</ul>
+				</li>
+				<li class="col">
+					<h2>Questions sur les RDV</h2>
+					<ul>
+						<li>Une question à poser?</li>
+						<li>Une question à poser?</li>
+						<li>Une question à poser?</li>
+					</ul>
+				</li>
+			</ul>
+
+			<ul class="row">
+				<li class="col">
+					<h2>Questions sur la messagerie</h2>
+					<ul>
+						<li>Une question à poser?</li>
+						<li>Une question à poser?</li>
+						<li>Une question à poser?</li>
+					</ul>
+				</li>
+				<li class="col">
+					<h2>Questions diverses</h2>
+					<ul>
+						<li>Une question à poser?</li>
+						<li>Une question à poser?</li>
+						<li>Une question à poser?</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+
+		<br>
+		<br>
+		<h1>À propos de CyClic</h1>
+		<br>
+
+		<p  class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque iure at accusantium nemo quibusdam cumque voluptatem alias labore blanditiis. Laudantium recusandae optio culpa iste dignissimos sit hic quisquam quod!</p>
+
+		<br>
+		
+	</div>
+
 </div>
+{% else %}
+<img src="{{ asset('img/YSNP.jpg') }}">
+<a href="{{ path('app_logout') }}"><h1> Déconnexion </h1></a>
+{% endif %}
 {% endblock %}

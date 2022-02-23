@@ -3,11 +3,13 @@
 {% block title %}Messagerie{% endblock %}
 
 {% block body %}
-	<div class="d-flex">
-        {{ include('messagerie/_aside_from.html.twig') }}
-                <div>
+	<div class="d-flex  bd-highlight">
+                {{ include('messagerie/_aside_from.html.twig') }}
+                <div class="p-2 flex-grow-1 bd-highlight">
                         {{ include('messagerie/_messages.html.twig') }}
                         {{ include('messagerie/_form_send.html.twig') }}
+                        {{ include('messagerie/_transactionInfo.html.twig') }}
+                        
 	        </div>
 	</div>
 {% endblock %}

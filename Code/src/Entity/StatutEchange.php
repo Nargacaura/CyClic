@@ -12,6 +12,22 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class StatutEchange
 {
+
+    public const open = "Ouvert";
+    public const cancelled = "Annulé";
+    public const inValidation = "ValidationEchange";
+    public const validated = "EchangeValidé";
+    public const close = "Fini";
+
+    public const status = array(
+        "Ouvert",
+        "Annulé",
+        "ValidationEchange",
+        "EchangeValidé",
+        "Fini",
+    );
+
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Annonce;
 use App\Entity\Message;
+use App\Entity\Transaction;
 use App\Entity\User;
 use App\Repository\AnnonceRepository;
 use App\Repository\MessageRepository;
@@ -58,16 +59,28 @@ class MessagerieController extends AbstractController
         if (!$this->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('app_login');
         }
-        $form = $this->formSendMessage(
-            $userRepository->find($request->get("userId")), 
-            $request, $doctrine);
+        /** @var User $fromUser */
+        $fromUser = $userRepository->find($request->get("userId"));
+
+        $form = $this->formSendMessage($fromUser, $request, $doctrine);
         $messages = $this->messageRepository->messageFromUserAnnonce($request->get("userId"),$request->get("annonceId"));
         
+
+        /** @var Annonce $annonce */
+        $annonce = $this->annonceRepository->find($request->get("annonceId"));
+        $transaction = $annonce->getTransaction();
+        $status = !$transaction 
+            ? $this->getTransactionStatus(null, $fromUser) 
+            : $this->getTransactionStatus($transaction, $fromUser, $transaction->getValidationDonneur(), $transaction->getNoteDonneur(), $transaction->getNoteReceveur());
+           
         return $this->renderForm('messagerie/from.html.twig', [
             'contacts' => $this->ownSide(),
             "messages" => $messages,
             "user" => $this->getUser(),
-            "form" => $form
+            "fromUser" => $fromUser,
+            "annonce" => $annonce,
+            "form" => $form,
+            "status" => $status
         ]);
     }
 
@@ -93,26 +106,65 @@ class MessagerieController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         /** @var User $user */
-        /** @var User $to */
         $user = $this->getUser();
-        $to = $this->annonceRepository->find($request->get("annonceId"))->getAuteur();
+        /** @var Annonce $annonce */
+        $annonce = $this->annonceRepository->find($request->get("annonceId"));
 
-        if($user == $to) $this->createNotFoundException("vous ne pouvez envoyez de message à vous-même");
+        if(!$annonce) throw $this->createNotFoundException("cette annonce n'existe pas.");
+        
+        /** @var User $to */
+        $to = $annonce->getAuteur();
+
+        if($user == $to) throw $this->createNotFoundException("vous ne pouvez envoyez de message à vous-même");
 
         $contacts = $this->otherSide();
-        $form = $this->formSendMessage(
-            $to, 
-            $request, $doctrine);
+        $form = $this->formSendMessage($to, $request, $doctrine);
+
         $messages = $this->messageRepository->messageToAnnonce($user->getId(), $request->get("annonceId"));
+        
+        $transaction = $annonce->getTransaction();
+
+        $status = !$transaction 
+            ? $this->getTransactionStatus(null, $user) 
+            : $this->getTransactionStatus($transaction, $user, $transaction->getValidationReceveur(), $transaction->getNoteReceveur(), $transaction->getNoteDonneur());
 
         return $this->renderForm('messagerie/to.html.twig', [
             'contacts' => $contacts,
             "messages" => $messages,
+            "annonce" => $annonce,
             "user" => $user,
+            "status" => $status,
             "form" => $form
         ]);
     }
 
+    private function getTransactionStatus(?Transaction $transaction, User $receiver, ?bool $validated = null, ?int $userRate =null, ?int $otherRate = null) : array
+    {
+        $status = array();
+        if($transaction){
+            if($transaction->getReceveur() == $receiver){
+
+                $status["canValidate"] = !$validated;
+                $status["waitValidation"] = $validated 
+                                    && (!$transaction->getValidationDonneur()
+                                        || !$transaction->getValidationReceveur());
+        
+                $status["canRate"] = !$userRate
+                        && $transaction->getValidationDonneur()
+                        && $transaction->getValidationReceveur();
+                        
+                $status["rate"] = $otherRate;
+            }
+            else return array();
+        }
+        else {
+            $status["canValidate"] = true;
+            $status["waitValidation"] = false;
+            $status["canRate"] = false;
+        }
+
+        return $status;
+    }
 
 
     private function ownSide()

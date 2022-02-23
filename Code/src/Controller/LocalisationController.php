@@ -25,7 +25,7 @@ class LocalisationController extends AbstractController
         if ($localisationForm->isSubmitted() && $localisationForm->isValid()) {
             $locale = $localisationForm->getData();
             $user = $entityManager->getRepository(User::class);
-            $affectedUser = $user->findOneBy(['id' => 1]);
+            $affectedUser = $user->findOneBy(['id' => 1]); // À modifier pour avoir le bon id!
             $locale->setUserLocalisation($affectedUser);
             $entityManager->persist($locale);
             $entityManager->flush();

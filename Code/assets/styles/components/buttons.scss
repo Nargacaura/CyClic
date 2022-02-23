@@ -5,6 +5,14 @@
 		margin: 1rem auto;
 	}
 }
+.bouton_annuler {
+	@include bouton(white, $rouge, 5px, 0.3rem);
+	&-localisation {
+		width: 90%;
+		margin: 1rem auto;
+	}
+}
+
 .homedropdown,
 .geolocation,
 .localize_me_there {
@@ -18,7 +26,17 @@
 	border-bottom-right-radius: 0%;
 }
 
-.auth_btn,
+.auth_btn, .reset_btn,
+.btn_fixed_width,
+.interesting {
+	@include bouton(white, $orange, 10px, 0.3rem);
+}
+
+.inappropriate {
+	@include bouton(white, $rouge, 10px, 0.3rem);
+}
+
+.auth_btn, .reset_btn,
 .btn_fixed_width,
 .interesting,
 .inappropriate {
@@ -32,17 +50,17 @@
 	}
 }
 
-.auth_btn,
-.btn_fixed_width,
-.interesting {
-	@include bouton(white, $orange, 10px, 0.3rem);
+a.btn_fixed_width {
+	text-decoration: none;
+}
+a.btn_fixed_width:hover {
+	text-decoration: none;
+	color: white;
+	background-color: $jaune;
 }
 
-.inappropriate {
-	@include bouton(white, $rouge, 10px, 0.3rem);
-}
 
-.auth_btn {
+.auth_btn, .reset_btn {
 	padding: 10px;
 }
 
@@ -54,7 +72,8 @@
 }
 
 button:hover,
-.auth_btn:hover {
+.auth_btn:hover, 
+.reset_btn:hover {
 	background-color: $jaune;
 }
 

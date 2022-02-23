@@ -1,0 +1,36 @@
+.error {
+    background-color: $background_auth;
+    z-index: -2;
+    width: 100vw;
+    height: 100vh;
+    @include flex(center, center);
+	@include flex-flow(column);
+}
+
+.error_code_background {
+    position: fixed;
+    z-index: -1;
+    text-align: center;
+    @include doNotHighlight();
+    span {
+        font-family: $font-header;
+        font-size: 50vmax;
+        color: $rouge;
+        // font-weight: bold;
+    }
+}
+
+.err_container {
+    margin: 0 5%;
+
+    p {
+        text-align: justify;
+    }
+}
+
+.err_container h1 {
+    // color: $rouge;
+    color: black;
+    font-family: $font-header;
+    font-size: 48px;
+}

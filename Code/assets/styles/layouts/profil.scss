@@ -1,0 +1,27 @@
+.profile, #annonce {
+  @include flex-flow(row);
+  margin: 0.5rem;
+}
+
+.profile {
+  @include flex(space-between, center);
+}
+
+.desc {
+  width: 70%;
+}
+
+#annonce {
+    @include flex(center, center);
+}
+
+.imagePro {
+  @include flex(center,flex-start);
+  @include flex-flow(column);
+  margin: 5rem;
+
+  img {
+    border-radius: 100%;
+  }
+}
+

@@ -64,12 +64,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $dateNaissance;
 
     /**
-     * @ORM\OneToMany(targetEntity=Localisation::class, mappedBy="userLocalisation", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Localisation::class, mappedBy="userLocalisation", orphanRemoval=true, cascade={"remove", "persist"})
      */
     private $locUser;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="auteur", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="auteur", orphanRemoval=true, cascade={"remove"})
      */
     private $annonces;
 
@@ -79,17 +79,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $note;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="note")
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="note", cascade={"remove"})
      */
     private $raters;
 
     /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="expediteur")
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="expediteur", cascade={"remove"})
      */
     private $envois;
 
     /**
-     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="destinataire")
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="destinataire", cascade={"remove"})
      */
     private $receptions;
 
@@ -103,14 +103,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $ban;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Transaction::class, mappedBy="donneur")
+     */
+    private $donnations;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Transaction::class, mappedBy="receveur")
+     */
+    private $recuperations;
+
     public function __construct()
     {
         $this->locUser = new ArrayCollection();
         $this->annonces = new ArrayCollection();
-        $this->note = new ArrayCollection();
-        $this->raters = new ArrayCollection();
         $this->envois = new ArrayCollection();
         $this->receptions = new ArrayCollection();
+        $this->ban = 0;
+        $this->donnations = new ArrayCollection();
+        $this->recuperations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -311,57 +322,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection|self[]
-     */
-    public function getNote(): Collection
-    {
-        return $this->note;
-    }
-
-    public function addNote(self $note): self
-    {
-        if (!$this->note->contains($note)) {
-            $this->note[] = $note;
-        }
-
-        return $this;
-    }
-
-    public function removeNote(self $note): self
-    {
-        $this->note->removeElement($note);
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|self[]
-     */
-    public function getRaters(): Collection
-    {
-        return $this->raters;
-    }
-
-    public function addRater(self $rater): self
-    {
-        if (!$this->raters->contains($rater)) {
-            $this->raters[] = $rater;
-            $rater->addNote($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRater(self $rater): self
-    {
-        if ($this->raters->removeElement($rater)) {
-            $rater->removeNote($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Message[]
      */
     public function getEnvois(): Collection
@@ -441,6 +401,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBan(bool $ban): self
     {
         $this->ban = $ban;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Transaction[]
+     */
+    public function getDonnations(): Collection
+    {
+        return $this->donnations;
+    }
+
+    public function addDonnation(Transaction $donnation): self
+    {
+        if (!$this->donnations->contains($donnation)) {
+            $this->donnations[] = $donnation;
+            $donnation->setDonneur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDonnation(Transaction $donnation): self
+    {
+        if ($this->donnations->removeElement($donnation)) {
+            // set the owning side to null (unless already changed)
+            if ($donnation->getDonneur() === $this) {
+                $donnation->setDonneur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Transaction[]
+     */
+    public function getRecuperations(): Collection
+    {
+        return $this->recuperations;
+    }
+
+    public function addRecuperation(Transaction $recuperation): self
+    {
+        if (!$this->recuperations->contains($recuperation)) {
+            $this->recuperations[] = $recuperation;
+            $recuperation->setReceveur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecuperation(Transaction $recuperation): self
+    {
+        if ($this->recuperations->removeElement($recuperation)) {
+            // set the owning side to null (unless already changed)
+            if ($recuperation->getReceveur() === $this) {
+                $recuperation->setReceveur(null);
+            }
+        }
 
         return $this;
     }

@@ -34,6 +34,7 @@ class HomeController extends AbstractController
         
         $form = $this->createForm(SearchType::class, null, [
             'action' => $this->generateUrl('annonce_search'),
+            'required' => false
         ]);
 
         // $form->handleRequest($request);
@@ -46,7 +47,7 @@ class HomeController extends AbstractController
             
         // }
 
-        $annonces = $annonceRepo->findBy(array(), array('datePublication' => 'ASC'));
+        $annonces = $annonceRepo->searchAvailableAnnonce();
         $annonces = array_slice($annonces, 0, HomeController::ANNONCE_SHOW);
         
         return $this->renderForm('home/index.html.twig', [

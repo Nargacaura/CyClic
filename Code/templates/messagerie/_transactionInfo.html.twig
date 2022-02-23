@@ -1,0 +1,39 @@
+
+{% if status is not empty %}
+        {% if status.canValidate %}
+                <form method="post"
+                {% if fromUser is defined %}
+                    action="{{ path('transaction_validation', {'annonceId': annonce.id, 'receiverId': fromUser.id}) }}"
+                {% else %}
+                    action="{{ path('transaction_validation', {'annonceId': annonce.id}) }}"
+                {% endif %}        
+                >    
+                    <button class="bouton">
+                        Valider Echange
+                    </button>
+                </form>
+        {% elseif status.waitValidation %}
+                <form method="post" action="{{ path('transaction_cancel', {'annonceId': annonce.id}) }}">
+                <button class="bouton_annuler">
+                        Annuler Validation
+                </button>
+                </form>
+        {% elseif status.canRate %}
+            <form class="dropdown" method="post" action="{{ path('transaction_rate', {'annonceId': annonce.id}) }}">
+                Note :
+                <select name="rating" class="bouton">
+                {% for rating in range(1, 5, 1) %}
+                    <option value="{{ rating }}" class="dropdown-item">{{ rating }}</option>
+                {% endfor %}
+                </select>
+                <input type="submit" name="submit"/>
+            </form>
+        {% elseif status.rate is defined %}
+            {% if status.rate is not null %}
+                <p>Suite à votre échange, vous avez reçu la note : {{ status.rate }}</p>
+            {% else %}
+                <p>Vous n'avez pas encore reçu de note.</p>
+            {% endif %}
+        {% endif %}
+        
+{% endif %}

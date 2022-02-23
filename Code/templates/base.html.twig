@@ -19,25 +19,30 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
+	{% if (app.user and app.user.ban == 0) or not app.user %}
 		<!-- Navbar du site -->
-		<header class="main_navbar">
-			<nav class="CyClic_navbar">
+			<header class="main_navbar"> <nav class="CyClic_navbar">
 				<a href="{{ path('home') }}"><img src="{{ asset('img/wordmark.png') }}" class="nav_logo"></a>
 				<ul class="nav_menu">
 					<li>
 						<a href="{{path('new_annonce')}}">Publier une annonce</a>
 					</li>
 					<li>
-						<a href="annonce">Recherche</a>
+						<a href="{{path('annonce')}}">Recherche</a>
 					</li>
 					{% if app.user %}
 						<li>
-							<a href="#">Messagerie</a>
+							<a href="{{path('messagerie_own')}}">Messagerie</a>
 						</li>
 						<li>
-							<a href="#">
+							<a href="#" id="userIcon">
 								<i class="fas fa-user"></i>
 							</a>
+							<nav id="userMenu" class="userIconOff">
+								<a href="{{path('profil')}}">Profil</a>
+								<a href="#">Paramètres</a>
+								<a href="{{path('app_logout')}}">Déconnexion</a>
+							</nav>
 						</li>
 					{% else %}
 						<li>
@@ -47,9 +52,59 @@
 				</ul>
 			</nav>
 		</header>
+		{% endif %}
 
-		{% block body %}
-			<!-- Ajouter le contenu voulu dans D'AUTRES fichiers Twig -->
-		{% endblock %}
+
+		{% block body %}{% endblock %}
+		{% if (app.user and app.user.ban == 0) or not app.user %}
+		<footer>
+			<div class="logo_footer">
+				<a href="/home"><img src="{{ asset('img/CyClic_logo.png') }}"></a>
+				<small class="d-block mb-3 text-muted ">&copy; 2021–2022</small>
+			</div>
+
+			<div class="list_flex">
+				<ul class="list-unstyled text-small">
+					<li>
+						<a class="link-secondary" href="/login">Se connecter</a>
+					</li>
+					<li>
+						<a class="link-secondary" href="/register">S'inscrire</a>
+					</li>
+					<li>
+						<a class="link-secondary" href="#">Team feature</a>
+					</li>
+				</ul>
+				<ul class="list-unstyled text-small">
+					<li>
+						<a class="link-secondary" href="/annonce">Annonces</a>
+					</li>
+					<li>
+						<a class="link-secondary" href="#">Resource</a>
+					</li>
+					<li>
+						<a class="link-secondary" href="#">Another resource</a>
+					</li>
+				</ul>
+				<ul class="list-unstyled text-small">
+					<li>
+						<a class="link-secondary" href="/home">Home</a>
+					</li>
+					<li>
+						<a class="link-secondary" href="#">Mentions légales</a>
+					</li>
+					<li>
+						<a class="link-secondary" href="#">FAQ</a>
+					</li>
+				</ul>
+			</div>
+
+
+			<div class="logo_social">
+				<a href="https://fr-fr.facebook.com/"><img src="{{ asset('img/logo_facebook.png') }}"></a>
+				<a href="https://twitter.com/?lang=fr"><img src="{{ asset('img/logo_twitter.png') }}"></a>
+			</div>
+		</footer>
+		{% endif %}
 	</body>
 </html>

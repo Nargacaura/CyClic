@@ -2,89 +2,102 @@ input,
 textarea,
 .form-select,
 .login input {
-	font-family: $font-sans-serif;
-	background-color: $gris;
-	border: none;
+  font-family: $font-sans-serif;
+  background-color: $gris;
+  border: none;
 }
 
 .auth_container form {
-	padding: 1%;
+  padding: 1%;
 }
 
 .auth_container input,
 .voie,
 .ville,
 .CP {
-	border-radius: 5px;
-	margin: auto;
-	margin-top: 1em;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 1em;
 }
 
 .auth_container input {
-	width: 90%;
+  width: 90%;
 }
 
 .form-control {
-	font-family: $font-sans-serif;
-	background-color: $gris;
-	border: none;
-	padding: none;
-	height: 40px;
+  font-family: $font-sans-serif;
+  background-color: $gris;
+  border: none;
+  padding: none;
+  height: 40px;
 }
 
 .formContent {
-	width: 90%;
-	border-radius: 5px;
-	margin: auto;
-	margin-top: 1em;
-	padding: 0.2rem 1rem;
+  width: 90%;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 1em;
+  padding: 0.2rem 1rem;
 }
 
 .container__blocBoutons {
-	@include flex(flex-start, center);
-	width: 90%;
-	margin: auto;
-	select {
-		margin-right: 2rem;
-		width: 150px;
-	}
+  @include flex(flex-start, center);
+  width: 90%;
+  margin: auto;
+  select {
+    margin-right: 2rem;
+    width: 150px;
+  }
 }
 
 .container__galerie {
-	width: 90%;
-	margin: auto;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	.photos {
-		margin: 0;
-		padding: 0;
-		li {
-			width: 90%;
-			margin: 0.5rem auto;
-			list-style: none;
-			label {
-				display: none;
-			}
-			input {
-				width: 100%;
-			}
-			button {
-				@include bouton(white, $rouge, 5px, 0.3rem);
-				margin: 0.3rem;
-			}
-		}
-	}
+  width: 90%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .photos {
+    margin: 0;
+    padding: 0;
+    li {
+      width: 90%;
+      margin: 0.5rem auto;
+      list-style: none;
+      label {
+        display: none;
+      }
+      input {
+        width: 100%;
+      }
+      button {
+        @include bouton(white, $rouge, 5px, 0.3rem);
+        margin: 0.3rem;
+      }
+    }
+  }
 }
 
 .fa-image {
-	font-size: 600%;
+  font-size: 600%;
 }
 
 .hidden {
-	display: none;
+  display: none;
 }
 
 .coordonnees {
-	border-radius: 0%;
+  border-radius: 0%;
+}
+
+#annonce_photos {
+  label {
+    display: none;
+  }
+  input {
+    display: none;
+  }
+  li {
+    color: red;
+    padding: 1rem;
+  }
 }

@@ -28,3 +28,13 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+
+public/
+public_html/build/entrypoints.json
+public_html/build/manifest.json
+public_html/build/images/fa-brands-400.2f517e09.svg
+public_html/build/images/fa-regular-400.4689f52c.svg
+public_html/build/images/fa-solid-900.7a8b4f13.svg
+composer.lock
+symfony.lock

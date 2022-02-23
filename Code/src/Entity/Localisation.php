@@ -41,7 +41,7 @@ class Localisation
     private $userLocalisation;
 
     /**
-     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="localisation")
+     * @ORM\OneToMany(targetEntity=Annonce::class, mappedBy="localisation", cascade={"remove"})
      */
     private $annonces;
 
