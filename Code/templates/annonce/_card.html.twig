@@ -12,7 +12,7 @@
 							<p class="card-text">{{ annonce.etat.nom }}</p>
 						</div>
 						<div class="card_profilePic">
-							<img src="{{ annonce.auteur.avatar }}" alt="avatar du donneur">
+							<img src="/img/usersAvatars/{{ annonce.auteur.avatar.imageName }}" alt="avatar du donneur">
 						</div>
 					</div>
 					<p>{{ annonce.contenu|u.truncate(20, '…') }}</p>

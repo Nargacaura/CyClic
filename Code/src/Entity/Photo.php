@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PhotoRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -57,6 +58,18 @@ class Photo
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->annonce;
+    }
+
+    public function setUpdatedAt(?DateTime $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 
     public function getAnnonce(): ?Annonce

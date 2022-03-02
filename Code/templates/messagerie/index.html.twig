@@ -6,6 +6,9 @@
 	<div class="d-flex">
         {{ include('messagerie/_aside_from.html.twig') }}
 		<main>
+    {% if messages is not defined %}   
+       <div style="height: 90vh;"></div>
+    {% endif %}
 		</main>
 	</div>
 {% endblock %}

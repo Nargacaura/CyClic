@@ -35,15 +35,15 @@ class Avatar
     private $image_size;
 
     /**
-     * @ORM\Column(type="datetime_immutable")
+     * @ORM\Column(type="datetime")
      */
-    private $updated_at;
+    private $updatedAt;
 
     public function __construct()
     {
         $this->image_name = "/img/usersAvatars/avatar.png";
         $this->image_size = 4198;
-        $this->updated_at = new DateTime('now');
+        $this->setUpdatedAt(new DateTime("now"));
     }
 
     public function getId(): ?int
@@ -87,14 +87,14 @@ class Avatar
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTime
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updated_at;
+        return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTime $updated_at): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
-        $this->updated_at = $updated_at;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
