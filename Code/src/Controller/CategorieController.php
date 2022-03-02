@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Categorie;
+use App\Form\CategoryType;
 use App\Repository\CategorieRepository;
-use CategoryType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,24 +16,23 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @Route("/category")
+ * @author SCHAEFFER Léonard
+ * <h1>Catégorie controller</h1>
  */
 class CategorieController extends AbstractController
-{
-    // /*
-    //  * @Route("/category", name="category")
-    //  */
-    // public function index(): Response
-    // {
-    //     return $this->render('categorie/index.html.twig', [
-    //         'controller_name' => 'CategorieController',
-    //     ]);
-    // }
-    
+{ 
     /**
      * @Route("/add", name="add_category")
+     * <h2>Function permetant le rajout de catégorie</h>
+     * @param $request
+     * @param $doctrine
+     * @return $this->renderForm('categorie/add.html.twig', ['form' => $form,]);
      */
     public function add(Request $request, ManagerRegistry $doctrine): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException();
+        }
         // creates a category object and initializes some data for this example
         $category = new Categorie();
         $category->setNom('Nom de la categorie');
@@ -50,7 +49,6 @@ class CategorieController extends AbstractController
             $entityManager = $doctrine->getManager();
             $entityManager->persist($category);
             $entityManager->flush();
-            //return new Response('Saved new category with name : '.$category->getNom().' and id : '.$category->getId());
             return $this->redirectToRoute('categories', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -59,8 +57,11 @@ class CategorieController extends AbstractController
         ]);
     }
     
-    /*
+    /**
      * @Route("/", name="categories")
+     * <h2>Liste les catégories</h2>
+     * @param $categorieRepository
+     * @return $this->render('categorie/list.html.twig', ['categories' => $categorieRepository->findAll()]);
      */
     public function list(CategorieRepository $categorieRepository): Response
     {
@@ -69,11 +70,21 @@ class CategorieController extends AbstractController
         ]);
     }
     
-    /*
+    /**
      * @Route("/edit/{id}", name="edit_category", methods={"GET", "POST"})
+     * <h2>Modifie une catégorie</h2>
+     * @param $request
+     * @param $category
+     * @param $entityManager
+     * @return $this->redirectToRoute('categories', [], Response::HTTP_SEE_OTHER);
+     * <h3>else</h3>
+     * @return $this->renderForm('categorie/edit.html.twig', ['category' => $category,'form' => $form,]);
      */
     public function edit(Request $request, Categorie $category, EntityManagerInterface $entityManager): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException();
+        }
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
@@ -89,11 +100,19 @@ class CategorieController extends AbstractController
         ]);
     }
 
-    /*
+    /**
      * @Route("/delete/{id}", name="delete_category", methods={"POST"})
+     * <h2>Supprimer une catégorie</h2>
+     * @param $request
+     * @param $category
+     * @param $doctrine
+     * @return $this->redirectToRoute('categories', [], Response::HTTP_SEE_OTHER);
      */
     public function delete(Request $request, Categorie $category, ManagerRegistry $doctrine): Response
     {
+        if (!$this->isGranted('ROLE_ADMIN')) {
+            throw $this->createAccessDeniedException();
+        }
         if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
             $entityManager = $doctrine->getManager();
             $entityManager->remove($category);

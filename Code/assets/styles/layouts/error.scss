@@ -16,7 +16,9 @@
         font-family: $font-header;
         font-size: 50vmax;
         color: $rouge;
-        // font-weight: bold;
+        @include special_view() {
+            font-size: 50vmin;
+        }
     }
 }
 
@@ -29,7 +31,6 @@
 }
 
 .err_container h1 {
-    // color: $rouge;
     color: black;
     font-family: $font-header;
     font-size: 48px;

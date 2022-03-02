@@ -2,14 +2,26 @@
 
 {% block title %}Messagerie{% endblock %}
 
+{% block javascripts %}
+	{{ parent() }}
+	{# {{ encore_entry_script_tags('calendarImport') }} #}
+	{{ encore_entry_script_tags('calendarAction') }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags("calendarAction") }}
+{% endblock %}
+
 {% block body %}
 	<div class="d-flex  bd-highlight">
                 {{ include('messagerie/_aside_from.html.twig') }}
-                <div class="p-2 flex-grow-1 bd-highlight">
+                <div class="p-2 flex-grow-1 bd-highlight" id="mainMessagerie">
                         {{ include('messagerie/_messages.html.twig') }}
                         {{ include('messagerie/_form_send.html.twig') }}
                         {{ include('messagerie/_transactionInfo.html.twig') }}
-                        
+                        {{ include('messagerie/_calendar.html.twig') }}
 	        </div>
 	</div>
+
 {% endblock %}

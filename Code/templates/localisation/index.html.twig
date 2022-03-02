@@ -1,28 +1,90 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Localisation{% endblock %}
+{% block title %}Localisation
+{% endblock %}
 
 {% block body %}
-    {{ form_start(localisationForm) }}
-        {{ form_row(localisationForm.rue, {
+
+	{% if localisationList is defined and localisationList is empty == false %}
+
+		<h1>Vos Localisations :</h1>
+		<table class="table">
+			{% for loc in localisationList %}
+				<tr>
+					<td class="adresseMap">{{ loc.rue }}
+						{{ loc.codePostal }},
+						{{ loc.ville }}</td>
+					<td>
+						<button class="bouton showOnMap" data-lat={{ loc.latitude }} data-lon={{ loc.longitude }}>Afficher sur la carte</button>
+					</td>
+					<td>
+						<form method="post" action="{{ path('delete_localisation', {'id': loc.id}) }}" {# onsubmit="return confirm('Voulez-vous vraiment supprimer cette localisation?');" #}>
+							<input type="hidden" name="_method" value="DELETE">
+							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ loc.id) }}">
+							<button class="bouton_annuler">Supprimer</button>
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+	{% endif %}
+	{{ form_start(localisationForm) }}
+	{{ form_row(localisationForm.rue, {
             attr: {
                 'placeholder': 'Voie',
                 'class': 'voie'
             }
         }) }}
-        {{ form_row(localisationForm.codePostal, {
+	{{ form_row(localisationForm.codePostal, {
             attr: {
                 'placeholder': 'CP',
                 'class': 'CP'
             }
         }) }}
-        {{ form_row(localisationForm.ville, {
+	{{ form_row(localisationForm.ville, {
             attr: {
                 'placeholder': 'Ville',
                 'class': 'ville'
             }
         }) }}
-    <button type="submit" class="btn localize_me_there">Se localiser ici</button>
-    <button type="button" class="geolocation"><i class="fas fa-map-marker-alt" ></i></button>
-    {{ form_end(localisationForm) }}
+	<div class="container">
+		<div class="row  justify-content-md-center">
+			<div class="col text-center">
+				<button type="button" id="geolocBtn" class="bouton_margin">Trouver mon emplacement
+					<i class="fas fa-map-marker-alt"></i>
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col text-center">
+				<input type="text" id="adressResult" class="form-control coordonnees" readonly="true"></input>
+		</div>
+	</div>
+	<div class="row  justify-content-md-center">
+		<div class="col text-center">
+			<button type="submit" class="bouton_margin">Ajouter cette localisation</button>
+		</div>
+	</div>
+</div>
+{{ form_end(localisationForm) }}
+
+<div class="container">
+	<div class="row  justify-content-center">
+		<div class="col-sm-12 mx-auto">
+			<div id="map" style="height:500px"></div>
+		</div>
+	</div>
+</div>
+<br>
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags("mapping") }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags("mapping") }}
+    {{ encore_entry_script_tags("geolocation") }}
 {% endblock %}

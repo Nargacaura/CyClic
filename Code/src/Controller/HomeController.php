@@ -26,8 +26,7 @@ class HomeController extends AbstractController
     private const ANNONCE_SHOW = 4;
 
     /**
-     * @Route("/home", name="home")
-     * @Route("/")
+     * @Route("/", name="home")
      */
     public function index(Request $request, ManagerRegistry $doctrine, AnnonceRepository $annonceRepo, CategorieRepository $catRepo): Response
     {

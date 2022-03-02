@@ -1,24 +1,44 @@
-.message{
-    color: black;
-    padding: 1em;
-    border-radius: 5px;
-    width: 60%;
-    margin:1em;
-    margin-left: 2em;
-    margin-right: 2em;
+.message {
+	color: black;
+	padding: 1em;
+	border-radius: 5px;
+	width: 60%;
+	margin: 1em;
+	margin-left: 2em;
+	margin-right: 2em;
+}
+
+p {
+	@include tablette_view() {
+		width: 90%;
+		margin: auto;
+	}
+}
+
+.welcome {
+	font-size: xx-large;
+	font-weight: lighter;
+}
+
+.message_own,
+.message_other {
+	@extend .message;
 }
 
 .message_own {
-    @extend .message;
-    background-color: $turquoise;
-    text-align: right;
-    float:right;
-  }
+	background-color: $turquoise;
+	text-align: right;
+	float: right;
+}
 
-  .message_other {
-    @extend .message;
-    background-color: $gris;
-    text-align: left;
-    float:left;
-  }
-  
+.message_other {
+	@extend .message;
+	background-color: $gris;
+	text-align: left;
+	float: left;
+}
+
+.texte_info {
+	margin-right: 5%;
+	margin-left: 5%;
+}

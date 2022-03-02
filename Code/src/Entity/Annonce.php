@@ -75,14 +75,26 @@ class Annonce
     private $messages;
 
     /**
-     * @ORM\OneToOne(targetEntity=Transaction::class, mappedBy="annonce", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Transaction::class, mappedBy="annonce", cascade={"persist"})
      */
     private $transaction;
+
+    /**
+     * @ORM\OneToMany(targetEntity=CalendarData::class, mappedBy="annonce", orphanRemoval=true)
+     */
+    private $calendar;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Signalement::class, mappedBy="annonce", cascade={"remove"})
+     */
+    private $signalements;
 
     public function __construct()
     {
         $this->photos = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->calendar = new ArrayCollection();
+        $this->signalements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -259,6 +271,66 @@ class Annonce
         }
 
         $this->transaction = $transaction;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CalendarData[]
+     */
+    public function getCalendar(): Collection
+    {
+        return $this->calendar;
+    }
+
+    public function addCalendar(CalendarData $calendar): self
+    {
+        if (!$this->calendar->contains($calendar)) {
+            $this->calendar[] = $calendar;
+            $calendar->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCalendar(CalendarData $calendar): self
+    {
+        if ($this->calendar->removeElement($calendar)) {
+            // set the owning side to null (unless already changed)
+            if ($calendar->getAnnonce() === $this) {
+                $calendar->setAnnonce(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Signalement>
+     */
+    public function getSignalements(): Collection
+    {
+        return $this->signalements;
+    }
+
+    public function addSignalement(Signalement $signalement): self
+    {
+        if (!$this->signalements->contains($signalement)) {
+            $this->signalements[] = $signalement;
+            $signalement->setAnnonce($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSignalement(Signalement $signalement): self
+    {
+        if ($this->signalements->removeElement($signalement)) {
+            // set the owning side to null (unless already changed)
+            if ($signalement->getAnnonce() === $this) {
+                $signalement->setAnnonce(null);
+            }
+        }
 
         return $this;
     }

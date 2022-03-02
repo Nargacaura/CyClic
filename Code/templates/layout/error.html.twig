@@ -19,26 +19,26 @@
 	<body class="error">
 		<header class="main_navbar">
 			<nav class="CyClic_navbar">
-				<a href="{{ path('home') }}"><img src="{{ asset('img/wordmark.png') }}" class="nav_logo"></a>
+				<a href="{{ path('home') }}"><img src="{{ asset('img/wordmark_monochrome.png') }}" class="nav_logo"><img alt="CyClic logo" src="{{ asset('img/CyClic_logo.png') }}" class="portrait_nav_logotype"></a>
 				<ul class="nav_menu">
 					<li>
-						<a href="{{path('new_annonce')}}">Publier une annonce</a>
+						<a href="{{path('new_annonce')}}" title="Publier une nouvelle annonce"><i class="fas fa-upload"></i></a>
 					</li>
 					<li>
-						<a href="{{path('annonce')}}">Recherche</a>
+						<a href="{{path('annonce')}}" title="Rechercher"><i class="fas fa-search"></i></a>
 					</li>
 					{% if app.user %}
 						<li>
-							<a href="#">Messagerie</a>
+							<a href="{{path('messagerie_own')}}" title="Messagerie"><i class="fas fa-comments"></i></a>
 						</li>
 						<li>
 							<a href="#" id="userIcon">
 								<i class="fas fa-user"></i>
 							</a>
 							<nav id="userMenu" class="userIconOff">
-								<a href="">Profil</a>
+								<a href="{{path('profil')}}">Profil</a>
 								<a href="#">Paramètres</a>
-								<a href="#">Déconnexion</a>
+								<a href="{{path('app_logout')}}">Déconnexion</a>
 							</nav>
 						</li>
 					{% else %}

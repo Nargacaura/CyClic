@@ -1,14 +1,17 @@
 
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags('geolocation') }}
+{% endblock %}
+
 {% block body %}
 {% if (app.user and app.user.ban == 0) or not app.user %}
 <div class="example-wrapper">
 
 		<br>
-		<h2 class="text-center">Bienvenue{% if app.user %} {{ app.user.prenom }} {{ app.user.nom }} ({{ app.user.pseudo }}){% endif %}!
-
-		</h2>
+		<h2 class="text-center welcome">Bienvenue{% if app.user %} {{ app.user.pseudo }}{% endif %}!</h2>
 
 
 		<div class="container">
@@ -55,7 +58,11 @@
 		{# {{ include('categorie/_dropdown.html.twig') }} #}
 
 		<br>
-		<p  class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque iure at accusantium nemo quibusdam cumque voluptatem alias labore blanditiis. Laudantium recusandae optio culpa iste dignissimos sit hic quisquam quod!</p>
+		<p  class="text-center texte_info">
+			RECYCLAGE, ENTRAIDE et ECHANGE ! </br>
+			Telles sont les devises de CyClic, référence de la récupe sur le net, qui a déjà permis de sauver et de remettre dans le circuit plus de 3 000 000 objets !
+			Vous aussi, ayez le bon réflexe en donnant vos objets qui encombrent et rejoignez nos plus d'un million d'utilisateurs.
+			Recherchez et récupérez gratuitement ces dons et soyez avertis des nouveaux dons publiés près de chez vous.</p>
 
 
 		<br>
@@ -121,7 +128,17 @@
 		<h1>À propos de CyClic</h1>
 		<br>
 
-		<p  class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda itaque iure at accusantium nemo quibusdam cumque voluptatem alias labore blanditiis. Laudantium recusandae optio culpa iste dignissimos sit hic quisquam quod!</p>
+		<p  class="text-center texte_info">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+			Assumenda itaque iure at accusantium nemo quibusdam cumque volu
+			ptatem alias labore blanditiis. Laudantium recusandae optio culpa
+			 iste dignissimos sit hic quisquam quod!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+			Assumenda itaque iure at accusantium nemo quibusdam cumque volu
+			ptatem alias labore blanditiis. Laudantium recusandae optio culpa
+			 iste dignissimos sit hic quisquam quod!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+			Assumenda itaque iure at accusantium nemo quibusdam cumque volu
+			ptatem alias labore blanditiis. Laudantium recusandae optio culpa
+			 iste dignissimos sit hic quisquam quod!</p>
 
 		<br>
 		

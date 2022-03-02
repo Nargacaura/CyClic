@@ -94,11 +94,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $receptions;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $avatar ="img/avatar.png";
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $ban;
@@ -113,6 +108,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $recuperations;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Avatar::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $avatar;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Signalement::class, mappedBy="auteur")
+     */
+    private $signalements;
+    /**
+     * @ORM\Column(type="decimal", precision=2, scale=1, nullable=true)
+     */
+    private $noteMoyenneUser;
+
     public function __construct()
     {
         $this->locUser = new ArrayCollection();
@@ -122,11 +131,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->ban = 0;
         $this->donnations = new ArrayCollection();
         $this->recuperations = new ArrayCollection();
+        $this->signalements = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -223,6 +239,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->pseudo = $pseudo;
 
         return $this;
+    }
+
+    public function __toString() {
+        return (string) $this->getPseudo();
     }
 
     public function getNom(): ?string
@@ -381,18 +401,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAvatar(): ?string
-    {
-        return $this->avatar;
-    }
-
-    public function setAvatar(string $avatar): self
-    {
-        $this->avatar = $avatar;
-
-        return $this;
-    }
-
     public function getBan(): ?bool
     {
         return $this->ban;
@@ -461,6 +469,63 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $recuperation->setReceveur(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAvatar(): ?Avatar
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(Avatar $avatar): self
+    {
+        // set the owning side of the relation if necessary
+        if ($avatar->getUser() !== $this) {
+            $avatar->setUser($this);
+        }
+
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Signalement>
+     */
+    public function getSignalements(): Collection
+    {
+        return $this->signalements;
+    }
+
+    public function addSignalement(Signalement $signalement): self
+    {
+        if (!$this->signalements->contains($signalement)) {
+            $this->signalements[] = $signalement;
+            $signalement->setAuteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSignalement(Signalement $signalement): self
+    {
+        if ($this->signalements->removeElement($signalement)) {
+            // set the owning side to null (unless already changed)
+            if ($signalement->getAuteur() === $this) {
+                $signalement->setAuteur(null);
+            }
+        }
+        return $this;
+    }
+    public function getNoteMoyenneUser(): ?string
+    {
+        return $this->noteMoyenneUser;
+    }
+
+    public function setNoteMoyenneUser(?string $noteMoyenneUser): self
+    {
+        $this->noteMoyenneUser = $noteMoyenneUser;
 
         return $this;
     }

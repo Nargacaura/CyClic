@@ -1,39 +1,57 @@
 @mixin flex($position, $alignment) {
-  display: flex;
-  justify-content: $position;
-  align-items: $alignment;
+	display: flex;
+	justify-content: $position;
+	align-items: $alignment;
+}
+
+@mixin smartphone_view {
+	@media (max-width: 576px) {
+		@content;
+	}
+}
+
+@mixin tablette_view {
+	@media (max-width: 1024px) and (min-width: 576px) {
+		@content;
+	}
+}
+
+@mixin special_view {
+	@media (max-width: 1115px) {
+		@content;
+	}
 }
 
 @mixin flexbox() {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
 }
 
 @mixin flex-flow($line_column) {
-  -webkit-flex-flow: $line_column;
-  -moz-flex-flow: $line_column;
-  -ms-flex-flow: $line_column;
-  flex-flow: $line_column;
-  -ms-flex-pack: $line_column;
+	-webkit-flex-flow: $line_column;
+	-moz-flex-flow: $line_column;
+	-ms-flex-flow: $line_column;
+	flex-flow: $line_column;
+	-ms-flex-pack: $line_column;
 }
 
 @mixin justify-content($position) {
-  -webkit-justify-content: $position;
-  -moz-justify-content: $position;
-  -ms-justify-content: $position;
-  justify-content: $position;
-  -ms-flex-pack: $position;
+	-webkit-justify-content: $position;
+	-moz-justify-content: $position;
+	-ms-justify-content: $position;
+	justify-content: $position;
+	-ms-flex-pack: $position;
 }
 
 @mixin align-items($alignment) {
-  -webkit-align-items: $alignment;
-  -moz-align-items: $alignment;
-  -ms-align-items: $alignment;
-  align-items: $alignment;
-  -ms-flex-pack: $alignment;
+	-webkit-align-items: $alignment;
+	-moz-align-items: $alignment;
+	-ms-align-items: $alignment;
+	align-items: $alignment;
+	-ms-flex-pack: $alignment;
 }
 
 @mixin flex-wrap($should_wrap) {
@@ -45,36 +63,39 @@
 }
 
 @mixin bouton($couleur, $couleurBG, $border-radius, $padding) {
-  background-color: $couleurBG;
-  color: $couleur;
-  border-radius: $border-radius;
-  padding: $padding;
-  border: none;
+	background-color: $couleurBG;
+	color: $couleur;
+	border-radius: $border-radius;
+	padding: $padding;
+	border: none;
 }
 
 @mixin avatar($border) {
-  border: $border;
-  border-width: 3px;
-  border-color: white;
-  overflow: hidden;
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: 100%;
-  }
+	border: $border;
+	border-width: 3px;
+	border-color: white;
+	overflow: hidden;
+	img {
+		width: 100%;
+		height: auto;
+		border-radius: 100%;
+	}
 }
 
 @mixin formContainer() {
-  background-color: $blanc;
-  border-radius: 25px;
-  margin: 5rem auto;
-  width: 40%;
-  text-align: center;
+	background-color: $blanc;
+	border-radius: 25px;
+	margin: 5rem auto;
+	width: 40%;
+	text-align: center;
+	@include tablette_view() {
+		width: 60%;
+	}
 }
 
 @mixin doNotHighlight() {
-  -webkit-user-select: none; /* Safari */        
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
+	-webkit-user-select: none; /* Safari */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
 }

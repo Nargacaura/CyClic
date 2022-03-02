@@ -8,7 +8,6 @@
 {% endblock %}
 
 {% block body %}
-	<div class="navbar_padding"></div>
 	<div class="annonceForm_container">
 		<h1 class="container__title">Nouvelle annonce</h1>
 		{{ form_start(form) }}
@@ -20,7 +19,11 @@
 		</div>
 		<div class="container__galerie">
 			<ul class="photos" id="photos" data-index="{{ form.photos|length > 0 ? form.photos|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.photos.vars.prototype)|e('html_attr') }}">
-				{% for photo in form.photos %}{% endfor %}
+				{% for photo in form.photos %}
+					<li>
+						{{ form_row(photo) }}
+					</li>
+				{% endfor %}
 				<div id="div_vignette_0" class="vignette">
 					<i class="far fa-image"></i>
 				</div>
@@ -34,7 +37,7 @@
 		</div>
 		{{ form_row(form.localisation) }}
 		<div class="d-flex justify-content-center">
-			<button class="auth_btn auth_btn-annulation">Annuler</button>
+			<a type="button" href="{{ path('home') }}" class="auth_btn auth_btn-annulation">Annuler</a>
 			{{ form_row(form.valider) }}
 		</div>
 		{{ form_end(form) }}

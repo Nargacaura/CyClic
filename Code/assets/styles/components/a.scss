@@ -1,15 +1,22 @@
 a {
-  color: $orange;
-  font-family: $font-header;
-  text-decoration: none;
-  font-weight: bold;
+	color: $orange;
+	font-family: $font-header;
+	text-decoration: none;
+	font-weight: bold;
 }
 
 a:hover {
-  color: $jaune;
+	color: $jaune;
 }
 
-a > .fa-map-marker-alt {
-  font-size: xx-large;
-  margin-left: 0.5rem;
+.fa-map-marker-alt {
+	font-size: large;
+
+	@include tablette_view() {
+		font-size: x-large;
+	}
+}
+
+.footer_link {
+	color: white;
 }

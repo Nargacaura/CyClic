@@ -1,0 +1,75 @@
+\hypertarget{class_app_1_1_controller_1_1_annonce_controller}{}\doxysection{Référence de la classe Annonce\+Controller}
+\label{class_app_1_1_controller_1_1_annonce_controller}\index{AnnonceController@{AnnonceController}}
+Graphe d\textquotesingle{}héritage de Annonce\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_annonce_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_annonce_controller_a96ed4cc44b687ca3e3508651ceead7a4}{result}} (Request \$request, \mbox{\hyperlink{class_app_1_1_repository_1_1_annonce_repository}{Annonce\+Repository}} \$annonce\+Repo, \mbox{\hyperlink{class_app_1_1_repository_1_1_categorie_repository}{Categorie\+Repository}} \$categ\+Repo, \mbox{\hyperlink{class_app_1_1_repository_1_1_localisation_repository}{Localisation\+Repository}} \$localisations)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_annonce_controller_a633829ded7ab001bbb3db87e056bc3b1}{index}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_etat_repository}{Etat\+Repository}} \$etat\+Repository, \mbox{\hyperlink{class_app_1_1_repository_1_1_annonce_repository}{Annonce\+Repository}} \$annonce\+Repo, \mbox{\hyperlink{class_app_1_1_repository_1_1_categorie_repository}{Categorie\+Repository}} \$categ\+Repo, \mbox{\hyperlink{class_app_1_1_repository_1_1_localisation_repository}{Localisation\+Repository}} \$localisations)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_annonce_controller_a50b031d4d104d1297deb9624c70cf3ca}{tri}} (\mbox{\hyperlink{class_app_1_1_repository_1_1_annonce_repository}{Annonce\+Repository}} \$annonce\+Repo, \mbox{\hyperlink{class_app_1_1_repository_1_1_categorie_repository}{Categorie\+Repository}} \$categ\+Repo, Request \$request)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_annonce_controller_a0b3fa4cddaec87c117c4e846323d73a5}{show\+Details}} (\mbox{\hyperlink{class_app_1_1_entity_1_1_annonce}{Annonce}} \$annonce)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_annonce_controller_ac3551858430c1cef38dd4c8cc824e80d}{add\+Annonce}} (Manager\+Registry \$doctrine, Request \$request, \mbox{\hyperlink{class_app_1_1_repository_1_1_statut_echange_repository}{Statut\+Echange\+Repository}} \$status\+Repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_annonce_controller_ab375ddcd131bd908458f65c3d97f91b5}{add\+Photo}} (Manager\+Registry \$doctrine, Request \$request)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_annonce_controller_ae50d07ec69531f9e5d739633ae3d6ec0}{delete}} (\mbox{\hyperlink{class_app_1_1_entity_1_1_annonce}{Annonce}} \$annonce, Entity\+Manager\+Interface \$manager, Request \$rq, \mbox{\hyperlink{class_app_1_1_repository_1_1_message_repository}{Message\+Repository}} \$messages)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_annonce_controller_ac3551858430c1cef38dd4c8cc824e80d}\label{class_app_1_1_controller_1_1_annonce_controller_ac3551858430c1cef38dd4c8cc824e80d}} 
+\index{AnnonceController@{AnnonceController}!addAnnonce@{addAnnonce}}
+\index{addAnnonce@{addAnnonce}!AnnonceController@{AnnonceController}}
+\doxysubsubsection{\texorpdfstring{addAnnonce()}{addAnnonce()}}
+{\footnotesize\ttfamily add\+Annonce (\begin{DoxyParamCaption}\item[{Manager\+Registry}]{\$doctrine,  }\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_statut_echange_repository}{Statut\+Echange\+Repository}}}]{\$status\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/annonce/new\char`\"{}, name=\char`\"{}new\+\_\+annonce\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_annonce_controller_ab375ddcd131bd908458f65c3d97f91b5}\label{class_app_1_1_controller_1_1_annonce_controller_ab375ddcd131bd908458f65c3d97f91b5}} 
+\index{AnnonceController@{AnnonceController}!addPhoto@{addPhoto}}
+\index{addPhoto@{addPhoto}!AnnonceController@{AnnonceController}}
+\doxysubsubsection{\texorpdfstring{addPhoto()}{addPhoto()}}
+{\footnotesize\ttfamily add\+Photo (\begin{DoxyParamCaption}\item[{Manager\+Registry}]{\$doctrine,  }\item[{Request}]{\$request }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/photo/new\char`\"{}, name=\char`\"{}new\+Photo\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_annonce_controller_ae50d07ec69531f9e5d739633ae3d6ec0}\label{class_app_1_1_controller_1_1_annonce_controller_ae50d07ec69531f9e5d739633ae3d6ec0}} 
+\index{AnnonceController@{AnnonceController}!delete@{delete}}
+\index{delete@{delete}!AnnonceController@{AnnonceController}}
+\doxysubsubsection{\texorpdfstring{delete()}{delete()}}
+{\footnotesize\ttfamily delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_annonce}{Annonce}}}]{\$annonce,  }\item[{Entity\+Manager\+Interface}]{\$manager,  }\item[{Request}]{\$rq,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_message_repository}{Message\+Repository}}}]{\$messages }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/app\+\_\+annonce\+\_\+delete/\{id$<$\textbackslash{}d+$>$\}\char`\"{}) @\+Security(\char`\"{}annonce.\+get\+Auteur() == user\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_annonce_controller_a633829ded7ab001bbb3db87e056bc3b1}\label{class_app_1_1_controller_1_1_annonce_controller_a633829ded7ab001bbb3db87e056bc3b1}} 
+\index{AnnonceController@{AnnonceController}!index@{index}}
+\index{index@{index}!AnnonceController@{AnnonceController}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}}
+{\footnotesize\ttfamily index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_etat_repository}{Etat\+Repository}}}]{\$etat\+Repository,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_annonce_repository}{Annonce\+Repository}}}]{\$annonce\+Repo,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_categorie_repository}{Categorie\+Repository}}}]{\$categ\+Repo,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_localisation_repository}{Localisation\+Repository}}}]{\$localisations }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/annonce/\{id\}\char`\"{}, name=\char`\"{}annonce\+\_\+info\char`\"{}) @\+Route(\char`\"{}/annonce\char`\"{}, name=\char`\"{}annonce\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_annonce_controller_a96ed4cc44b687ca3e3508651ceead7a4}\label{class_app_1_1_controller_1_1_annonce_controller_a96ed4cc44b687ca3e3508651ceead7a4}} 
+\index{AnnonceController@{AnnonceController}!result@{result}}
+\index{result@{result}!AnnonceController@{AnnonceController}}
+\doxysubsubsection{\texorpdfstring{result()}{result()}}
+{\footnotesize\ttfamily result (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_annonce_repository}{Annonce\+Repository}}}]{\$annonce\+Repo,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_categorie_repository}{Categorie\+Repository}}}]{\$categ\+Repo,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_localisation_repository}{Localisation\+Repository}}}]{\$localisations }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/annonce/result\char`\"{}, name=\char`\"{}annonce\+\_\+search\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_annonce_controller_a0b3fa4cddaec87c117c4e846323d73a5}\label{class_app_1_1_controller_1_1_annonce_controller_a0b3fa4cddaec87c117c4e846323d73a5}} 
+\index{AnnonceController@{AnnonceController}!showDetails@{showDetails}}
+\index{showDetails@{showDetails}!AnnonceController@{AnnonceController}}
+\doxysubsubsection{\texorpdfstring{showDetails()}{showDetails()}}
+{\footnotesize\ttfamily show\+Details (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_entity_1_1_annonce}{Annonce}}}]{\$annonce }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/annonce/\{id$<$\textbackslash{}d+$>$\}\char`\"{}, name=\char`\"{}show\+\_\+details\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_annonce_controller_a50b031d4d104d1297deb9624c70cf3ca}\label{class_app_1_1_controller_1_1_annonce_controller_a50b031d4d104d1297deb9624c70cf3ca}} 
+\index{AnnonceController@{AnnonceController}!tri@{tri}}
+\index{tri@{tri}!AnnonceController@{AnnonceController}}
+\doxysubsubsection{\texorpdfstring{tri()}{tri()}}
+{\footnotesize\ttfamily tri (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_annonce_repository}{Annonce\+Repository}}}]{\$annonce\+Repo,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_categorie_repository}{Categorie\+Repository}}}]{\$categ\+Repo,  }\item[{Request}]{\$request }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/annonce/tri\char`\"{}, name=\char`\"{}tri\+Annonces\char`\"{}) 
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/laragon/www/\+Crousti\+Recycle/src/\+Controller/Annonce\+Controller.\+php\end{DoxyCompactItemize}

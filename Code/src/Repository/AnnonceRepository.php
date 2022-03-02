@@ -37,91 +37,73 @@ class AnnonceRepository extends ServiceEntityRepository
         );
     }
 
-    public function searchAnnonceSimple($search)
+    public function searchAnnonceSimple($search, $limit = 20)
     {
         $query = $this->createQueryBuilder("a");
-        $query->andWhere("a.contenu LIKE :text")
-            ->andWhere("a.titre LIKE :text OR a.contenu LIKE :text")
-            ->setParameters(array(
-                "text" => "%" . $search["titre"] . "%"
-            ))
-            ->andWhere("a.statut = :status")
-            ->setParameter('status', $this->statusRepo->getStatusFromName(StatutEchange::open));
-        if($search["categorie"])
-        {
-            $query->andWhere("a.categorie = :idCat")
-                ->setParameter("idCat", $search["categorie"]);
+        if($search != null){
+            if ($search["titre"]) {
+            $query->andWhere("a.contenu LIKE :text")
+                ->andWhere("a.titre LIKE :text OR a.contenu LIKE :text")
+                ->setParameters(array(
+                    "text" => "%" . $search["titre"] . "%"
+                ));
+            }
+            if ($search["categorie"]) {
+                $query->andWhere("a.categorie = :idCat")
+                    ->setParameter("idCat", $search["categorie"]);
+            }
         }
+        $query->andWhere("a.statut = :status")
+            ->setParameter('status', $this->statusRepo->getStatusFromName(StatutEchange::open));
+        $query->setMaxResults($limit);
         return $query->getQuery()
             ->execute();
     }
 
-    public function searchAnnonceComplete($request, $allStatus = false)
+    public function searchAnnonceComplete($request, $lat, $lng, $allStatus = false, $limit = 20)
     {
         $query = $this->createQueryBuilder("a");
 
-        if(!$allStatus){
-            $status = $request->get("statut");
-            if(!$status) $status = $this->statusRepo->getStatusFromName(StatutEchange::open);
-            $query->andWhere("a.statut = :statut")
-                ->setParameter("statut", $status);
-        }
-        if($request->get("categorie"))
-        {
-            $query->andWhere("a.categorie = :idCat")
-                ->setParameter("idCat", $request->get("categorie"));
-        }
-        if($request->get("etat"))
-        {
-            $query->andWhere("a.etat = :idEtat")
-                ->setParameter("idEtat", $request->get("etat"));
-        }
-        if($request->get("titre"))
-        {
-            $query->andWhere("a.titre LIKE :text OR a.contenu LIKE :text")
-                ->setParameter("text", "%" . $request->get("titre") . "%");
-        }
-          switch($request->get("tri")){
-            case 1:
-              $query->orderBy('a.datePublication', 'ASC');
-              break;
-            case 2:
-              $query->orderBy('a.titre', 'ASC');
-              break;
-            default:
-              $query->orderBy('a.datePublication', 'DESC');
-          } 
-        // if($status)
-        // {
-        //     if(!is_numeric($status)) $status = $this->statusRepo->getStatusFromName($status);
+        // if (!$allStatus) {
+        //     $status = $request->get("statut");
+        //     if (!$status) $status = $this->statusRepo->getStatusFromName(StatutEchange::open);
         //     $query->andWhere("a.statut = :statut")
         //         ->setParameter("statut", $status);
         // }
-        // if($orderBy){
-        //     foreach ($orderBy as $key => $value) {
-        //         $query->addOrderBy($key, $value);
-        //     }
-        // }
-        // if(array_key_exists("categorie",$search))
-        // {
-        //     $query->andWhere("a.categorie = :idCat")
-        //         ->setParameter("idCat", $search["categorie"]);
-        // }
-        // if(array_key_exists("etat",$search))
-        // {
-        //     $query->andWhere("a.etat = :idEtat")
-        //         ->setParameter("idEtat", $search["etat"]);
-        // }
-        // if(array_key_exists("contain",$search))
-        // {
-        //     $query->andWhere("a.titre LIKE :text OR a.contenu LIKE :text")
-        //         ->setParameter("text", "%" . $search["contain"] . "%");
-        // }
-        // if(array_key_exists("statut",$search))
-        // {
-        //     $query->andWhere("a.statut = :statut")
-        //         ->setParameter("statut", $search["statut"]);
-        // }
+        if ($request->get("categorie")) {
+            $query->andWhere("a.categorie = :idCat")
+                ->setParameter("idCat", $request->get("categorie"));
+        }
+        if ($request->get("etat")) {
+            $query->andWhere("a.etat = :idEtat")
+                ->setParameter("idEtat", $request->get("etat"));
+        }
+        if ($request->get("titre")) {
+            $query->andWhere("a.titre LIKE :text OR a.contenu LIKE :text")
+                ->setParameter("text", "%" . $request->get("titre") . "%");
+        }
+        if ($request->get("radius")) {
+            $query->join("a.localisation", "l");
+            $haversineFormula = "( 6371 * acos( cos( radians(" . $lat . ")) * cos( radians( l.latitude ) ) 
+                * cos( radians( l.longitude ) - radians(" . $lng . ") ) + sin( radians(" . $lat . ") ) * sin(radians(l.latitude)) )  <= :radius)";           
+                $query->andWhere($haversineFormula);
+            $query->setParameter('radius', $request->get("radius"));
+        }
+        switch ($request->get("tri")) {
+            case 1:
+                $query->orderBy('a.datePublication', 'ASC');
+                break;
+            case 2:
+                $query->orderBy('a.titre', 'ASC');
+                break;
+            case 3: 
+                $query->join("a.auteur", "u");
+                $query->orderby('u.noteMoyenneUser', 'DESC');
+                break;
+            default:
+                $query->orderBy('a.datePublication', 'DESC');
+        }
+        $query->setMaxResults($limit);
         return $query->getQuery()
             ->execute();
     }
@@ -130,7 +112,7 @@ class AnnonceRepository extends ServiceEntityRepository
     //  * @return Annonce[] Returns an array of Annonce objects
     //  */
 
-    public function searchAnnonce($search)
+    public function searchAnnonce($search, $limit = 20)
     {
         return $this->createQueryBuilder('a')
 
@@ -149,6 +131,7 @@ class AnnonceRepository extends ServiceEntityRepository
             ->andWhere("a.statut = :status")
             ->setParameter('status', $this->statusRepo->getStatusFromName(StatutEchange::open))
 
+            ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
     }

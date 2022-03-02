@@ -1,42 +1,45 @@
 .main_navbar {
-    background-color: white;
-    filter: drop-shadow(0 1mm 1mm #b6b6b6);
-    margin-bottom: 1rem;
-    padding: 1rem 0;
-    width: 100%;
-    top: 0;
-    position: fixed;
-    z-index: 42;
-    top: 0;
+	background-color: white;
+	filter: drop-shadow(0 1mm 1mm #b6b6b6);
+	margin-bottom: 1rem;
+	padding: 1rem 0;
+	width: 100%;
+	top: 0;
+	position: fixed;
+	z-index: 5555;
+	top: 0;
 }
 
 .main_navbar + div {
-    padding-top: 80px;
+	padding-top: 80px;
 }
 
-.CyClic_navbar {
-    @include flex(space-between, baseline);
-    @include flex-flow(row);
+.CyClic_navbar,
+.nav_menu {
+	@include flex(space-between, baseline);
+	@include flex-flow(row);
 }
 
 .nav_logo {
-    width: 150px;
-    height: auto;
-    padding-left: 10px;
+	width: 150px;
+	height: auto;
+	padding-left: 10px;
 }
 
 .nav_menu {
-    right: 0%;
-    @include flex(space-between, baseline);
-    @include flex-flow(row);
+	right: 0%;
 }
 
 .nav_menu li {
-    list-style-type: none;
-    @include flexbox;
-    padding: 0 20px;
+	@include flexbox;
+	padding: 0 20px;
+
+	@include tablette_view() {
+		font-size: large;
+	}
 }
 
-li.col {
-    list-style-type: none;
+li.col,
+.nav_menu li {
+	list-style-type: none;
 }

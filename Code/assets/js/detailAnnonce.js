@@ -1,4 +1,4 @@
-console.log("activé");
+// console.log("activé");
 let vignettes = document.querySelectorAll(".product_image_1");
 
 vignettes.forEach(function (vignette) {

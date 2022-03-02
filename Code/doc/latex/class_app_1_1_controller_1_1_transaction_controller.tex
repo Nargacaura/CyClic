@@ -1,0 +1,55 @@
+\hypertarget{class_app_1_1_controller_1_1_transaction_controller}{}\doxysection{Référence de la classe Transaction\+Controller}
+\label{class_app_1_1_controller_1_1_transaction_controller}\index{TransactionController@{TransactionController}}
+Graphe d\textquotesingle{}héritage de Transaction\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_app_1_1_controller_1_1_transaction_controller}
+\end{center}
+\end{figure}
+\doxysubsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_transaction_controller_a318445439fe73e7cceca49d616adc37f}\label{class_app_1_1_controller_1_1_transaction_controller_a318445439fe73e7cceca49d616adc37f}} 
+{\bfseries \+\_\+\+\_\+construct} (Manager\+Registry \$doctrine, \mbox{\hyperlink{class_app_1_1_repository_1_1_transaction_repository}{Transaction\+Repository}} \$repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_transaction_controller_abded7ea4f9471a87e6fec9f516499151}{rate}} (Request \$request, \mbox{\hyperlink{class_app_1_1_repository_1_1_annonce_repository}{Annonce\+Repository}} \$annonce\+Repository, \mbox{\hyperlink{class_app_1_1_repository_1_1_statut_echange_repository}{Statut\+Echange\+Repository}} \$status\+Repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_transaction_controller_a88e30eefb1472874017a042fd8340a86}{cancel}} (Request \$request, \mbox{\hyperlink{class_app_1_1_repository_1_1_annonce_repository}{Annonce\+Repository}} \$annonce\+Repository, \mbox{\hyperlink{class_app_1_1_repository_1_1_statut_echange_repository}{Statut\+Echange\+Repository}} \$status\+Repository)
+\item 
+\mbox{\hyperlink{class_app_1_1_controller_1_1_transaction_controller_a15431fadf52a102b49777e0c102ae6a0}{validation}} (Request \$request, \mbox{\hyperlink{class_app_1_1_repository_1_1_annonce_repository}{Annonce\+Repository}} \$annonce\+Repository, \mbox{\hyperlink{class_app_1_1_repository_1_1_user_repository}{User\+Repository}} \$user\+Repository, \mbox{\hyperlink{class_app_1_1_repository_1_1_statut_echange_repository}{Statut\+Echange\+Repository}} \$status\+Repository)
+\end{DoxyCompactItemize}
+\doxysubsection*{Champs de données}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_transaction_controller_a949d69ddf78a599e30e34a9780118708}\label{class_app_1_1_controller_1_1_transaction_controller_a949d69ddf78a599e30e34a9780118708}} 
+Object\+Manager {\bfseries \$manager}
+\item 
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_transaction_controller_af2fe7a26b3445099a8a369d9424d27d7}\label{class_app_1_1_controller_1_1_transaction_controller_af2fe7a26b3445099a8a369d9424d27d7}} 
+\mbox{\hyperlink{class_app_1_1_repository_1_1_transaction_repository}{Transaction\+Repository}} {\bfseries \$repository}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentation des fonctions membres}
+\mbox{\Hypertarget{class_app_1_1_controller_1_1_transaction_controller_a88e30eefb1472874017a042fd8340a86}\label{class_app_1_1_controller_1_1_transaction_controller_a88e30eefb1472874017a042fd8340a86}} 
+\index{TransactionController@{TransactionController}!cancel@{cancel}}
+\index{cancel@{cancel}!TransactionController@{TransactionController}}
+\doxysubsubsection{\texorpdfstring{cancel()}{cancel()}}
+{\footnotesize\ttfamily cancel (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_annonce_repository}{Annonce\+Repository}}}]{\$annonce\+Repository,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_statut_echange_repository}{Statut\+Echange\+Repository}}}]{\$status\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/transaction/cancel\char`\"{}, name=\char`\"{}transaction\+\_\+cancel\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_transaction_controller_abded7ea4f9471a87e6fec9f516499151}\label{class_app_1_1_controller_1_1_transaction_controller_abded7ea4f9471a87e6fec9f516499151}} 
+\index{TransactionController@{TransactionController}!rate@{rate}}
+\index{rate@{rate}!TransactionController@{TransactionController}}
+\doxysubsubsection{\texorpdfstring{rate()}{rate()}}
+{\footnotesize\ttfamily rate (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_annonce_repository}{Annonce\+Repository}}}]{\$annonce\+Repository,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_statut_echange_repository}{Statut\+Echange\+Repository}}}]{\$status\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/transaction/rate\char`\"{}, name=\char`\"{}transaction\+\_\+rate\char`\"{}) \mbox{\Hypertarget{class_app_1_1_controller_1_1_transaction_controller_a15431fadf52a102b49777e0c102ae6a0}\label{class_app_1_1_controller_1_1_transaction_controller_a15431fadf52a102b49777e0c102ae6a0}} 
+\index{TransactionController@{TransactionController}!validation@{validation}}
+\index{validation@{validation}!TransactionController@{TransactionController}}
+\doxysubsubsection{\texorpdfstring{validation()}{validation()}}
+{\footnotesize\ttfamily validation (\begin{DoxyParamCaption}\item[{Request}]{\$request,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_annonce_repository}{Annonce\+Repository}}}]{\$annonce\+Repository,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_user_repository}{User\+Repository}}}]{\$user\+Repository,  }\item[{\mbox{\hyperlink{class_app_1_1_repository_1_1_statut_echange_repository}{Statut\+Echange\+Repository}}}]{\$status\+Repository }\end{DoxyParamCaption})}
+
+@\+Route(\char`\"{}/transaction/validation\char`\"{}, name=\char`\"{}transaction\+\_\+validation\char`\"{}) 
+
+La documentation de cette classe a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+C\+:/laragon/www/\+Crousti\+Recycle/src/\+Controller/Transaction\+Controller.\+php\end{DoxyCompactItemize}

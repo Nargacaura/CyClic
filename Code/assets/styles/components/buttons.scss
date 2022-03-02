@@ -1,22 +1,33 @@
-.bouton {
+.bouton,
+.homedropdown,
+.geolocation,
+.auth_geo,
+.localize_me_there {
 	@include bouton(white, $turquoise, 5px, 0.3rem);
-	&-localisation {
-		width: 90%;
-		margin: 1rem auto;
-	}
 }
+
+.bouton,
 .bouton_annuler {
-	@include bouton(white, $rouge, 5px, 0.3rem);
 	&-localisation {
 		width: 90%;
 		margin: 1rem auto;
 	}
 }
 
+.bouton_margin {
+	@include bouton(white, $turquoise, 5px, 0.5rem);
+	width: fit-content;
+	margin: 10px;
+}
+
+.bouton_annuler {
+	@include bouton(white, $rouge, 5px, 0.3rem);
+}
+
 .homedropdown,
 .geolocation,
+.auth_geo,
 .localize_me_there {
-	@include bouton(white, $turquoise, 5px, 0.3rem);
 	height: 40px;
 }
 
@@ -24,11 +35,18 @@
 .localize_me_there {
 	border-top-right-radius: 0%;
 	border-bottom-right-radius: 0%;
+	@include tablette_view {
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+		width: 100%;
+	}
 }
 
-.auth_btn, .reset_btn,
+.auth_btn,
+.reset_btn,
 .btn_fixed_width,
-.interesting {
+.interesting,
+.bouton_retour {
 	@include bouton(white, $orange, 10px, 0.3rem);
 }
 
@@ -36,7 +54,8 @@
 	@include bouton(white, $rouge, 10px, 0.3rem);
 }
 
-.auth_btn, .reset_btn,
+.auth_btn,
+.reset_btn,
 .btn_fixed_width,
 .interesting,
 .inappropriate {
@@ -50,17 +69,16 @@
 	}
 }
 
-a.btn_fixed_width {
+.btn_fixed_width,
+.btn_fixed_width:hover {
 	text-decoration: none;
 }
-a.btn_fixed_width:hover {
-	text-decoration: none;
-	color: white;
+.btn_fixed_width:hover {
 	background-color: $jaune;
 }
 
-
-.auth_btn, .reset_btn {
+.auth_btn,
+.reset_btn {
 	padding: 10px;
 }
 
@@ -72,16 +90,34 @@ a.btn_fixed_width:hover {
 }
 
 button:hover,
-.auth_btn:hover, 
+.auth_btn:hover,
 .reset_btn:hover {
 	background-color: $jaune;
+}
+
+button:hover,
+.auth_btn:hover,
+.reset_btn:hover,
+.add_photo_list:hover,
+.add_tag_list:hover {
+	color: white;
 }
 
 button[data-bs-toggle="dropdown"],
 .homedropdown[data-bs-toggle="dropdown"] {
 	background-color: $turquoise;
 }
-.geolocation {
+.geolocation,
+.auth_geo {
 	border-top-left-radius: 0%;
 	border-bottom-left-radius: 0%;
+}
+
+.geolocation {
+	@include tablette_view {
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+		width: 100%;
+		margin-bottom: 1rem;
+	}
 }

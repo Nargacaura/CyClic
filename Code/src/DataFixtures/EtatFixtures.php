@@ -9,17 +9,24 @@ use Doctrine\Persistence\ObjectManager;
 
 class EtatFixtures extends Fixture 
 {
+
+    private $etats =[
+        "Comme neuf",
+        "Bon état",
+        "Etat moyen",
+        "Mauvais état",
+        "A réparer",
+    ];
+
     public function load(ObjectManager $manager): void
     {
-
-
-      for ($i = 0; $i < 4; $i++) {
-        $etat = new Etat();
-        $etat->setNom('etat' . $i);
-        $manager->persist($etat);
+      foreach ($this->etats as $value) {
+          $etat = new Etat();
+          $etat->setNom($value);
+          $manager->persist($etat);
+      }
         $manager->flush();
     }
-  }
 
 }
 

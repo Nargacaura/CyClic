@@ -36,7 +36,7 @@ class TransactionController extends AbstractController
     /**
      * @Route("/transaction/rate", name="transaction_rate")
      */
-    public function rate(Request $request, AnnonceRepository $annonceRepository, StatutEchangeRepository $statusRepository)
+    public function rate(Request $request, TransactionRepository $transactionRepository, AnnonceRepository $annonceRepository, StatutEchangeRepository $statusRepository)
     {
         $annonce = $annonceRepository->find($request->get("annonceId"));
         $transaction = $annonce->getTransaction();
@@ -50,6 +50,8 @@ class TransactionController extends AbstractController
 
         if($transaction->getReceveur() == $this->getUser()) $transaction->setNoteReceveur($request->get("rating"));
         else $transaction->setNoteDonneur($request->get("rating"));
+        $transaction->getReceveur()->setNoteMoyenneUser($transactionRepository->getUserRating($transaction->getReceveur()->getId()));
+        $transaction->getDonneur()->setNoteMoyenneUser($transactionRepository->getUserRating($transaction->getDonneur()->getId()));
 
         $this->manager->flush();
         

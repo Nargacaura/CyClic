@@ -21,25 +21,25 @@
 	<body>
 	{% if (app.user and app.user.ban == 0) or not app.user %}
 		<!-- Navbar du site -->
-			<header class="main_navbar"> <nav class="CyClic_navbar">
-				<a href="{{ path('home') }}"><img src="{{ asset('img/wordmark.png') }}" class="nav_logo"></a>
-				<ul class="nav_menu">
+			<header class="main_navbar">
+				<nav class="CyClic_navbar">
+					<a href="{{ path('home') }}"><img src="{{ asset('img/wordmark.png') }}" class="nav_logo"><img alt="CyClic logo" src="{{ asset('img/alt_logo.png') }}" class="portrait_nav_logotype"></a>
+								<ul class="nav_menu_desktop">
 					<li>
-						<a href="{{path('new_annonce')}}">Publier une annonce</a>
+						<a href="{{path('new_annonce')}}" title="Publier une nouvelle annonce">Publier une nouvelle annonce</a>
 					</li>
 					<li>
-						<a href="{{path('annonce')}}">Recherche</a>
+						<a href="{{path('annonce')}}" title="Rechercher">Recherche</a>
 					</li>
 					{% if app.user %}
 						<li>
-							<a href="{{path('messagerie_own')}}">Messagerie</a>
+							<a href="{{path('messagerie_own')}}" title="Messagerie">Messagerie</a>
 						</li>
 						<li>
-							<a href="#" id="userIcon">
-								<i class="fas fa-user"></i>
-							</a>
-							<nav id="userMenu" class="userIconOff">
-								<a href="{{path('profil')}}">Profil</a>
+							<a href="#" id="userIconDesktop">{{ app.user.pseudo }}</a>
+							<nav id="userMenuDesktop" class="userIconOff">
+								<a href="{{path('profil', { 'user': app.user.id})}}">Profil</a>
+								{% if app.user.roles[0] == "ROLE_ADMIN" %}<a href="{{path('admin')}}">Tableau de bord</a>{% endif %}
 								<a href="#">Paramètres</a>
 								<a href="{{path('app_logout')}}">Déconnexion</a>
 							</nav>
@@ -50,51 +50,76 @@
 						</li>
 					{% endif %}
 				</ul>
+        <ul class="nav_menu_other">
+					<li>
+						<a href="{{path('new_annonce')}}" title="Publier une nouvelle annonce"><i class="fas fa-upload"></i></a>
+					</li>
+					<li>
+						<a href="{{path('annonce')}}" title="Rechercher"><i class="fas fa-search"></i></a>
+					</li>
+					{% if app.user %}
+						<li>
+							<a href="{{path('messagerie_own')}}" title="Messagerie"><i class="fas fa-comments"></i></a>
+						</li>
+						<li>
+							<a href="" id="userIconMobile">
+								<i class="fas fa-user"></i>
+							</a>
+							<nav id="userMenuMobile" class="userIconOff">
+								<a href="{{path('profil', { 'user': app.user.id})}}">Profil</a>
+								{% if app.user.roles[0] == "ROLE_ADMIN" %}<a href="{{path('admin')}}">Tableau de bord</a>{% endif %}
+								<a href="#">Paramètres</a>
+								<a href="{{path('app_logout')}}">Déconnexion</a>
+							</nav>
+						</li>
+					{% else %}
+						<li>
+							<a href="{{ path('app_login') }}"><i class="fas fa-sign-in-alt"></i></a>&nbsp; &middot; &nbsp;<a href="register"><i class="fas fa-user-plus"></i></a>
+						</li>
+					{% endif %}
+				</ul>
 			</nav>
 		</header>
 		{% endif %}
 
-
+		<div class="navbar_padding"></div>
 		{% block body %}{% endblock %}
 		{% if (app.user and app.user.ban == 0) or not app.user %}
+    <div style="height: 120px;"></div>
 		<footer>
-			<div class="logo_footer">
-				<a href="/home"><img src="{{ asset('img/CyClic_logo.png') }}"></a>
-				<small class="d-block mb-3 text-muted ">&copy; 2021–2022</small>
-			</div>
-
+			<img src="{{ asset('img/CyClic_logo.png') }}" class="footer_logo" alt="CyClic logo"><img src="{{ asset('img/wordmark_monochrome.png') }}" class="alt_footer_logo" alt="CyClic logo">
 			<div class="list_flex">
 				<ul class="list-unstyled text-small">
 					<li>
-						<a class="link-secondary" href="/login">Se connecter</a>
+						<a class="footer_link" href="/login">Se connecter</a>
 					</li>
 					<li>
-						<a class="link-secondary" href="/register">S'inscrire</a>
+						<a class="footer_link" href="/register">S'inscrire</a>
 					</li>
 					<li>
-						<a class="link-secondary" href="#">Team feature</a>
-					</li>
-				</ul>
-				<ul class="list-unstyled text-small">
-					<li>
-						<a class="link-secondary" href="/annonce">Annonces</a>
-					</li>
-					<li>
-						<a class="link-secondary" href="#">Resource</a>
-					</li>
-					<li>
-						<a class="link-secondary" href="#">Another resource</a>
+						<a class="footer_link" href="#">Team feature</a>
 					</li>
 				</ul>
 				<ul class="list-unstyled text-small">
 					<li>
-						<a class="link-secondary" href="/home">Home</a>
+						<a class="footer_link" href="/annonce">Annonces</a>
 					</li>
 					<li>
-						<a class="link-secondary" href="#">Mentions légales</a>
+						<a class="footer_link" href="#">Resource</a>
 					</li>
 					<li>
-						<a class="link-secondary" href="#">FAQ</a>
+						<a class="footer_link" href="/contact">Nous contacter</a>
+					</li>
+				</ul>
+				<ul class="list-unstyled text-small">
+					<li>
+						<a class="footer_link" href="/home">Home</a>
+					</li>
+					<li>
+						<a class="footer_link" href="{{path('mentions_legales')}}">Mentions légales</a>
+					</li>
+					<li>
+						<a class="footer_link" href="{{path('faq')}}">FAQ</a>
 					</li>
 				</ul>
 			</div>

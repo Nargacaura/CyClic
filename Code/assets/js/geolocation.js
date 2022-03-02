@@ -1,9 +1,14 @@
+
 // Initialisation des données
 var data = "";
 
 // API OpenCage: clé et URL
 var OpenCageAPIKey = "5073f8b958324db5b548afbc8d27c280";
 var APIURL = "https://api.opencagedata.com/geocode/v1/json";
+
+let geolocator = document.querySelector(".geolocation");
+if (!geolocator) geolocator = document.getElementById("geolocBtn");
+geolocator.addEventListener("click", geolocate);
 
 function write_geolocation(data, XHReq) {
 	data = JSON.parse(XHReq.responseText);
@@ -13,17 +18,28 @@ function write_geolocation(data, XHReq) {
 	var inputVoie = document.getElementsByClassName("voie")[0];
 	var inputCP = document.getElementsByClassName("CP")[0];
 	var inputVille = document.getElementsByClassName("ville")[0];
+
+	var inputLat = document.getElementById("localisation_latitude");
+	var inputLon = document.getElementById("localisation_longitude");
 	var components = data.results[0].components;
+	var latitude = data.results[0].geometry.lat;
+	var longitude = data.results[0].geometry.lng;
 
 	let locUser_ville = document.querySelector(
 		"#registration_form_locUser___name___ville"
 	);
-	console.log(locUser_ville);
+	// console.log(locUser_ville);
 	let locUser_CP = document.querySelector(
 		"#registration_form_locUser___name___codePostal"
 	);
 	let locUser_rue = document.querySelector(
 		"#registration_form_locUser___name___rue"
+	);
+	let locUser_longitude = document.querySelector(
+		"#registration_form_locUser___name___longitude"
+	);
+	let locUser_latitude = document.querySelector(
+		"#registration_form_locUser___name___latitude"
 	);
 
 	if (components.house_number) {
@@ -64,7 +80,7 @@ function write_geolocation(data, XHReq) {
 	} else {
 		var voie = "Voie inconnue";
 	}
-
+console.log(data);
 	// code postal
 	var codePostal = components.postcode;
 
@@ -87,14 +103,20 @@ function write_geolocation(data, XHReq) {
 	}
 
 	// dans les champs de localisation...
-	else if (inputVoie && inputCP && inputVille) {
+	if (inputVoie && inputCP && inputVille) {
 		inputVoie.value = voie;
 		inputCP.value = codePostal;
 		inputVille.value = ville;
+		inputLon.value = longitude;
+		inputLat.value = latitude;
+		window.setMapView(longitude,latitude, "La localisation vous à trouvez ici");
 	} else if (locUser_ville && locUser_CP && locUser_rue) {
 		locUser_ville.value = ville;
 		locUser_CP.value = codePostal;
 		locUser_rue.value = voie;
+		locUser_longitude.value = data.results[0].geometry.lng;
+		locUser_latitude.value = data.results[0].geometry.lat;
+
 		document.querySelector(
 			"#registration_form_autoCompleteLocalisation"
 		).value =
@@ -102,9 +124,9 @@ function write_geolocation(data, XHReq) {
 	}
 
 	// sinon...
-	else {
-		alert("Géolocalisation indisponible.");
-	}
+	// else {
+	// 	alert("Géolocalisation indisponible.");
+	// }
 }
 
 function geolocate() {
@@ -117,12 +139,24 @@ function geolocate() {
 			maximumAge: 0,
 		};
 
+		let sessionStorage = window.sessionStorage;
+		let data = JSON.parse(sessionStorage.getItem('position'));
+
+
+		if(data){
+			onSuccess(data.lon, data.lat) ;
+		}
+		else {
+			// Le processus de géolocalisation est lancé, donnant donc la main à l'une des 2 fonctions ci-dessus.
+			navigator.geolocation.getCurrentPosition(success, fail, options);
+		}
 		// Si la géolocalisation réussit:
 		function success(position) {
 			// Récolte de la latitude et de la longitude
-			var latitude = `${position.coords.latitude}`;
-			var longitude = `${position.coords.longitude}`;
-
+			onSuccess(`${position.coords.longitude}`, `${position.coords.latitude}`);
+		}
+		
+		function onSuccess(longitude,latitude) {  
 			// Génération de la requête OpenCage
 			var request = `${APIURL}?key=${OpenCageAPIKey}&q=${encodeURIComponent(
 				latitude + "," + longitude
@@ -177,8 +211,6 @@ function geolocate() {
 			);
 		}
 
-		// Le processus de géolocalisation est lancé, donnant donc la main à l'une des 2 fonctions ci-dessus.
-		navigator.geolocation.getCurrentPosition(success, fail, options);
 	}
 
 	// Si elle ne l'est pas...
@@ -186,6 +218,3 @@ function geolocate() {
 		alert("Nous n'avons pas pu démarrer le processus de géolocalisation.");
 	}
 }
-
-const geolocator = document.querySelector(".geolocation");
-geolocator.addEventListener("click", geolocate);

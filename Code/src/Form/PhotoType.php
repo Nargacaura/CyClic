@@ -21,20 +21,20 @@ class PhotoType extends AbstractType
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
                 'allow_delete' => true,
-                'download_uri' => true,
+                'download_uri' => false,
                 'image_uri' => true,
                 'asset_helper' => true,
                 'constraints' => [
                     new Image([
-                        'maxWidth' => '1000',
-                        'maxWidthMessage' => 'L\'image doit être inférieur à 1000 pixels de large',
+                        'maxWidth' => '2222',
+                        'maxWidthMessage' => 'L\'image doit être inférieur à 2222 pixels de large',
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/png'
                         ],
                         'mimeTypesMessage' => 'Veuillez mettre une image de type jpeg ou png',
-                        'minHeight' => '300',
-                        'minHeightMessage' => 'La longueur de l\'image doit faire au moins 300 pixels'
+                        'minHeight' => '200',
+                        'minHeightMessage' => 'La longueur de l\'image doit faire au moins 200 pixels'
                     ])
                 ]
             ]);

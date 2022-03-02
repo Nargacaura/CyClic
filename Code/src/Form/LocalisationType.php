@@ -23,10 +23,13 @@ class LocalisationType extends AbstractType
             ->add('rue', HiddenType::class, [
                 'label' => false,
             ])
-            ->add('userLocalisation', HiddenType::class, [
-              
+            ->add('longitude', HiddenType::class, [
+                'label' => false,
             ])
-        ;
+            ->add('latitude', HiddenType::class, [
+                'label' => false,
+            ])
+            ->add('userLocalisation', HiddenType::class, []);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

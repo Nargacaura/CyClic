@@ -2,10 +2,12 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\CalendarData;
 use Faker;
 use App\Entity\Message;
 use App\Repository\AnnonceRepository;
 use App\Repository\UserRepository;
+use DateInterval;
 use DateTimeImmutable;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Collections\Criteria;
@@ -29,7 +31,7 @@ class MessageFixture extends Fixture implements DependentFixtureInterface
         //$annonces = $this->annonceRepository->findAll();
 
         $faker = Faker\Factory::create('fr_FR'); 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 35; $i++) {
 
             $expediteur = $users[array_rand($users)];
 
@@ -52,7 +54,8 @@ class MessageFixture extends Fixture implements DependentFixtureInterface
             $message->setDate(DateTimeImmutable::createFromMutable($faker->dateTime()));
             $manager->persist($message);
 
-            for ($j = 0; $j < 7; $j++) {
+            $messageNumber = rand(3,8);
+            for ($j = 0; $j < $messageNumber; $j++) {
                 $message = new Message();
                 $message->setAnnonce($annonce);
                 $message->setContenu($faker->text());
@@ -67,6 +70,29 @@ class MessageFixture extends Fixture implements DependentFixtureInterface
                 $message->setDate(DateTimeImmutable::createFromMutable($faker->dateTime()));
                 $manager->persist($message);
             }
+            $calInfonumber = rand(3,6);
+            for ($j = 0; $j < $calInfonumber; $j++) {
+                $calendarInfo = new CalendarData();
+                $calendarInfo->setAnnonce($annonce);
+                $calendarInfo->setTitre($faker->text((rand(5, 25))));
+                if(rand(0,1) == 0 ) $calendarInfo->setDescription($faker->text((rand(10, 120))));
+                if(rand(0, 1) == 0){
+                    $calendarInfo->setDetenteur($destinataire);
+                    $calendarInfo->setDestinataire($expediteur);
+                }
+                else{
+                    $calendarInfo->setDetenteur($expediteur);
+                    $calendarInfo->setDestinataire($destinataire);
+                }
+                $debut = $faker->dateTimeInInterval('+1 days', '+3 week');
+                $calendarInfo->setDebut(DateTimeImmutable::createFromMutable($debut));
+                if(rand(0,1) == 0 ) $val = strval(rand(1, 5)).' day';
+                else $val = strval(rand(1, 5)).' hour';
+                $fin = $debut->add(DateInterval::createFromDateString( $val ));
+                $calendarInfo->setFin(DateTimeImmutable::createFromMutable($fin));
+                $manager->persist($calendarInfo);
+            }
+            
         }
 
         $manager->flush();

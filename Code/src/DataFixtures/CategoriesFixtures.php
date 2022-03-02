@@ -6,20 +6,29 @@ use App\Entity\Categorie;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Faker;
 
 class CategoriesFixtures extends Fixture 
 {
+    private $cats =[
+        "Meubles",
+        "Appareils",
+        "Fournitures",
+        "Outils",
+        "Loisirs & Sports",
+        "Véhicules",
+        "Vêtements",
+        "Bijoux",
+        "Autres"
+    ];
+
     public function load(ObjectManager $manager): void
     {
 
-        $faker = Faker\Factory::create('fr_FR');
-        for ($i = 0; $i < 6; $i++) {
+        foreach ($this->cats as $value) {
             $categorie = new Categorie();
-            $categorie->setNom($faker->word());
+            $categorie->setNom($value);
             $manager->persist($categorie);
         }
-
         $manager->flush();
     }
 

@@ -1,52 +1,81 @@
 .blocAnnonces {
-  margin: 1rem 0rem 1rem 3rem;
+	@include flex(center, center);
+	margin: 1rem 0rem 1rem 3rem;
+	@include tablette_view() {
+		margin: auto;
+		// @include flex(center, center);
+		@include flex-flow(column);
+	}
+	@include smartphone_view() {
+		display: block;
+		margin: 0;
+	}
 }
 
 .annonceCard {
-  text-decoration: none;
-  width: 250px;
-  padding: 1rem;
-  h5 {
-    font-size: medium;
-    color: black;
-  }
-  p {
-    color: black;
-    font-size: smaller;
-    margin: 0;
-  }
-  .card_profilePic {
-    @include avatar(none);
-    width: 20%;
-  }
+	text-decoration: none;
+	width: 250px;
+	padding: 1rem;
+	h5 {
+		font-size: medium;
+		font-weight: bolder;
+	}
+	p {
+		font-size: smaller;
+		font-weight: lighter;
+		margin: 0;
+	}
+	h5,
+	p {
+		color: black;
+	}
+	.card_profilePic {
+		@include avatar(none);
+		width: 20%;
+	}
+
+	@include tablette_view() {
+		width: 404px;
+	}
 }
 
 .card {
-  border: none;
-  border-radius: 20px;
-  overflow: hidden;
+	border: none;
+	border-radius: 20px;
+	overflow: hidden;
+	// width: 300px;
 }
 
 .card-body {
-  background-color: $orange;
-  height: 120px;
+	background-color: $orange;
+	height: 120px;
 }
 
 .card_text {
-  width: 80%;
-  color: $turquoise;
+	width: 80%;
+	color: $turquoise;
 }
 
-.card-title {
-  width: 100%;
+.card-title,
+.blocAnnonces {
+	width: 100%;
 }
 
 .card-figure {
-  height: 300px;
-  margin: 0;
+	margin: 0;
+	height: auto;
 }
 
 .card-img-top {
-  height: 350px;
-  width: auto;
+	height: 350px;
+	width: auto;
+
+	@include tablette_view() {
+		height: auto;
+		width: 404px;
+	}
+	@include smartphone_view() {
+		width: 100%;
+		height: auto;
+	}
 }

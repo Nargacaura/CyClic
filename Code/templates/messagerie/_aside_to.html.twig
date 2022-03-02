@@ -4,7 +4,7 @@
     <ul>
     {% for contact in contacts %}
         <li>
-            {{contact.annonce.titre }}
+            {{contact.annonce.titre|length > 22 ? contact.annonce.titre|slice(0, 22) ~ '...' : contact.annonce.titre}}
             <ul>
                 <li>
                     {% for user in contact.contacts %}

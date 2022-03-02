@@ -45,6 +45,17 @@ class Localisation
      */
     private $annonces;
 
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=7)
+     */
+    private $longitude;
+
+    /**
+     * @ORM\Column(type="decimal", precision=10, scale=7)
+     */
+    private $latitude;
+
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
@@ -136,5 +147,29 @@ class Localisation
     public function __toString()
     {
         return $this->rue . " " . $this->ville . " " . $this->codePostal;
+    }
+
+    public function getLongitude(): ?string
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(string $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?string
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(string $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
     }
 }

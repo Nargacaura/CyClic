@@ -1,120 +1,105 @@
-var $delCollectionButton = $('<button class="removeImage">Supprimer</button>');
+// variable du bouton supprimer
+var $delCollectionButton = $(
+	'<button class="removeImage btn btn-warning m-1">Supprimer</button>'
+);
+// variable de l'icone par défaut
 var $vignette = $('<i class="far fa-image"></i>');
 
-console.log("la feuille js est reçue bis");
-// let j = -1;
-
 function generateDeleteButton() {
-	console.log($delCollectionButton);
 	var $btn = $delCollectionButton.clone();
-	$btn.on(
-		"click",
-		function () {
-			//événement clic du bouton supprimer
-			// $(this).parent("div").remove();
-			// console.log($(this).parent("div").append($vignette));
-			let index = $(this).parent("div").attr("id").slice(-1);
-			$("#annonce_photos_" + index).remove();
-			$(this).parent("div").remove();
-			for (let i = 1; i < 4; i++) {
-				$("#div_vignette_" + [i]).attr("id", "div_vignette_" + [i - 1]);
-			}
-			$(".vignette")
-				.last()
-				.after(
-					"<div id='div_vignette_2' class='vignette'><i class='far fa-image'></i></div>"
-				);
-			collectionHolder.dataset.index--;
-			for (let i = 1; i < 4; i++) {
-				$("#annonce_photos_" + [i]).attr("id", "annonce_photos_" + [i - 1]);
-				$("#annonce_photos_" + [i] + "_imageFile_file").attr(
-					"id",
-					"annonce_photos_" + [i - 1]
-				);
-			}
+	// au clic sur un bouton,
+	$btn.on("click", function () {
+		// index = index de l'id de l'élément parent de this
+		let index = $(this).parent("div").attr("id").slice(-1);
+		// on supprime l'élément #annonce_photos_index
+		$("#annonce_photos_" + index).remove();
+		// on supprime le div parent de this
+		console.log($(this).parent("div"));
+		$(this).parent("div").remove();
+
+		
+		// On modifie l'id des éléments #div_vignette_index en les reculant de 1
+		for (let i = 1; i < 4; i++) {
+			$("#div_vignette_" + [i]).attr("id", "div_vignette_" + [i - 1]);
 		}
-		// $("#annonce_photos_" + index).remove();
-	);
+		// On rajoute après le dernier élément .vignette l'icone par défaut avec l'index 2
+		$(".vignette")
+			.last()
+			.after(
+				"<div id='div_vignette_2' class='vignette'><i class='far fa-image'></i></div>"
+			);
+		
+		if(document.querySelector("#vich_" + document.getElementById("photos").dataset.index-1)) {
+			document.querySelector(".vich_" + document.getElementById("photos").dataset.index-1).remove();
+		}
+		
+		// même chose pour annonce_photos_index et annonce_photos_index_imageFile_file
+		for (let i = 1; i < 4; i++) {
+			$("#annonce_photos_" + [i]).attr("id", "annonce_photos_" + [i - 1]);
+			// c'est normal que j'enlève le "_imageFile_file" ci-dessous ?...
+			$("#annonce_photos_" + [i] + "_imageFile_file").attr(
+				"id",
+				"annonce_photos_" + [i - 1]
+				);
+			}
+		document.getElementById("photos").dataset.index--;
+	});
 	return $btn;
 }
 
-// var vignette = document.createElement("i");
-// vignette.classList.add("far");
-// vignette.classList.add("fa-image");
-// vignette.id = "vignette_" + [j];
-console.log($vignette);
-//   "<i class='far fa-image' id='vignette_" + [i] + "'></i>"
-// );
-// document.querySelector("#div_vignette_" + [j]).appendChild(vignette);
-
 const addTagLink = document.createElement("a");
 addTagLink.classList.add("bouton");
-// console.log("il lit ça");
 addTagLink.classList.add("add_tag_list");
 addTagLink.href = "#";
 addTagLink.innerText = "Ajouter une photo";
+addTagLink.style.margin = "1rem";
+addTagLink.style.display = "block";
 addTagLink.dataset.collectionHolderClass = "photos";
 
 const newLinkLi = document.createElement("li").append(addTagLink);
 
-const collectionHolder = document.querySelector("ul.photos");
-collectionHolder.appendChild(addTagLink);
+// const collectionHolder = document.querySelector("ul.photos");
+// collectionHolder.appendChild(addTagLink);
+document.querySelector(".container__galerie").after(addTagLink);
 
 const addFormToCollection = (e) => {
-	// console.log("il se passe bien un truc");
+	e.preventDefault();
+
 	const collectionHolder = document.querySelector(
 		"." + e.currentTarget.dataset.collectionHolderClass
 	);
-	const item = document.createElement("li");
+	// console.log(collectionHolder);
 
-	item.innerHTML = collectionHolder.dataset.prototype.replace(
-		/__name__/g,
-		collectionHolder.dataset.index
-	);
-	collectionHolder.appendChild(item);
+	if(!document.querySelector(".vich") && !document.querySelector("#vich_" + collectionHolder.dataset.index-1) && collectionHolder.dataset.index < 3) {
+		const item = document.createElement("p");
+		item.classList.add("vich");
 
-	collectionHolder.dataset.index++;
-	console.log(collectionHolder.dataset.index);
-	// addPhotoFormDeleteLink(item);
-
+		item.innerHTML = collectionHolder.dataset.prototype.replace(
+			/__name__/g,
+			collectionHolder.dataset.index
+		);
+		item.id = `vich_${collectionHolder.dataset.index}`;
+		item.querySelector("label").remove();
+		addTagLink.after(item);	
+		collectionHolder.dataset.index++;
+	}
 	for (let i = 0; i < 3; i++) {
-		console.log($("#annonce_photos_" + [i] + "_imageFile_file"));
 		$("#annonce_photos_" + [i] + "_imageFile_file").change(function () {
 			$("#annonce_photos_" + [i] + "_imageFile_file").addClass("hidden");
 			filePreviewArticle(this, i);
-			console.log("il se passe bien un truc");
+			document.querySelector(".vich").classList.remove("vich");
 		});
 	}
-	// j++;
 };
 
 addTagLink.addEventListener("click", addFormToCollection);
 
-// document.querySelectorAll("ul.photos li").forEach((photo) => {
-//   addPhotoFormDeleteLink(photo);
-// });
-
-// const addPhotoFormDeleteLink = (item) => {
-// 	const removeFormButton = document.createElement("button");
-// 	removeFormButton.innerText = "Supprimer";
-// 	item.append(removeFormButton);
-// 	removeFormButton.addEventListener("click", (e) => {
-// 		e.preventDefault();
-// 		// remove the li for the tag form
-// 		item.remove();
-// 	});
-// };
-// };
-
 let removeButton;
 
 function filePreviewArticle(input, i) {
-	console.log("truc déclenché");
 	if (input.files && input.files[0]) {
-		// console.log("truc déclenché ter");
 		var reader = new FileReader();
 		reader.onload = function (e) {
-			// console.log("ça marche encore !");
 			$("#div_vignette_" + [i])
 				.html(
 					'<div class="img_col">' +
@@ -123,46 +108,114 @@ function filePreviewArticle(input, i) {
 						'" src="' +
 						e.target.result +
 						'" width="450" height="auto"/>'
-					// +
-					// '<button class="removeImage">Supprimer</button>'
 				)
 				.append(generateDeleteButton());
-
-			// removeButton = document.getElementsByClassName("removeImage");
-			// console.log(removeButton);
-			// console.log(j);
-			// console.log(removeButton[j]);
-
-			// removeButton[j].addEventListener("click", (e) => {
-			//   e.preventDefault();
-			//   // remove the li for the tag form
-			//   // console.log($("#div_vignette_" + [i]));
-			//   $("#div_vignette_" + [j]).html("");
-			//   var vignette = document.createElement("i");
-			//   vignette.classList.add("far");
-			//   vignette.classList.add("fa-image");
-			//   vignette.id = "vignette_" + [j];
-			//   console.log(vignette);
-			//   //   "<i class='far fa-image' id='vignette_" + [i] + "'></i>"
-			//   // );
-			//   document.querySelector("#div_vignette_" + [j]).appendChild(vignette);
-			//   // removeButton[i].remove();
-			//   j--;
-			//   return j;
-			// });
-			// console.log(j);
-			// $(".vich-image").after(
-			//   "<p class=\"textPreview\">Pour information, l'image d'avatar choisie sera arrondie, et si elle n'est pas carrée, elle sera rognée.</p>"
-			// );
 		};
 		reader.readAsDataURL(input.files[0]);
 	}
 }
 
-// $("#annonce_photos_0_imageFile_file").change(function () {
-//   console.log("truc déclenché");
-//   filePreview(this);
-// });
+// let invalidFiles = document.querySelectorAll(".is-invalid");
+let invalidFile = document.querySelector(".is-invalid");
 
-// test si jquery marche : jquery marche !
-// $("body").css("background", "deepskyblue");
+console.log("one " + invalidFile);
+// console.log("several " + invalidFiles);
+
+// console.log(
+// 	document.querySelector("#annonce_photos_0").children[0].children[1].innerText
+// );
+
+// if (typeof invalidFiles != "undefined") {
+// 	console.log("scenario invalidFiles");
+// 	let nbWarnings = document.querySelector("#annonce_photos").childElementCount;
+// 	let constraintWarning = document.createElement("p");
+// 	constraintWarning.style.color = "red";
+// 	constraintWarning.style.textAlign = "center";
+// 	constraintWarning.style.margin = "1rem";
+// 	let warning = [];
+// 	for (let i = 0; i < nbWarnings; i++) {
+// 		warning.push(
+// 			document.querySelector("#annonce_photos_" + i).children[0].children[1]
+// 				.innerText
+// 		);
+// 	}
+// 	// constraintWarning.innerHTML = warning;
+// 	console.log(warning);
+// 	invalidFiles.forEach(indexes);
+// 	function indexes(item, i) {
+// 		console.log(item);
+// 		let index = [];
+// 		console.log(index);
+// 		index.push(item.id.slice(15, 16));
+// 		$("#annonce_photos_" + index[i]).remove();
+// 		// on supprime le div parent de this
+// 		// console.log(document.querySelector("#div_vignette_" + index[i]));
+// 		// document.querySelector("#div_vignette_" + index[i]).remove();
+// 		// On modifie l'id des éléments #div_vignette_index en les reculant de 1
+// 	}
+// 	for (let i = 1; i < 4; i++) {
+// 		$("#div_vignette_" + [i]).attr("id", "div_vignette_" + [i - 1]);
+// 	}
+// 	// On rajoute après le dernier élément .vignette l'icone par défaut avec l'index 2
+// 	$(".vignette")
+// 		.last()
+// 		.after(
+// 			"<div id='div_vignette_2' class='vignette'><i class='far fa-image'></i></div>"
+// 		);
+// 	collectionHolder.dataset.index--;
+// 	// même chose pour annonce_photos_index et annonce_photos_index_imageFile_file
+// 	for (let i = 1; i < 4; i++) {
+// 		$("#annonce_photos_" + [i]).attr("id", "annonce_photos_" + [i - 1]);
+// 		// c'est normal que j'enlève le "_imageFile_file" ci-dessous ?...
+// 		$("#annonce_photos_" + [i] + "_imageFile_file").attr(
+// 			"id",
+// 			"annonce_photos_" + [i - 1]
+// 		);
+// 	}
+
+// 	warning.forEach(warnings);
+// 	function warnings(item, i) {
+// 		constraintWarning.innerHTML = item;
+// 		document.querySelector("#annonce_photos").appendChild(constraintWarning);
+// 	}
+// }
+if (typeof invalidFile != "undefined") {
+	// if (typeof invalidFile != "undefined" && typeof invalidFiles == "undefined") {
+	// console.log("scenario invalidFile");
+	let constraintWarning = document.createElement("p");
+	constraintWarning.style.color = "red";
+	constraintWarning.style.textAlign = "center";
+	constraintWarning.style.padding = "1rem";
+	let warning =
+		document.querySelector("#annonce_photos_0").children[0].children[1]
+			.innerText;
+	constraintWarning.innerHTML = warning;
+
+	let index = invalidFile.id.slice(15, 16);
+
+	$("#annonce_photos_" + index).remove();
+	// on supprime le div parent de this
+	document.querySelector("#div_vignette_" + index).remove();
+	// On modifie l'id des éléments #div_vignette_index en les reculant de 1
+	for (let i = 1; i < 4; i++) {
+		$("#div_vignette_" + [i]).attr("id", "div_vignette_" + [i - 1]);
+	}
+	// On rajoute après le dernier élément .vignette l'icone par défaut avec l'index 2
+	$(".vignette")
+		.last()
+		.after(
+			"<div id='div_vignette_2' class='vignette'><i class='far fa-image'></i></div>"
+		);
+	collectionHolder.dataset.index--;
+	// même chose pour annonce_photos_index et annonce_photos_index_imageFile_file
+	for (let i = 1; i < 4; i++) {
+		$("#annonce_photos_" + [i]).attr("id", "annonce_photos_" + [i - 1]);
+		// c'est normal que j'enlève le "_imageFile_file" ci-dessous ?...
+		$("#annonce_photos_" + [i] + "_imageFile_file").attr(
+			"id",
+			"annonce_photos_" + [i - 1]
+		);
+	}
+
+	document.querySelector("#annonce_photos").appendChild(constraintWarning);
+}

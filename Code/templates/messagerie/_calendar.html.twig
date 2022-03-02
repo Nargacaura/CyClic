@@ -1,0 +1,46 @@
+
+
+<p id="calendarData" data-userId = {{user.id}}  hidden>{{calendarData|json_encode()|raw}}</p> 
+
+
+<div id="calendar" style="height : 600px;"></div>
+{# <div id="calendar" style="height : 600px;"></div> #}
+
+
+ <!-- Trigger/Open The Modal -->
+<button id="addSchedule"  class="bouton">Ajouter au calendrier</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+  
+		<div class="container">
+      <button id="cancelModal" class="bouton_retour">Fermer</button>
+			{{ form_start(calendarForm) }}
+      {{ form_widget(calendarForm.titre) }}
+      {{ form_widget(calendarForm.description) }}
+      {{ form_widget(calendarForm.debut) }}
+      {{ form_widget(calendarForm.fin) }}
+      {{ form_widget(calendarForm.add, { 'attr': {'class': 'bouton'} }) }}
+      {{ form_widget(calendarForm.delete, { 'attr': {'class': 'bouton_annuler'} }) }}
+      {{ form_widget(calendarForm.update, { 'attr': {'class': 'bouton'} }) }}
+			{{ form_end(calendarForm) }}
+    </div> 
+  </div>
+</div> 
+<br>
+<br>
+{# <button  id="helpBtn"  class="bouton">Aide calendrier</button> #}
+<p>Aide calendrier</p>
+<div id="calendarHelp">
+  <p>Vous pouvez utiliser ce calendrier pour indiquer des dates et des horaires pour faciliter vos rendez-vous.
+  Ces infos sont exclusivement disponibles dans cette conversation.
+  Vos entrées sont en turquoise, celle de l'autre utilisateur en orange</p>
+  <ul>
+    <li>Cliquez sur une case du calendrier pour y ajouter une entrée</li>
+    <li>Cliquez sur une entrée pour voir les informations de celle-ci</li>
+    <li>Recliquez sur une de vos entrées pour la modifier ou la supprimer</li>
+  </ul>
+</div>

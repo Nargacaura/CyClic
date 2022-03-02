@@ -2,112 +2,110 @@
 
 {% block title %}Annonces disponibles
 {% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags("mapping") }}
+{% endblock %}
+
 {% block javascripts %}
 	{{ parent() }}
+	{{ encore_entry_script_tags("mapping") }}
 	{{ encore_entry_script_tags('triAnnonces') }}
 {% endblock %}
 
 {% block body %}
 	<div class="d-flex">
-		<aside class="aside_filtre">
+		<aside class="aside_filtre col-2 col-md-3">
 			<h2 class="aside_titre">Filtres</h2>
 			<form action="" method="get" class="aside_form">
 				<label for="categorie">
 					<h6 class="aside__h6">Catégorie :</h6>
 				</label>
-				<select name="categorie" id="filtres_categorie">
+				<select class="bouton" name="categorie" id="filtres_categorie">
 					{% for categorie in categories %}
-						<option value="{{ categorie.id}}">{{ categorie.nom }}</option>
+						<option {% if selectedCategory is defined and selectedCategory == categorie.id %} selected {% endif %} value="{{ categorie.id}}">{{ categorie.nom }}</option>
 					{% endfor %}
 				</select>
 				<label for="etat-objet">
 					<h6 class="aside__h6">Etat de l'objet :</h6>
 				</label>
-				<select name="etat-objet" id="etat-objet">
+				<select class="bouton" name="etat-objet" id="etat-objet">
 					{% for etat in etats %}
 						<option value="{{ etat.id }}">{{ etat.nom }}</option>
 					{% endfor %}
 				</select>
-				<div>
-					<label for="distance-objet">
-						<h6 class="aside__h6">Distance :</h6>
-					</label>
-					<input type="range" id="distance" name="distance" min="0" max="11">
-				</div>
-			</form>
-		</aside>
-		<main>
-			<div class="entete">
-				<div></div>
-				<form
-					action="{{ path('triAnnonces') }}" method="get" id="formRecherche" class="entete__form">
-					{# <form action="" method="get" class="entete__form">
-															<div class="form__blocDropdowns">
-																<div class="dropdown">
-																	<select name="etat" id="etat-objet" class="bouton">
-																		<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-																			<li>
-																				<option selected class="dropdown-item">Catégorie</option>
-																			</li>
-																			{% for categorie in categories %}
-																				<li>
-																					<option value="{{ categorie.id }}" class="dropdown-item">{{ categorie.nom }}</option>
-																				</li>
-																			{% endfor %}
-																		</ul>
-																	</select>
-																</div>
-																<div class="dropdown">
-																	<select name="lieu" id="lieu-objet" class="bouton">
-																		<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-																			<li>
-																				<option selected class="dropdown-item">Lieu</option>
-																			</li>
-										                  {%  if lieux is defined %}
-										                    {% for lieu in lieux %}
-										                      <li>
-										                        <option value="{{ lieu.id }}" class="dropdown-item">{{ lieu.ville }} : {{  lieu.rue}}</option>
-										                      </li>
-										                    {% endfor %}
-																			{% endif %}
-																		</ul>
-																	</select>
-																</div>
-															</div> #}
-					<div class="searchBar">
-						{% if value is defined %}
-							<input type="search" name="titre" id="site-search" placeholder="que recherchez-vous ?">
-							<input type="hidden" name="tri" id="tri" value="{{value.tri}}">
-							<input type="hidden" name="categorie" id="categorie" value="{{value.categorie}}">
-							<input type="hidden" name="etat" id="etat" value="{{value.etat}}">
-							<input type="hidden" name="radius" id="radius" value="{{value.radius}}">
-						{% else %}
-							<input type="search" name="titre" id="site-search" placeholder="que recherchez-vous ?">
-							<input type="hidden" name="tri" id="tri" value="">
-							<input type="hidden" name="categorie" id="categorie" value="">
-							<input type="hidden" name="etat" id="etat" value="">
-							<input type="hidden" name="radius" id="radius" value="">
-						{% endif %}
-						<button>
-							<i class="fas fa-search"></i>
-						</button>
+				{% if app.user %}
+					<div id="selectLieux">
+						<label for="lieuxUser">
+            <h6 class="aside__h6">Ma localisation :</h6>
+            </label>
+							<select class="bouton" name="lieuxUser" id="lieuxUser">
+								{% for localisation in app.user.locUser %}
+									<option value="{{ localisation.id }}">{{ localisation }}</option>
+								{% endfor %}
+							</select>
+						</div>
+					{% endif %}
+					<div id="divDistance">
+						<label for="distance-objet">
+							<h6 class="aside__h6">Distance :</h6>
+						</label>
+						<input type="range" id="distance" name="distance" min="1" max="1000">
 					</div>
+					<a type="button" class="bouton reset" {% if tri %} href="{{ path('triAnnonces', {'tri': tri}) }}" {% else %} href="{{ path('annonce') }}" {% endif %}>Réinitialiser les filtres</a>
 				</form>
-				<select class="bouton" aria-label="Default select example" id="selectTri">
-					<option selected>Trier les annonces :</option>
-					<option value="0">
-						<a href>du plus récent au plus ancien</a>
-					</option>
-					<option value="1">du plus ancien au plus récent</option>
-					<option value="2">par ordre alphabétique</option>
-					<option value="3">par note du donneur</option>
-				</select>
-			</div>
-			{% if value is defined %}
-				<h2>Recherche :
-					{{value.recherche}}</h2>
-			{% endif %}
-			{{ include('annonce/_card.html.twig') }}
-		</main>
-	</div>
-{% endblock %}
+			</aside>
+			<main class="col-7 col-md-9 mainAnnonce">
+				<div class="entete">
+					<div class="divInvisible"></div>
+					<form action="{{ path('triAnnonces') }}" method="get" id="formRecherche" class="entete__form">
+						<div class="searchBar">
+							{% if value is defined %}
+								<input type="search" name="titre" id="site-search" placeholder="que recherchez-vous ?">
+								<input type="hidden" name="tri" id="tri" value="{{value.tri}}">
+								<input type="hidden" name="categorie" id="categorie" value="{{value.categorie}}">
+								<input type="hidden" name="etat" id="etat" value="{{value.etat}}">
+								<input type="hidden" name="radius" id="radius" value="{{value.radius}}">
+								<input type="hidden" name="localisation" id="localisation" value="{{value.localisation}}">
+							{% else %}
+								<input type="search" name="titre" id="site-search" placeholder="que recherchez-vous ?">
+								<input type="hidden" name="tri" id="tri" value="">
+								<input type="hidden" name="categorie" id="categorie" value="">
+								<input type="hidden" name="etat" id="etat" value="">
+								<input type="hidden" name="radius" id="radius" value="">
+								<input type="hidden" name="localisation" id="localisation" value="">
+							{% endif %}
+							{% if not (app.user) %}
+								<input type="hidden" name="visitorLat" id="visitorLat" value="">
+								<input type="hidden" name="visitorLng" id="visitorLng" value="">
+							{% endif %}
+
+							<button>
+								<i class="fas fa-search"></i>
+							</button>
+						</div>
+					</form>
+					<select class="bouton" aria-label="Default select example" id="selectTri">
+						<option selected>Trier les annonces :</option>
+						<option value="0">
+							<a href>du plus récent au plus ancien</a>
+						</option>
+						<option value="1">du plus ancien au plus récent</option>
+						<option value="2">par ordre alphabétique</option>
+						<option value="3">par note du donneur</option>
+					</select>
+				</div>
+				{% if locData is defined %}
+					<div id="mapData" hidden>{{ locData|json_encode|raw }}</div>
+					<div id="map" {% if value.lat is defined %} data-lon={{ value.lon }} data-lat={{ value.lat }} data-radius={{ value.radius }} {% endif %}></div>
+				{% endif %}
+				<h2 id="titreRecherche">
+					{% if value is defined %}
+						Recherche :
+						{{value.recherche}}
+					{% endif %}
+				</h2>
+				{{ include('annonce/_card.html.twig') }}
+			</main>
+		</div>
+	{% endblock %}

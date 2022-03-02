@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class EtatController extends AbstractController
 {
 
-        /**
+    /**
      * @Route("/addEtat", name="etat")
      */
     

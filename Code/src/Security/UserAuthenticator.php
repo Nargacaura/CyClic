@@ -51,7 +51,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        return new RedirectResponse($this->urlGenerator->generate('app_home_index'));
+        return new RedirectResponse($this->urlGenerator->generate('home'));
 
 
         // if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
