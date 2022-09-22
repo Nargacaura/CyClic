@@ -12,11 +12,11 @@ CyClic est **un site d'échange/de don d'objets** qui a été créé durant la f
 
 Les maquettes de CyClic sont mises à disposition **[ici](Maquettes)**. Mais il y a des chances que cela ne représentera pas le produit final, car ce ne sont que des prototypes d'interface utilisateur. *Et vous aurez remarqué qu'on a des visions différentes de son apparence.* Mais, une fois le site hébergé, on vous refilera le lien. Tant qu'à faire, on a aussi mis les [logos](Logos) histoire de voir les propositions.
 
-# Où sont les docs?
+# Où est le code?
 
-Les docs seront bientôt disponibles dans **[le dossier de docs](Documentation)**. On mettra à disposition les docs technique et utilisateur quand ils seront terminés et convertis en PDF.
+Le code se situe dans la branche **code** de ce répo.
 
-# Et à quoi sert ce repo Git?
+# Et à quoi sert ce repo Git, au fait?
 
 Ce Git servira de **backup au projet disponible sur [Azure DevOps](https://dev.azure.com/CCICampus/CroustiRecycle)**, au cas où quelque chose irait mal là-bas. *Mouais, on n'aime pas trop le Git flow.*
 
@@ -32,27 +32,6 @@ Les membres de ce groupe sont:
 - **[SCHAEFFER Léonard](https://github.com/Sielfyr)**.
 
 Mais si voulez plus de précisions sur chacun d'entre nous, faudra voir s'ils sont d'accord pour s'introduire un peu ici ou dans la doc utilisateur.
-
-# Comment le faire fonctionner?
-
-Pour le faire fonctionner, vous aurez besoin de:
-- **[Symfony](https://symfony.com)**,
-- **[Composer](https://getcomposer.org)**,
-- **[PHP](https://php.net)** (&ge; 7.4),
-- **[Node.js](https://nodejs.org)**,
-- **[Yarn](https://yarnpkg.org)**.
-
-Une fois ces pré-requis installés, lancez dans l'ordre:
-- **`composer i`** pour installer les dépendances Composer,
-- **`npm install`** pour ajouter les dépendances NPM,
-- **`yarn install`** pour avoir celles de Yarn,
-- **`yarn encore dev`** pour compiler les styles SCSS et les scripts JS,
-- **`php bin/console d:d:c`** pour créer la base de données si elle n'est pas encore présente dans votre collection de bases,
-- **`php bin/console m:mi; php bin/console d:m:m`** pour exécuter les migrations,
-- **`php bin/console d:f:l`** pour charger les fixtures,
-- **`symfony serve`** pour lancer le serveur.
-
-> :pencil2: Si `php bin/console d:m:m` ne fonctionne pas, remplacez-le par `php bin/console d:s:u --force`.
 
 # Uhh... is there an english version of this?
 
