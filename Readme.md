@@ -54,7 +54,8 @@ Une fois ces pré-requis installés, lancez dans l'ordre:
 - **`symfony server:start`** ou **`symfony:serve`** pour lancer le serveur.
 
 > :pencil2: Si `symfony console d:m:m` ne fonctionne pas, remplacez-le par `symfony console d:s:u --force`.
-> :warning: N'oubliez pas de copier le .env et de renommer la copie en .env**.local** et de modifier le SGBDR afin d'utiliser le bon et de mettre comme nom de BdD "**CyClic**"!
+
+> :warning: N'oubliez pas de copier le .env et de **renommer la copie en .env.local** et de modifier le SGBDR afin d'utiliser le bon et de mettre comme nom de BdD "**CyClic**"!
 
 # Uhh... is there an english version of this?
 
