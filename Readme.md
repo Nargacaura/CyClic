@@ -10,15 +10,15 @@ CyClic est **un site d'échange/de don d'objets** qui a été créé durant la f
 
 # À quoi ça ressemble?
 
-Les maquettes de CyClic sont mises à disposition **[ici](Maquettes)**. Mais il y a des chances que cela ne représentera pas le produit final, car ce ne sont que des prototypes d'interface utilisateur. *Et vous aurez remarqué qu'on a des visions différentes de son apparence.* Mais, une fois le site hébergé, on vous refilera le lien. Tant qu'à faire, on a aussi mis les [logos](Logos) histoire de voir les propositions.
+Les maquettes de CyClic sont mises à disposition dans la branche **documentation**. Mais il y a des chances que cela ne représentera pas le produit final, car ce ne sont que des prototypes d'interface utilisateur. *Et vous aurez remarqué qu'on a des visions différentes de son apparence.* Mais, une fois le site hébergé, on vous refilera le lien. Tant qu'à faire, on a aussi mis les [logos](Logos) histoire de voir les propositions effectuées avant de se tourner sur celui-ci.
 
 # Où sont les docs?
 
-Les docs seront bientôt disponibles dans **[le dossier de docs](Documentation)**. On mettra à disposition les docs technique et utilisateur quand ils seront terminés et convertis en PDF.
+Les docs sont disponibles dans la branche **documentation**, tout comme les maquettes de CyClic.
 
 # Et à quoi sert ce repo Git?
 
-Ce Git servira de **backup au projet disponible sur [Azure DevOps](https://dev.azure.com/CCICampus/CroustiRecycle)**, au cas où quelque chose irait mal là-bas. *Mouais, on n'aime pas trop le Git flow.*
+Ce répo sert de **backup au projet disponible sur [Azure DevOps](https://dev.azure.com/CCICampus/CroustiRecycle)**, au cas où quelque chose irait mal là-bas. *Mouais, on n'aime pas trop le Git flow.*
 
 # Mais qui sont ces "Symfonistes Croustillants"?
 
@@ -42,17 +42,20 @@ Pour le faire fonctionner, vous aurez besoin de:
 - **[Node.js](https://nodejs.org)**,
 - **[Yarn](https://yarnpkg.org)**.
 
+> :pencil2: Une mise à jour vers PHP 8.1 sera effectuée sous peu, au vu de l'expiration de la version 7.4 en novembre 2022.
+
 Une fois ces pré-requis installés, lancez dans l'ordre:
 - **`composer i`** pour installer les dépendances Composer,
 - **`npm install`** pour ajouter les dépendances NPM,
 - **`yarn install`** pour avoir celles de Yarn,
 - **`yarn encore dev`** pour compiler les styles SCSS et les scripts JS,
-- **`php bin/console d:d:c`** pour créer la base de données si elle n'est pas encore présente dans votre collection de bases,
-- **`php bin/console m:mi; php bin/console d:m:m`** pour exécuter les migrations,
-- **`php bin/console d:f:l`** pour charger les fixtures,
+- **`symfony console d:d:c`** pour créer la base de données si elle n'est pas encore présente dans votre collection de bases,
+- **`symfony console m:mi; symfony console d:m:m`** pour exécuter les migrations,
+- **`symfony console d:f:l`** pour charger les fixtures,
 - **`symfony serve`** pour lancer le serveur.
 
-> :pencil2: Si `php bin/console d:m:m` ne fonctionne pas, remplacez-le par `php bin/console d:s:u --force`.
+> :pencil2: Si `symfony console d:m:m` ne fonctionne pas, remplacez-le par `symfony console d:s:u --force`.
+> :warning: N'oubliez pas de copier le .env et de renommer la copie en .env**.local** et de modifier le SGBDR afin d'utiliser le bon et de mettre comme nom de BdD "**CyClic**"!
 
 # Uhh... is there an english version of this?
 
