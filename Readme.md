@@ -14,7 +14,7 @@ Les maquettes de CyClic sont mises à disposition **[ici](Maquettes)**. Mais il 
 
 # Où est le code?
 
-Le code se situe dans la branche **code** de ce répo.
+Le code se situe dans la branche **sourcecode** de ce répo.
 
 # Et à quoi sert ce repo Git, au fait?
 
