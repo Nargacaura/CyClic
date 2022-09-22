@@ -47,12 +47,11 @@ Pour le faire fonctionner, vous aurez besoin de:
 Une fois ces pré-requis installés, lancez dans l'ordre:
 - **`composer i`** pour installer les dépendances Composer,
 - **`npm install`** pour ajouter les dépendances NPM,
-- **`yarn install`** pour avoir celles de Yarn,
-- **`yarn encore dev`** pour compiler les styles SCSS et les scripts JS,
+- **`npm run dev`** pour compiler les styles SCSS et les scripts JS,
 - **`symfony console d:d:c`** pour créer la base de données si elle n'est pas encore présente dans votre collection de bases,
 - **`symfony console m:mi; symfony console d:m:m`** pour exécuter les migrations,
 - **`symfony console d:f:l`** pour charger les fixtures,
-- **`symfony serve`** pour lancer le serveur.
+- **`symfony server:start`** ou **`symfony:serve`** pour lancer le serveur.
 
 > :pencil2: Si `symfony console d:m:m` ne fonctionne pas, remplacez-le par `symfony console d:s:u --force`.
 > :warning: N'oubliez pas de copier le .env et de renommer la copie en .env**.local** et de modifier le SGBDR afin d'utiliser le bon et de mettre comme nom de BdD "**CyClic**"!

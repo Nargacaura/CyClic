@@ -1,70 +1,69 @@
-
 {% extends 'base.html.twig' %}
 
 {% block javascripts %}
-{{ parent() }}
-{{ encore_entry_script_tags('geolocation') }}
+	{{ parent() }}
+	{{ encore_entry_script_tags('geolocation') }}
 {% endblock %}
 
 {% block body %}
-{% if (app.user and app.user.ban == 0) or not app.user %}
-<div class="example-wrapper">
+	{% if (app.user and app.user.ban == 0) or not app.user %}
+		<div class="example-wrapper">
 
-		<br>
-		<h2 class="text-center welcome">Bienvenue{% if app.user %} {{ app.user.pseudo }}{% endif %}!</h2>
+			<br>
+			<h2 class="text-center welcome">Bienvenue
+				{% if app.user %}
+					{{ app.user.pseudo }}
+				{% endif %}!</h2>
 
+			<div class="container">
+				{{ form_start(form) }}
+				<div class="row align-items-center justify-content-center">
 
-		<div class="container">
-			{{ form_start(form) }}
-			<div class="row align-items-center justify-content-center">
+					<div class="col-md-auto">
 
-				<div class="col-md-auto">
-
-					<div class="dropdown">
-					{{ form_widget(form.categorie, { 'attr': {'class': 'homedropdown'} }) }}
+						<div class="dropdown">
+							{{ form_widget(form.categorie, { 'attr': {'class': 'homedropdown'} }) }}
+						</div>
+					</div>
+					<div class="col-md-auto">
+						<div class="home">
+							{{ form_widget(form.localisation, { 'attr': {'class': 'form-control coordonnees'} }) }}
+						</div>
+					</div>
+					<div class="col-md-auto">
+						<button type="button" class="geolocation">
+							<i class="fas fa-map-marker-alt"></i>
+						</button>
 					</div>
 				</div>
-				<div class="col-md-auto">
-					<div class="home">
-						{{ form_widget(form.localisation, { 'attr': {'class': 'form-control coordonnees'} }) }}
+				<div class="row d-flex justify-content-center">
+
+					<div class="text-center">
+						<div
+							class="home">
+							{{ form_widget(form.titre, { 'attr': {'class': 'form-control'} }) }}
+						</div>
+					</div>
+					<div class="text-center">
+						{{ form_widget(form.save, { 'attr': {'class': 'btn_fixed_width'} }) }}
+
+					</div>
+					<div class="text-center">
+						<a href="annonce/new">
+							<button type="button" class="btn_fixed_width">Déposer une annonce</button>
+						</a>
 					</div>
 				</div>
-				<div class="col-md-auto">
-					<button type="button" class="geolocation">
-						<i class="fas fa-map-marker-alt"></i>
-					</button>
-				</div>
-			</div>
-			<div class="row d-flex justify-content-center">
-
-				<div class="text-center">
-					<div class="home">
-						{# {{ form_widget(form.titre) }} #}
-						{{ form_widget(form.titre, { 'attr': {'class': 'form-control'} }) }}
-					</div>
-				</div>
-				<div class="text-center">
-					{{ form_widget(form.save, { 'attr': {'class': 'btn_fixed_width'} }) }}
-
-				</div>
-				<div class="text-center">
-					<a href="annonce/new">
-						<button  type="button" class="btn_fixed_width">Déposer une annonce</button> 
-					</a>
-				</div>
-			</div>
 				{{ form_end(form) }}
-		</div>
-		{# {{ include('categorie/_dropdown.html.twig') }} #}
+			</div>
 
-		<br>
-		<p  class="text-center texte_info">
-			RECYCLAGE, ENTRAIDE et ECHANGE ! </br>
+			<br>
+				<p class="text-center texte_info">RECYCLAGE, ENTRAIDE et ECHANGE !
+				</p>
+			</br>
 			Telles sont les devises de CyClic, référence de la récupe sur le net, qui a déjà permis de sauver et de remettre dans le circuit plus de 3 000 000 objets !
-			Vous aussi, ayez le bon réflexe en donnant vos objets qui encombrent et rejoignez nos plus d'un million d'utilisateurs.
-			Recherchez et récupérez gratuitement ces dons et soyez avertis des nouveaux dons publiés près de chez vous.</p>
-
-
+						Vous aussi, ayez le bon réflexe en donnant vos objets qui encombrent et rejoignez nos plus d'un million d'utilisateurs.
+						Recherchez et récupérez gratuitement ces dons et soyez avertis des nouveaux dons publiés près de chez vous.</p>
 		<br>
 		<br>
 		<h1>Annonces récentes</h1>
@@ -122,31 +121,29 @@
 			</ul>
 		</div>
 
-
 		<br>
 		<br>
 		<h1>À propos de CyClic</h1>
 		<br>
 
-		<p  class="text-center texte_info">
+		<p class="text-center texte_info">
 			Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-			Assumenda itaque iure at accusantium nemo quibusdam cumque volu
-			ptatem alias labore blanditiis. Laudantium recusandae optio culpa
-			 iste dignissimos sit hic quisquam quod!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-			Assumenda itaque iure at accusantium nemo quibusdam cumque volu
-			ptatem alias labore blanditiis. Laudantium recusandae optio culpa
-			 iste dignissimos sit hic quisquam quod!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-			Assumenda itaque iure at accusantium nemo quibusdam cumque volu
-			ptatem alias labore blanditiis. Laudantium recusandae optio culpa
-			 iste dignissimos sit hic quisquam quod!</p>
-
+						Assumenda itaque iure at accusantium nemo quibusdam cumque volu
+						ptatem alias labore blanditiis. Laudantium recusandae optio culpa
+						 iste dignissimos sit hic quisquam quod!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+						Assumenda itaque iure at accusantium nemo quibusdam cumque volu
+						ptatem alias labore blanditiis. Laudantium recusandae optio culpa
+						 iste dignissimos sit hic quisquam quod!Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+						Assumenda itaque iure at accusantium nemo quibusdam cumque volu
+						ptatem alias labore blanditiis. Laudantium recusandae optio culpa
+						 iste dignissimos sit hic quisquam quod!</p>
 		<br>
-		
 	</div>
 
-</div>
-{% else %}
+</div>{% else %}
 <img src="{{ asset('img/YSNP.jpg') }}">
-<a href="{{ path('app_logout') }}"><h1> Déconnexion </h1></a>
-{% endif %}
-{% endblock %}
+<a href="{{ path('app_logout') }}">
+	<h1>
+		Déconnexion
+	</h1>
+</a>{% endif %}{% endblock %}

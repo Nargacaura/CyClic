@@ -12,26 +12,20 @@ use App\Repository\TransactionRepository;
 use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectManager;
-use Proxies\__CG__\App\Entity\StatutEchange as EntityStatutEchange;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
-use function PHPUnit\Framework\throwException;
 
 class TransactionController extends AbstractController
 {
     public ObjectManager $manager;
     public TransactionRepository $repository;
-    
+
     public function __construct(ManagerRegistry $doctrine, TransactionRepository $repository)
     {
         $this->manager = $doctrine->getManager();
         $this->repository = $repository;
     }
-
 
     /**
      * @Route("/transaction/rate", name="transaction_rate")
@@ -41,23 +35,23 @@ class TransactionController extends AbstractController
         $annonce = $annonceRepository->find($request->get("annonceId"));
         $transaction = $annonce->getTransaction();
 
-        if(!$transaction) 
-            return $this->createAccessDeniedException("Vous ne pouvez pas noter cette échange"); 
+        if (!$transaction)
+            return $this->createAccessDeniedException("Vous ne pouvez pas noter cette échange");
 
         if (!$annonce->getStatut($statusRepository->getStatusFromName(StatutEchange::validated))) {
-            return $this->createAccessDeniedException("L'échange doit être terminé pour être noté"); 
+            return $this->createAccessDeniedException("L'échange doit être terminé pour être noté");
         }
 
-        if($transaction->getReceveur() == $this->getUser()) $transaction->setNoteReceveur($request->get("rating"));
+        if ($transaction->getReceveur() == $this->getUser()) $transaction->setNoteReceveur($request->get("rating"));
         else $transaction->setNoteDonneur($request->get("rating"));
         $transaction->getReceveur()->setNoteMoyenneUser($transactionRepository->getUserRating($transaction->getReceveur()->getId()));
         $transaction->getDonneur()->setNoteMoyenneUser($transactionRepository->getUserRating($transaction->getDonneur()->getId()));
 
         $this->manager->flush();
-        
+
         return $this->redirect($request->headers->get('referer'));
     }
-    
+
     /**
      * @Route("/transaction/cancel", name="transaction_cancel")
      */
@@ -65,25 +59,23 @@ class TransactionController extends AbstractController
     {
         $annonce = $annonceRepository->find($request->get("annonceId"));
         $transaction = $annonce->getTransaction();
-        if(!$transaction || !$annonce->getStatut($statusRepository->getStatusFromName(StatutEchange::inValidation))){
-            return $this->$this->createAccessDeniedException("Vous ne pouvez pas annuler cette échange"); 
+        if (!$transaction || !$annonce->getStatut($statusRepository->getStatusFromName(StatutEchange::inValidation))) {
+            return $this->$this->createAccessDeniedException("Vous ne pouvez pas annuler cette échange");
         }
-        
-        if($transaction->getReceveur() == $this->getUser() ){
+
+        if ($transaction->getReceveur() == $this->getUser()) {
             $transaction->setValidationReceveur(false);
-        }
-        else if($transaction->getDonneur() == $this->getUser()){
+        } else if ($transaction->getDonneur() == $this->getUser()) {
             $transaction->setValidationDonneur(false);
-        }
-        else return $this->createAccessDeniedException("Vous ne pouvez pas annuler cette échange"); 
+        } else return $this->createAccessDeniedException("Vous ne pouvez pas annuler cette échange");
         $this->manager->remove($transaction);
         $annonce->setStatut($statusRepository->getStatusFromName(StatutEchange::open));
-        
+
         $this->manager->flush();
-        
+
         return $this->redirect($request->headers->get('referer'));
     }
-    
+
     /**
      * @Route("/transaction/validation", name="transaction_validation")
      */
@@ -92,31 +84,29 @@ class TransactionController extends AbstractController
         $annonce = $annonceRepository->find($request->get("annonceId"));
         $receiver = $request->get("receiverId");
         $userIsReceiver = is_null($receiver);
-        if(!$userIsReceiver){
+        if (!$userIsReceiver) {
             $giver = $this->getUser();
             $receiver = $userRepository->find($receiver);
-        }
-        else {
+        } else {
             $giver = $annonce->getAuteur();
             $receiver = $this->getUser();
         }
 
         $transaction = $this->getTransaction($annonce, $giver, $receiver);
-        if(!$transaction) return $this->createNotFoundException("Vous ne pouvez pas intérargir avec cette annonce"); 
+        if (!$transaction) return $this->createNotFoundException("Vous ne pouvez pas intérargir avec cette annonce");
 
-        if(!$userIsReceiver){
+        if (!$userIsReceiver) {
             $transaction->setValidationDonneur(true);
             $annonce->setStatut($statusRepository->getStatusFromName(
-                $transaction->getValidationReceveur() 
-                    ? StatutEchange::validated 
+                $transaction->getValidationReceveur()
+                    ? StatutEchange::validated
                     : StatutEchange::inValidation
             ));
-        }
-        else{
+        } else {
             $transaction->setValidationReceveur(true);
             $annonce->setStatut($statusRepository->getStatusFromName(
-                $transaction->getValidationDonneur() 
-                    ? StatutEchange::validated 
+                $transaction->getValidationDonneur()
+                    ? StatutEchange::validated
                     : StatutEchange::inValidation
             ));
         }
@@ -125,12 +115,10 @@ class TransactionController extends AbstractController
         return $this->redirect($request->headers->get('referer'));
     }
 
-
-
     private function getTransaction(Annonce $annonce, User $giver, User $receiver)
     {
         $transaction = $annonce->getTransaction();
-        if(!$transaction){
+        if (!$transaction) {
             $transaction = new Transaction();
             $transaction->setAnnonce($annonce);
             $transaction->setDonneur($giver);
@@ -138,9 +126,8 @@ class TransactionController extends AbstractController
             $transaction->setValidationDonneur(false);
             $transaction->setValidationReceveur(false);
             $this->manager->persist($transaction);
-        }
-        else {
-            if($transaction->getReceveur() != $receiver || $transaction->getDonneur() != $giver){
+        } else {
+            if ($transaction->getReceveur() != $receiver || $transaction->getDonneur() != $giver) {
                 return null;
             }
         }

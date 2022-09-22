@@ -1,23 +1,23 @@
 <aside class="aside_filtre">
-    <a href="/messagerie/own" class="bouton">mes annonces</a>
-    <div class="bouton">contacts</div>
-    <ul>
-    {% for contact in contacts %}
-        <li>
-            {{contact.annonce.titre|length > 22 ? contact.annonce.titre|slice(0, 22) ~ '...' : contact.annonce.titre}}
-            <ul>
-                <li>
-                    {% for user in contact.contacts %}
-                    <form method="post" action="{{ path('message_to', {'annonceId': contact.annonce.id}) }}">
-                        {# <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ contact.annonce.id) }}"> #}
-                        <button class="bouton">
-                            {{user.pseudo }}
-                        </button>
-                    </form>
-                    {% endfor %}
-                </li>
-            </ul>
-        </li>
-    {% endfor %}
-    </ul>
+	<a href="/messagerie/own" class="bouton">mes annonces</a>
+	<div class="bouton">contacts</div>
+	<ul>
+		{% for contact in contacts %}
+			<li>
+				{{contact.annonce.titre|length > 22 ? contact.annonce.titre|slice(0, 22) ~ '...' : contact.annonce.titre}}
+				<ul>
+					<li>
+						{% for user in contact.contacts %}
+							<form
+								method="post" action="{{ path('message_to', {'annonceId': contact.annonce.id}) }}">
+								<button class="bouton">
+									{{user.pseudo }}
+								</button>
+							</form>
+						{% endfor %}
+					</li>
+				</ul>
+			</li>
+		{% endfor %}
+	</ul>
 </aside>

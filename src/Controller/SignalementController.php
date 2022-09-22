@@ -26,23 +26,21 @@ class SignalementController extends AbstractController
         $annonce = $annonceRepository->find($request->get("annonceId"));
         $signaleur = $userRepository->find($request->get("signaleur"));
 
-        
-        if(!$annonce) {
+        if (!$annonce) {
             throw new NotFoundHttpException('Vous ne pouvez pas ne rien signaler!');
         }
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $signal = $form->getData();
-            
+
             $signal->setAnnonce($annonce);
             $signal->setAuteur($signaleur);
-            
+
             $entityManager = $doctrine->getManager();
             $entityManager->persist($signal);
             $entityManager->flush();
             return $this->redirectToRoute('show_details', ['id' => $annonce->getId()]);
         }
-
 
         return $this->render('signalement/index.html.twig', [
             'form' => $form->createView(),

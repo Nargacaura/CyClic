@@ -1,61 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Questions fréquentes{% endblock %}
+{% block title %}
+    Questions fréquentes
+{% endblock %}
 
 {% block body %}
+	<div class="example-wrapper">
+		<h1>Questions fréquentes</h1>
 
-<div class="example-wrapper">
-    <h1>Questions fréquentes</h1>
+		<ul>
+			<li>Comment visualiser une annonce ?
+				<ul>
+					<li>Étape 1 : Depuis la page d'accueil du site, cliquez sur le bouton
+						<a class="link-secondary" href="/annonce">"annonce"</a>
+						<br>Note : pour déposer une annonce vous devez créer un compte CYCLIC.
+					</li>
 
-    <ul>
-        <li>Comment visualiser une annonce ?
-            <ul>    <li>Étape 1 : Depuis la page d'accueil du site, cliquez sur le bouton <a class="link-secondary" href="/annonce">"annonce"</a> 
-                    <br>Note : pour déposer une annonce vous devez créer un compte CYCLIC. </li>
-            
-        <br>        <li>Étape 2 : Choisir une catégorie et un état.
-                    <br>Ou bien renseigner l'objet que vous cherchez dans la barre de recherche .
-                    </li>
-            
-            </ul>
-        </li>
+					<br>
+					<li>Étape 2 : Choisir une catégorie et un état.
+						<br>Ou bien renseigner l'objet que vous cherchez dans la barre de recherche .
+					</li>
+				</ul>
+			</li>
 
-        <br>
-        <li>Comment déposer une annonce ?
-            <ul>    <li>Étape 1 : Depuis la page d'accueil du site, cliquez sur le bouton <a class="link-secondary" href="/register">"inscription"</a> 
-                    <br>Renseigner tous les champs.
-                    <br>Le mot de passe doit comporter au minimum 6 caractères dont une majuscule, une minuscule et un caractère spécial (@, ! etc.).
-                    <br>Cliquer sur S'INSCRIRE.
-                    <br> A ce stade, vous allez être redirigé vers la page d'accueil.
-                    <br>Etape 2 : Cliquez sur le bouton <a class="link-secondary" href="/annonce/new">"Publier une annonce"</a>
-                    <br>Renseigner tous les champs puis clicker sur VALIDER
-                    <br>Ca y est ! Votre annonce est en ligne
-                    
-                    </li>
-            </ul>
-        </li>
-        
-        <br>
-        <li>Combien coûte le dépôt d'une annonce ? 
-        <br>Le dépôt d'annonce sur CYCLIC est totalement gratuit.
-        </li>
+			<br>
+			<li>Comment déposer une annonce ?
+				<ul>
+					<li>Étape 1 : Depuis la page d'accueil du site, cliquez sur le bouton
+						<a class="link-secondary" href="/register">"inscription"</a>
+						<br>Renseigner tous les champs.
+						<br>Le mot de passe doit comporter au minimum 6 caractères dont une majuscule, une minuscule et un caractère spécial (@, ! etc.).
+						<br>Cliquer sur S'INSCRIRE.
+						<br>
+						A ce stade, vous allez être redirigé vers la page d'accueil.
+						<br>Etape 2 : Cliquez sur le bouton
+						<a class="link-secondary" href="/annonce/new">"Publier une annonce"</a>
+						<br>Renseigner tous les champs puis clicker sur VALIDER
+						<br>Ca y est ! Votre annonce est en ligne
+					</li>
+				</ul>
+			</li>
 
-        <br>
+			<br>
+			<li>Combien coûte le dépôt d'une annonce ?
+				<br>Le dépôt d'annonce sur CYCLIC est totalement gratuit.
+			</li>
 
-        <li>Quelles règles doit respecter mon annonce ?
-            <ul>    
-                <li>L’annonce doit être rédigée en français (obligation légale imposée par la loi n°94-345 du 4 août 1994).</li>
-                <li>Être en lien avec le produit/bien/service proposé.</li>
-                <li>Ne pas présenter une utilisation abusive de mots-clés.</li>
-                <li>Ne pas rediriger vers un autre site comme leboncoin.fr (directement ou indirectement)</li>
-                <li>Ne pas comporter de numéro de téléphone ou d’adresse mail (ni dans le titre, ni dans la description, ni sur une photo).</li>
-                <li>Ne pas comporter de numéro de téléphone surtaxé.</li>
-                <li>Ne présenter aucun élément sectaire, discriminatoire, sexiste, ou en lien avec des organisations et des personnes responsables de crimes contre l’humanité.</li>
-            </ul> 
-        </li>
+			<br>
 
-    </ul>
-</div>
+			<li>Quelles règles doit respecter mon annonce ?
+				<ul>
+					<li>L’annonce doit être rédigée en français (obligation légale imposée par la loi n°94-345 du 4 août 1994).</li>
+					<li>Être en lien avec le produit/bien/service proposé.</li>
+					<li>Ne pas présenter une utilisation abusive de mots-clés.</li>
+					<li>Ne pas rediriger vers un autre site comme leboncoin.fr (directement ou indirectement)</li>
+					<li>Ne pas comporter de numéro de téléphone ou d’adresse mail (ni dans le titre, ni dans la description, ni sur une photo).</li>
+					<li>Ne pas comporter de numéro de téléphone surtaxé.</li>
+					<li>Ne présenter aucun élément sectaire, discriminatoire, sexiste, ou en lien avec des organisations et des personnes responsables de crimes contre l’humanité.</li>
+				</ul>
+			</li>
 
-
-
+		</ul>
+	</div>
 {% endblock %}

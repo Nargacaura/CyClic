@@ -30,8 +30,8 @@ class TransactionFixture extends Fixture implements DependentFixtureInterface
         $oneValidation = 4;
         $rated = 7;
         $total = $oneValidation + $rated;
-        for ($i=0; $i < $total ; $i++) { 
-            
+        for ($i = 0; $i < $total; $i++) {
+
             /**
              * @var Message $message
              */
@@ -43,20 +43,19 @@ class TransactionFixture extends Fixture implements DependentFixtureInterface
             $ann = $message->getAnnonce();
 
             foreach ($messages as $key => $value) {
-                if($value->getAnnonce() == $ann) unset($messages[$key]);
+                if ($value->getAnnonce() == $ann) unset($messages[$key]);
             }
             $transac = new Transaction();
             $transac->setAnnonce($ann);
             $transac->setDonneur($ann->getAuteur());
             $transac->setReceveur(($message->getExpediteur() == $ann->getAuteur()) ? $message->getDestinataire() : $message->getExpediteur());
             $transac->setValidationDonneur(true);
-            if($i >= $oneValidation){
+            if ($i >= $oneValidation) {
                 $transac->setValidationReceveur(true);
                 $transac->setNoteReceveur(rand(1, 5));
                 $transac->setNoteDonneur(rand(1, 5));
                 $ann->setStatut($this->statutRepository->getStatusFromName(StatutEchange::validated));
-            }
-            else{
+            } else {
                 $transac->setValidationReceveur(false);
                 $ann->setStatut($this->statutRepository->getStatusFromName(StatutEchange::inValidation));
             }

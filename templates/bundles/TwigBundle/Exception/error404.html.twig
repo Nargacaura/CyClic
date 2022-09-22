@@ -2,13 +2,22 @@
 
 {# Erreur 404: page non trouvée #}
 
-{% block title %}Cette page est vide.{% endblock %}
+{% block title %}
+    Cette page est vide.
+{% endblock %}
 
-{% block errno %}404{% endblock %}
+{% block errno %}
+    404
+{% endblock %}
 
 {% block errmsg %}
-<h1>Vide. Le contraire de plein.</h1> {# Trouvez la référence. Mais ne soyez pas désappointé. #}
+	<h1>Vide. Le contraire de plein.</h1>
+	{# Trouvez la référence. Mais ne soyez pas désappointé. #}
 
-<p>Vous avez essayé d'accéder à votre requête, mais il semblerait qu'elle a été supprimée, inexistante, déplacée ailleurs ou indisponible. Dans tous les cas, quelqu'un pensera probablement à vous et la rendra fonctionnelle. Pas comme dans un film qui parle de machine à voyager dans le temps où le personnage principal <em>oublie</em> qu'il avait acheté une machine à voyager dans le temps pour 17$ {# Une référence à un navet absolu, ou que l'on renommerait "Meublage: le film" #}.</p>
+	<p>Vous avez essayé d'accéder à votre requête, mais il semblerait qu'elle a été supprimée, inexistante, déplacée ailleurs ou indisponible. Dans tous les cas, quelqu'un pensera probablement à vous et la rendra fonctionnelle. Pas comme dans un film qui parle de machine à voyager dans le temps où le personnage principal
+		<em>oublie</em>
+		qu'il avait acheté une machine à voyager dans le temps pour 17$
+		{# Une référence à un navet absolu, ou que l'on renommerait "Meublage: le film" #}
+		.</p>
 
 {% endblock %}

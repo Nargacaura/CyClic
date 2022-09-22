@@ -1,4 +1,5 @@
 <?php
+
 /**
  * <h2>Catégorie crud controller</h2>
  * <p>Récupere les informations pour les importées dans le DashboardController.</p>
@@ -35,5 +36,4 @@ class CategorieCrudController extends AbstractCrudController
             TextField::new('nom'),
         ];
     }
-    
 }

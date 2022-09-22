@@ -10,24 +10,22 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class KernelControllerSubscriber implements EventSubscriberInterface
 {
 
-  private $etatRepository;
-  private $twig;
+    private $etatRepository;
+    private $twig;
 
-  public function __construct(
-      EtatRepository $etatRepository, 
-      Environment $twig
-  )
-  {
-      $this->etatRepository = $etatRepository;
-      $this->twig = $twig;
-  }
+    public function __construct(
+        EtatRepository $etatRepository,
+        Environment $twig
+    ) {
+        $this->etatRepository = $etatRepository;
+        $this->twig = $twig;
+    }
 
     public function onKernelController(ControllerEvent $event)
     {
-      $etats = $this->etatRepository->findAll();
-      // envoyer les tags à Twig
-      $this->twig->addGlobal('etats', $etats);
-
+        $etats = $this->etatRepository->findAll();
+        // envoyer les tags à Twig
+        $this->twig->addGlobal('etats', $etats);
     }
 
     public static function getSubscribedEvents()

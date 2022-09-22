@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\CalendarData;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -29,13 +28,12 @@ class CalendarDataRepository extends ServiceEntityRepository
     public function calendrierUserAnnonce(int $userId, int $otherId, int $annonceId)
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 
+        $sql =
             "SELECT c.*
             FROM calendar_data AS c
             WHERE c.annonce_id = :annonce
             AND ((c.detenteur_id = :user AND c.destinataire_id  = :other)
-            OR (c.detenteur_id = :other AND c.destinataire_id  = :user))"
-            ;
+            OR (c.detenteur_id = :other AND c.destinataire_id  = :user))";
 
         return $conn
             ->prepare($sql)
@@ -43,30 +41,7 @@ class CalendarDataRepository extends ServiceEntityRepository
                 'annonce' => $annonceId,
                 'user' => $userId,
                 'other' => $otherId,
-                ])
+            ])
             ->fetchAllAssociative();
-        /*
-         version pour avoir l'entity mais ne permet pas de faire un json_encode
-         */
-        // $manager = $this->getEntityManager();
-        // $rsm = new ResultSetMappingBuilder($manager);
-        // $rsm->addRootEntityFromClassMetadata(CalendarData::class, 'c');
-
-        // $query = $manager->createNativeQuery(
-        //     "SELECT c.titre, c.description
-        //     FROM calendar_data AS c
-        //     WHERE c.annonce_id = :annonce
-        //     AND ((c.detenteur_id = :user AND c.destinataire_id  = :other)
-        //     OR (c.detenteur_id = :other AND c.destinataire_id  = :user))",
-        //     $rsm
-        // );
-        // $query->setParameters([
-        //     'annonce' => $annonceId,
-        //     'user' => $userId,
-        //     'other' => $otherId,
-        // ]);
-        // return $query->getResult();
-        
     }
-
 }

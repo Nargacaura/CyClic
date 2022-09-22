@@ -3,7 +3,6 @@
 	margin: 1rem 0rem 1rem 3rem;
 	@include tablette_view() {
 		margin: auto;
-		// @include flex(center, center);
 		@include flex-flow(column);
 	}
 	@include smartphone_view() {
@@ -43,7 +42,6 @@
 	border: none;
 	border-radius: 20px;
 	overflow: hidden;
-	// width: 300px;
 }
 
 .card-body {

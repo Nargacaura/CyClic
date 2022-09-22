@@ -43,7 +43,7 @@ class ChangePasswordFormType extends AbstractType
                             'message' => 'Il semblerait que ce mot de passe soit compromis. Essayez un autre.'
                         ])
                     ],
-                    'label' => false ,
+                    'label' => false,
                 ],
                 'second_options' => [
                     'attr' => [
@@ -56,8 +56,7 @@ class ChangePasswordFormType extends AbstractType
                 // Instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'mapped' => false,
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

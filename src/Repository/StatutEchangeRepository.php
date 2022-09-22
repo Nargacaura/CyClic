@@ -20,43 +20,14 @@ class StatutEchangeRepository extends ServiceEntityRepository
     }
 
     private $indexed;
-    
-    public function getStatusFromName(string $nom) : StatutEchange
+
+    public function getStatusFromName(string $nom): StatutEchange
     {
-        if($this->indexed) return $this->indexed[$nom];
+        if ($this->indexed) return $this->indexed[$nom];
         $allstatus = $this->findAll();
         foreach ($allstatus as $value) {
             $this->indexed[$value->getNom()] = $value;
         }
         return $this->indexed[$nom];
     }
-
-    // /**
-    //  * @return StatutEchange[] Returns an array of StatutEchange objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?StatutEchange
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

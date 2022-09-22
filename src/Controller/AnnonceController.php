@@ -1,4 +1,5 @@
 <?php
+
 /**
  * <h1>Controller des annonces</h1>
  */
@@ -109,7 +110,6 @@ class AnnonceController extends AbstractController
     $categories = $categRepo->findAll();
     $etats = $etatRepository->findAll();
 
-
     return $this->render('annonce/index.html.twig', [
       'annonces' => $annonces,
       'locData' => $this->localisationData($annonces),
@@ -140,8 +140,7 @@ class AnnonceController extends AbstractController
       }
       $lat =  $localisation->getLatitude();
       $lng =  $localisation->getLongitude();
-    } 
-    else {
+    } else {
       $lat =  $request->get("visitorLat");
       $lng =  $request->get("visitorLng");
     }
@@ -177,7 +176,6 @@ class AnnonceController extends AbstractController
    */
   public function showDetails(Annonce $annonce, TransactionRepository $transactionRepository)
   {
-
     if (!$annonce) {
       throw $this->createNotFoundException();
     }

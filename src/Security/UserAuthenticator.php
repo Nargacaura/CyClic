@@ -52,16 +52,6 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
         // For example:
         return new RedirectResponse($this->urlGenerator->generate('home'));
-
-
-        // if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
-        //     return new RedirectResponse($this->urlGenerator->generate('success'));
-        // }
-
-        // return new RedirectResponse($this->urlGenerator->generate('success'));
-        // // For example:
-        // // return new RedirectResponse($this->urlGenerator->generate('/success'));
-        // // throw new \Exception('login' . __FILE__);
     }
 
     protected function getLoginUrl(Request $request): string

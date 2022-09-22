@@ -16,9 +16,9 @@ class CalendarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('id', HiddenType::class,[
-                'mapped' => false,   
-                ])
+            ->add('id', HiddenType::class, [
+                'mapped' => false,
+            ])
             ->add('titre', TextType::class, [
                 'label' => false,
                 'attr' => [
@@ -45,8 +45,7 @@ class CalendarType extends AbstractType
             ])
             ->add('add', SubmitType::class, ['label' => 'Ajouter au calendrier'])
             ->add('delete', SubmitType::class, ['label' => 'Supprimer'])
-            ->add('update', SubmitType::class, ['label' => 'Modifier'])
-        ;
+            ->add('update', SubmitType::class, ['label' => 'Modifier']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

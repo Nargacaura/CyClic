@@ -1,4 +1,5 @@
 <?php
+
 /**
  * <h2>Signalement crud controller</h2>
  * <p>Récupere les informations pour les importées dans le DashboardController.</p>
@@ -45,14 +46,12 @@ class SignalementCrudController extends AbstractCrudController
             TextField::new('objet'),
             TextEditorField::new('description'),
         ];
-    }   
-     
+    }
+
     public function configureActions(Actions $actions): Actions
     {
         return $actions
-            // ...
             ->remove(Crud::PAGE_INDEX, Action::EDIT)
-            ->remove(Crud::PAGE_DETAIL, Action::EDIT)
-        ;
+            ->remove(Crud::PAGE_DETAIL, Action::EDIT);
     }
 }

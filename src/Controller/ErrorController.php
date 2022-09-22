@@ -8,12 +8,9 @@
 
 namespace App\Controller;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * <h2>Erreurs</h2>
@@ -53,5 +50,4 @@ class ErrorController extends AbstractController
     {
         return $this->render("bundles/TwigBundle/Exception/error.html.twig");
     }
-
 }

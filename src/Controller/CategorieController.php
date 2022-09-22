@@ -20,7 +20,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * <h1>Catégorie controller</h1>
  */
 class CategorieController extends AbstractController
-{ 
+{
     /**
      * @Route("/add", name="add_category")
      * <h2>Function permetant le rajout de catégorie</h>
@@ -56,7 +56,7 @@ class CategorieController extends AbstractController
             'form' => $form,
         ]);
     }
-    
+
     /**
      * @Route("/", name="categories")
      * <h2>Liste les catégories</h2>
@@ -69,7 +69,7 @@ class CategorieController extends AbstractController
             'categories' => $categorieRepository->findAll()
         ]);
     }
-    
+
     /**
      * @Route("/edit/{id}", name="edit_category", methods={"GET", "POST"})
      * <h2>Modifie une catégorie</h2>
@@ -113,12 +113,11 @@ class CategorieController extends AbstractController
         if (!$this->isGranted('ROLE_ADMIN')) {
             throw $this->createAccessDeniedException();
         }
-        if ($this->isCsrfTokenValid('delete'.$category->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $entityManager = $doctrine->getManager();
             $entityManager->remove($category);
             $entityManager->flush();
         }
         return $this->redirectToRoute('categories', [], Response::HTTP_SEE_OTHER);
     }
-
 }

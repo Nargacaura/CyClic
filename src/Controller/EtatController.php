@@ -16,7 +16,7 @@ class EtatController extends AbstractController
     /**
      * @Route("/addEtat", name="etat")
      */
-    
+
     public function etat(Request $request, ManagerRegistry $doctrine): Response
     {
         $etat = new Etat();
@@ -25,7 +25,7 @@ class EtatController extends AbstractController
         $form = $this->createForm(EtatFormType::class, $etat);
 
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $etat = $form->getData();
 
@@ -33,18 +33,13 @@ class EtatController extends AbstractController
             $entityManager->persist($etat);
             $entityManager->flush();
 
-            return new Response('Nouvelle etat '.$etat->getNom().' and id : '.$etat->getId());
+            return new Response('Nouvelle etat ' . $etat->getNom() . ' and id : ' . $etat->getId());
         }
 
-        
         return $this->renderForm('etat/etat.html.twig', [
             'form' => $form,
         ]);
     }
-
-
-
-
 
     /**
      * @Route("/default", name="default")

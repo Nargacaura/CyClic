@@ -15,18 +15,22 @@ class SearchType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('categorie', EntityType::class, 
-                ['class' => Categorie::class, 
+            ->add(
+                'categorie',
+                EntityType::class,
+                [
+                    'class' => Categorie::class,
                     'choice_label' => 'nom',
-                    'placeholder' => "Catégorie"])
+                    'placeholder' => "Catégorie"
+                ]
+            )
             ->add('localisation', TextType::class, ['attr' => [
                 'placeholder' => 'Localisation',
             ]])
             ->add('titre', TextType::class, ['attr' => [
                 'placeholder' => 'Nom Annonce',
             ]])
-            ->add('save', SubmitType::class, ['label' => 'Rechercher une annonce'])
-        ;
+            ->add('save', SubmitType::class, ['label' => 'Rechercher une annonce']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

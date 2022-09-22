@@ -2,12 +2,9 @@
 
 namespace App\Repository;
 
-use App\Entity\Annonce;
 use App\Entity\Message;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @method Message|null find($id, $lockMode = null, $lockVersion = null)
@@ -28,23 +25,22 @@ class MessageRepository extends ServiceEntityRepository
      * @var int $userAnnonceId l'id de l'annonce
      */
     public function messageFromUserAnnonce(int $fromId, int $userAnnonceId)
-    {  
+    {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 
+        $sql =
             "SELECT m.contenu, a.titre, m.date, m.expediteur_id, m.destinataire_id, a.id FROM message AS m
             INNER JOIN annonce AS a
                 ON m.annonce_id = a.id
             WHERE a.id = :annonce
             AND (m.expediteur_id = :user OR m.destinataire_id  = :user)
-            ORDER BY m.date"
-            ;
+            ORDER BY m.date";
 
         return $conn
             ->prepare($sql)
             ->executeQuery([
                 'user' => $fromId,
                 'annonce' => $userAnnonceId
-                ])
+            ])
             ->fetchAllAssociative();
     }
 
@@ -54,9 +50,9 @@ class MessageRepository extends ServiceEntityRepository
      * @var int $userAnnonceId l'id de l'annonce
      */
     public function messageToAnnonce(int $userId, int $userAnnonceId)
-    {  
+    {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 
+        $sql =
             "SELECT m.* FROM message AS m
             INNER JOIN annonce AS a
                 ON m.annonce_id = a.id
@@ -64,27 +60,26 @@ class MessageRepository extends ServiceEntityRepository
                 ON u.id = a.auteur_id
             WHERE a.id = :annonce
             AND (m.expediteur_id = :user OR m.destinataire_id = :user)
-            ORDER BY m.date"
-            ;
+            ORDER BY m.date";
 
         return $conn
             ->prepare($sql)
             ->executeQuery([
                 'user' => $userId,
                 'annonce' => $userAnnonceId
-                ])
+            ])
             ->fetchAllAssociative();
     }
-    
+
     /**
      * Trouve les annonces où l'utilisateur à envoyé un message, triés par date.
      * @var int $userId l'id de l'utilisateur
      * @return // des infos sur l'annonce et les messages trouvés
      */
     public function findOtherAnnonceSendedMessage(int $userId)
-    {  
+    {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 
+        $sql =
             "SELECT m.contenu, a.titre, m.date, m.expediteur_id, m.destinataire_id, a.id, u.pseudo FROM message AS m
             INNER JOIN annonce AS a
                 ON m.annonce_id = a.id
@@ -92,50 +87,13 @@ class MessageRepository extends ServiceEntityRepository
                 ON u.id = a.auteur_id
             WHERE a.auteur_id != :user
             AND (m.expediteur_id = :user OR m.destinataire_id = :user)
-            ORDER BY m.date"
-            ;
+            ORDER BY m.date";
 
         return $conn
             ->prepare($sql)
             ->executeQuery([
                 'user' => $userId
-                ])
+            ])
             ->fetchAllAssociative();
     }
-
-
-    //     return $conn
-    //         ->prepare($sql)
-    //         ->executeQuery(['user' => $user->getId()])
-    //         ->fetchAllAssociative();
-    // }
-
-    // /**
-    //  * @return Message[] Returns an array of Message objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Message
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

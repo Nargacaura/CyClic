@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\User;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 /**s
  * <h2>ProfilController</h2>
  * <p>Un controller qui permet de diriger l'utilisateur à sa page utilisateur
@@ -36,27 +38,12 @@ class ProfilController extends AbstractController
     public function index(ManagerRegistry $doctrine, User $user, UserRepository $userRepository, AnnonceRepository $annonceRepo): Response
     {
         $repo = $doctrine->getRepository(Localisation::class);
-        // /**
-        //  * @var User $user
-        //  */
-        // $user = $userRepository->findOneBy(['pseudo' => $pseudo]);
-
-        // if (!$user) {
-        //     throw new NotFoundHttpException('Pas là.');
-        // }
-
-        // $id = $user->getId();
         $localisation = $repo->findOneBy(['userLocalisation' => $user]);
         $annonces = $user->getAnnonces();
-        // $annonces = $annonceRepo->searchAvailableAnnonce();
-        // $annonces = array_slice($annonces, 0, ProfilController::ANNONCE_SHOW);
-
-        // $users = $this->getUser();
 
         if ($this->getUser() == $user) {
             return $this->render('profil/index.html.twig', [
                 'localisation' => $localisation,
-                // 'users' => $user,
                 'annonces' => $annonces
             ]);
         } else {
@@ -96,7 +83,6 @@ class ProfilController extends AbstractController
             }
         }
         if ($form->isSubmitted() && $form->isValid()) {
-            //dd($form->getData());
             $user->setNom($form->getData()->getNom());
             $user->setPrenom($form->getData()->getPrenom());
             $user->setEmail($form->getData()->getEmail());

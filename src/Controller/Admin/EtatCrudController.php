@@ -1,4 +1,5 @@
 <?php
+
 /**
  * <h2>Etat crud controller</h2>
  * <p>Récupere les informations pour les importées dans le DashboardController.</p>
@@ -10,6 +11,7 @@ namespace App\Controller\Admin;
 use App\Entity\Etat;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+
 class EtatCrudController extends AbstractCrudController
 {
     /**
@@ -34,5 +36,4 @@ class EtatCrudController extends AbstractCrudController
             TextField::new('nom'),
         ];
     }
-    
 }

@@ -18,49 +18,4 @@ class CategorieRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Categorie::class);
     }
-
-    // /**
-    //  * @return Categorie[] Returns an array of Categorie objects
-    //  */
-
-    /*
-    public function searchAnnonce($search){
-
-        return $this->createQueryBuilder('c')
-
-            ->andWhere('c.nom = :nom')
-            ->setParameter('nom', $search['categorie']->getNom())
-            ->getQuery()
-            ->getResult()
-            
-        ;
-    }
-    */
-    
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-    
-
-    /*
-    public function findOneBySomeField($value): ?Categorie
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

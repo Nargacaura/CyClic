@@ -2,11 +2,13 @@
 
 {% block body %}
 
-<div class="annonceForm_container">
-<h1 class="container__title"> Signalement </h1>
-    {{ form_start(form) }}
-    {{ form_row(form.objet)}}
-    {{ form_row(form.description)}}
-    {{ form_end(form) }}
-</div>
+	<div class="annonceForm_container">
+		<h1 class="container__title">
+			Signalement
+		</h1>
+		{{ form_start(form) }}
+		{{ form_row(form.objet)}}
+		{{ form_row(form.description)}}
+		{{ form_end(form) }}
+	</div>
 {% endblock %}

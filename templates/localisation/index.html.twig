@@ -75,16 +75,9 @@
 		</div>
 	</div>
 </div>
-<br>
-
-{% endblock %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    {{ encore_entry_link_tags("mapping") }}
-{% endblock %}
-{% block javascripts %}
-    {{ parent() }}
-    {{ encore_entry_script_tags("mapping") }}
-    {{ encore_entry_script_tags("geolocation") }}
-{% endblock %}
+<br>{% endblock %}{% block stylesheets %}
+{{ parent() }}
+{{ encore_entry_link_tags("mapping") }}{% endblock %}{% block javascripts %}
+{{ parent() }}
+{{ encore_entry_script_tags("mapping") }}
+{{ encore_entry_script_tags("geolocation") }}{% endblock %}

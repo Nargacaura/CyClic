@@ -1,4 +1,5 @@
 <?php
+
 /**
  * <h2>Annonce crud controller</h2>
  * <p>Récupere les informations pour les importées dans le DashboardController.</p>
@@ -13,6 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+
 class AnnonceCrudController extends AbstractCrudController
 {
     /**
@@ -23,7 +25,7 @@ class AnnonceCrudController extends AbstractCrudController
     {
         return Annonce::class;
     }
-    
+
 
     /**
      * <h3>Récupere certain champs de l'entité annonce</h3>

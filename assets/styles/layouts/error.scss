@@ -4,7 +4,7 @@
     width: 100vw;
     height: 100vh;
     @include flex(center, center);
-	@include flex-flow(column);
+    @include flex-flow(column);
 }
 
 .error_code_background {

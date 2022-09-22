@@ -44,5 +44,4 @@ class UserCrudController extends AbstractCrudController
             BooleanField::new('ban'),
         ];
     }
-    
 }

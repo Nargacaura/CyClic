@@ -91,5 +91,4 @@ class Signalement
 
         return $this;
     }
-
 }

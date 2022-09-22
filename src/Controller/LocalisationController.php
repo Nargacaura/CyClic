@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Localisation;
 use App\Form\LocalisationType;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +27,7 @@ class LocalisationController extends AbstractController
         /**
          * @var User $user
          */
-        $user = $this->getUser(); 
+        $user = $this->getUser();
 
         $locale = new Localisation();
         $localisationForm = $this->createForm(LocalisationType::class, $locale);
@@ -42,7 +41,7 @@ class LocalisationController extends AbstractController
             $locale->setUserLocalisation($user);
             $entityManager->persist($locale);
             $entityManager->flush();
-            
+
             // return $this->redirectToRoute('');
         }
         return $this->renderForm('localisation/index.html.twig', [
@@ -50,7 +49,7 @@ class LocalisationController extends AbstractController
             'localisationList' => $localisations
         ]);
     }
-    
+
     /**
      * @Route("/delete/{id}", name="delete_localisation", methods={"DELETE"})
      */
@@ -59,12 +58,13 @@ class LocalisationController extends AbstractController
         if (!$this->isGranted('ROLE_USER')) {
             throw $this->createAccessDeniedException();
         }
-        if ($this->isCsrfTokenValid('delete' . $localisation->getId(), $request->get('_token'))
-            && $localisation->getUserLocalisation() == $this->getUser()) {
+        if (
+            $this->isCsrfTokenValid('delete' . $localisation->getId(), $request->get('_token'))
+            && $localisation->getUserLocalisation() == $this->getUser()
+        ) {
             $entityManager->remove($localisation);
             $entityManager->flush();
         }
         return $this->redirectToRoute('localisation', [], Response::HTTP_SEE_OTHER);
     }
-
 }

@@ -70,8 +70,6 @@ if (lieuxUser != null) {
   });
 }
 
-// console.log("categorievalue " + categorie.value);
-// console.log(filtreCategories.querySelector("option[value='" + categorie.value + "']"));
 if (
   filtreCategories.querySelector("option[value='" + categorie.value + "']") !=
   null
@@ -105,8 +103,6 @@ if (lieuxUser != null) {
     ).selected = true;
   }
 }
-// console.log(radius);
-// console.log(document.querySelector("#distance"));
 document.querySelector("#distance").value = radius.value;
 
 // refaire aussi sur état objet, tri, recherche

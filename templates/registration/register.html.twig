@@ -32,11 +32,8 @@
                 }
         }) }}
         <div class="localisation">
-            {# {{ form_row(registrationForm.locUser)}} #}
             <p>Cliquez sur le bouton ci-dessous pour rentrer votre adresse</p>
             {{ form_row(registrationForm.locUser.vars.prototype) }}
-            {# {{ form_row(registrationForm.locUser) }} #}
-{# {{ form_label(registrationForm.locUser, 'Your name') }} #}
             <div class="d-flex autoCompleteLocalisation">
             {{ form_row(registrationForm.autoCompleteLocalisation, {
             }) }}

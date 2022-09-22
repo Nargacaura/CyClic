@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Transaction;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,10 +19,10 @@ class TransactionRepository extends ServiceEntityRepository
         parent::__construct($registry, Transaction::class);
     }
 
-    public function getUserRating(int $userID) : ?int
+    public function getUserRating(int $userID): ?int
     {
         $conn = $this->getEntityManager()->getConnection();
-        $sql = 
+        $sql =
             "SELECT 
                 AVG(
                     CASE 
@@ -38,39 +37,10 @@ class TransactionRepository extends ServiceEntityRepository
             ->prepare($sql)
             ->executeQuery([
                 'user' => $userID
-                ])
+            ])
             ->fetchAssociative();
-            
+
         $value = $result["average"];
         return $value;
     }
-
-    // /**
-    //  * @return Transaction[] Returns an array of Transaction objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Transaction
-    {
-        return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

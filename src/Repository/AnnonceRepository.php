@@ -9,7 +9,6 @@ use App\Entity\StatutEchange;
 use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 /**
  * @method Annonce|null find($id, $lockMode = null, $lockVersion = null)
@@ -40,13 +39,13 @@ class AnnonceRepository extends ServiceEntityRepository
     public function searchAnnonceSimple($search, $limit = 20)
     {
         $query = $this->createQueryBuilder("a");
-        if($search != null){
+        if ($search != null) {
             if ($search["titre"]) {
-            $query->andWhere("a.contenu LIKE :text")
-                ->andWhere("a.titre LIKE :text OR a.contenu LIKE :text")
-                ->setParameters(array(
-                    "text" => "%" . $search["titre"] . "%"
-                ));
+                $query->andWhere("a.contenu LIKE :text")
+                    ->andWhere("a.titre LIKE :text OR a.contenu LIKE :text")
+                    ->setParameters(array(
+                        "text" => "%" . $search["titre"] . "%"
+                    ));
             }
             if ($search["categorie"]) {
                 $query->andWhere("a.categorie = :idCat")
@@ -63,13 +62,6 @@ class AnnonceRepository extends ServiceEntityRepository
     public function searchAnnonceComplete($request, $lat, $lng, $allStatus = false, $limit = 20)
     {
         $query = $this->createQueryBuilder("a");
-
-        // if (!$allStatus) {
-        //     $status = $request->get("statut");
-        //     if (!$status) $status = $this->statusRepo->getStatusFromName(StatutEchange::open);
-        //     $query->andWhere("a.statut = :statut")
-        //         ->setParameter("statut", $status);
-        // }
         if ($request->get("categorie")) {
             $query->andWhere("a.categorie = :idCat")
                 ->setParameter("idCat", $request->get("categorie"));
@@ -85,8 +77,8 @@ class AnnonceRepository extends ServiceEntityRepository
         if ($request->get("radius")) {
             $query->join("a.localisation", "l");
             $haversineFormula = "( 6371 * acos( cos( radians(" . $lat . ")) * cos( radians( l.latitude ) ) 
-                * cos( radians( l.longitude ) - radians(" . $lng . ") ) + sin( radians(" . $lat . ") ) * sin(radians(l.latitude)) )  <= :radius)";           
-                $query->andWhere($haversineFormula);
+                * cos( radians( l.longitude ) - radians(" . $lng . ") ) + sin( radians(" . $lat . ") ) * sin(radians(l.latitude)) )  <= :radius)";
+            $query->andWhere($haversineFormula);
             $query->setParameter('radius', $request->get("radius"));
         }
         switch ($request->get("tri")) {
@@ -96,7 +88,7 @@ class AnnonceRepository extends ServiceEntityRepository
             case 2:
                 $query->orderBy('a.titre', 'ASC');
                 break;
-            case 3: 
+            case 3:
                 $query->join("a.auteur", "u");
                 $query->orderby('u.noteMoyenneUser', 'DESC');
                 break;
@@ -135,39 +127,4 @@ class AnnonceRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-    // public function alphabetOrder()
-    // {
-    //     return $this->createQueryBuilder('a')
-    //         ->orderBy('a.titre', 'ASC')
-    //         ->getQuery()
-    //         ->getResult();
-    // }
-
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-
-    /*
-    public function findOneBySomeField($value): ?Annonce
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

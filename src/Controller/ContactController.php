@@ -22,30 +22,32 @@ class ContactController extends AbstractController
 
     public function index(Request $request, MailerInterface $mailer): Response
     {
-
-        //MailerInterface $mailer;
-
-       
         $formBuilder = $this->createFormBuilder();
-        
+
         $formBuilder
-          ->add('firstname', TextType::class, [
+            ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'constraints' => [
                     new Length(null, 3, 20),
                     new Regex('/[A-Za-z]+/')
                 ]
-            ])  
-            ->add('lastname', TextType::class, ['label' => 'Nom'])
-            ->add('email', EmailType::class, ['label' => 'Votre Email'], 
-            ['constraints' => 
-                    [new NotBlank(
-                        ['message' => 'Veuillez rentrer votre adresse mail.',]),
-                    ],
-                'label' => false
             ])
-            ->add('comment', TextType::class, ['label' => 'Votre message'])
-        ;
+            ->add('lastname', TextType::class, ['label' => 'Nom'])
+            ->add(
+                'email',
+                EmailType::class,
+                ['label' => 'Votre Email'],
+                [
+                    'constraints' =>
+                    [
+                        new NotBlank(
+                            ['message' => 'Veuillez rentrer votre adresse mail.',]
+                        ),
+                    ],
+                    'label' => false
+                ]
+            )
+            ->add('comment', TextType::class, ['label' => 'Votre message']);
 
 
         $form = $formBuilder->getForm();
@@ -53,8 +55,6 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
-                      
             // récupérer les infos du formulaire; ici on récupère l'email
             $email_user = $form->get('email')->getData();
 
@@ -70,20 +70,14 @@ class ContactController extends AbstractController
                 ->from($email_user)
                 ->to('cdacrousti@gmail.com')
                 ->subject('Message utilisateur')
-                ->text("Vous avez reçu le commentaire suivant de ".$email_user." , prénom : .".$firstname_user." nom : ".$lastname_user." : ".$comment)
-                ;
+                ->text("Vous avez reçu le commentaire suivant de " . $email_user . " , prénom : ." . $firstname_user . " nom : " . $lastname_user . " : " . $comment);
 
             $mailer->send($email);
-
-            };
+        };
 
         return $this->render('contact/index.html.twig', [
             'controller_name' => 'ContactController',
             'form' => $form->createView()
         ]);
     }
-
-    
-
-
 }

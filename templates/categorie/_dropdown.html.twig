@@ -1,8 +1,9 @@
-
 <div class="dropdown">
 	<select name="etat" id="etat-objet" class="bouton">
 		<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-			<li><option selected class="dropdown-item">Catégorie</option></li>
+			<li>
+				<option selected class="dropdown-item">Catégorie</option>
+			</li>
 			{% for categorie in categories %}
 				<li>
 					<option value="{{ categorie.id }}" class="dropdown-item">{{ categorie.nom }}</option>

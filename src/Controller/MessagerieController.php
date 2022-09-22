@@ -12,18 +12,14 @@ use App\Repository\AnnonceRepository;
 use App\Repository\CalendarDataRepository;
 use App\Repository\MessageRepository;
 use App\Repository\UserRepository;
-use DateTimeImmutable;
 use Doctrine\Persistence\ManagerRegistry;
-use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -45,14 +41,14 @@ class MessagerieController extends AbstractController
         $this->calendarRepository = $calendarRepository;
     }
 
-    
+
     /**
      * @Route("/own", name="messagerie_own")
      * @Route("/")
      */
     public function index(): Response
     {
-        
+
         if (!$this->isGranted('ROLE_USER')) {
             return $this->redirectToRoute('app_login');
         }
@@ -75,16 +71,16 @@ class MessagerieController extends AbstractController
         $fromUser = $userRepository->find($request->get("userId"));
 
         $form = $this->formSendMessage($fromUser, $request, $doctrine);
-        $messages = $this->messageRepository->messageFromUserAnnonce($request->get("userId"),$request->get("annonceId"));
-        
+        $messages = $this->messageRepository->messageFromUserAnnonce($request->get("userId"), $request->get("annonceId"));
+
 
         /** @var Annonce $annonce */
         $annonce = $this->annonceRepository->find($request->get("annonceId"));
         $transaction = $annonce->getTransaction();
-        $status = !$transaction 
-            ? $this->getTransactionStatus(null, $fromUser) 
+        $status = !$transaction
+            ? $this->getTransactionStatus(null, $fromUser)
             : $this->getTransactionStatus($transaction, $fromUser, $transaction->getValidationDonneur(), $transaction->getNoteDonneur(), $transaction->getNoteReceveur());
-           
+
         $calendarForm = $this->formCalendar($fromUser, $request, $doctrine);
         $calendarData = $this->calendarRepository->calendrierUserAnnonce($user->getId(), $fromUser->getId(), $annonce->getId());
         $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
@@ -129,29 +125,29 @@ class MessagerieController extends AbstractController
         /** @var Annonce $annonce */
         $annonce = $this->annonceRepository->find($request->get("annonceId"));
 
-        if(!$annonce) throw $this->createNotFoundException("cette annonce n'existe pas.");
-        
+        if (!$annonce) throw $this->createNotFoundException("cette annonce n'existe pas.");
+
         /** @var User $to */
         $to = $annonce->getAuteur();
 
-        if($user == $to) throw $this->createNotFoundException("vous ne pouvez envoyez de message à vous-même");
+        if ($user == $to) throw $this->createNotFoundException("vous ne pouvez envoyez de message à vous-même");
 
         $contacts = $this->otherSide();
         $form = $this->formSendMessage($to, $request, $doctrine);
 
         $messages = $this->messageRepository->messageToAnnonce($user->getId(), $request->get("annonceId"));
-        
+
         $transaction = $annonce->getTransaction();
 
-        $status = !$transaction 
-            ? $this->getTransactionStatus(null, $user) 
+        $status = !$transaction
+            ? $this->getTransactionStatus(null, $user)
             : $this->getTransactionStatus($transaction, $user, $transaction->getValidationReceveur(), $transaction->getNoteReceveur(), $transaction->getNoteDonneur());
 
         $calendarForm = $this->formCalendar($to, $request, $doctrine);
         $calendarData = $this->calendarRepository->calendrierUserAnnonce($user->getId(), $to->getId(), $annonce->getId());
         $serializer = new Serializer([new ObjectNormalizer()], [new JsonEncoder()]);
         $data = $serializer->serialize($calendarData, 'json');
-        
+
         return $this->renderForm('messagerie/to.html.twig', [
             'contacts' => $contacts,
             "messages" => $messages,
@@ -164,26 +160,24 @@ class MessagerieController extends AbstractController
         ]);
     }
 
-    private function getTransactionStatus(?Transaction $transaction, User $receiver, ?bool $validated = null, ?int $userRate =null, ?int $otherRate = null) : array
+    private function getTransactionStatus(?Transaction $transaction, User $receiver, ?bool $validated = null, ?int $userRate = null, ?int $otherRate = null): array
     {
         $status = array();
-        if($transaction){
-            if($transaction->getReceveur() == $receiver){
+        if ($transaction) {
+            if ($transaction->getReceveur() == $receiver) {
 
                 $status["canValidate"] = !$validated;
-                $status["waitValidation"] = $validated 
-                                    && (!$transaction->getValidationDonneur()
-                                        || !$transaction->getValidationReceveur());
-        
+                $status["waitValidation"] = $validated
+                    && (!$transaction->getValidationDonneur()
+                        || !$transaction->getValidationReceveur());
+
                 $status["canRate"] = !$userRate
-                        && $transaction->getValidationDonneur()
-                        && $transaction->getValidationReceveur();
-                        
+                    && $transaction->getValidationDonneur()
+                    && $transaction->getValidationReceveur();
+
                 $status["rate"] = $otherRate;
-            }
-            else return array();
-        }
-        else {
+            } else return array();
+        } else {
             $status["canValidate"] = true;
             $status["waitValidation"] = false;
             $status["canRate"] = false;
@@ -200,22 +194,22 @@ class MessagerieController extends AbstractController
         $annonces = $user->getAnnonces();
         $contacts = array();
 
-        for ($i=0; $i < sizeof($annonces); $i++) { 
+        for ($i = 0; $i < sizeof($annonces); $i++) {
             $contacts[$i] = array();
             $contacts[$i]["annonce"] = $annonces[$i];
             $contacts[$i]["contacts"] = array();
             $messages = $annonces[$i]->getMessages();
-            
-            for ($j=0; $j < sizeof($messages); $j++) { 
+
+            for ($j = 0; $j < sizeof($messages); $j++) {
                 $toAdd = $messages[$j]->getExpediteur();
-                if($toAdd != $user && !in_array($toAdd, $contacts[$i]["contacts"])) $contacts[$i]["contacts"][] = $toAdd;
-                else{
+                if ($toAdd != $user && !in_array($toAdd, $contacts[$i]["contacts"])) $contacts[$i]["contacts"][] = $toAdd;
+                else {
                     $toAdd = $messages[$j]->getDestinataire();
-                    if($toAdd != $user && !in_array($toAdd, $contacts[$i]["contacts"])) $contacts[$i]["contacts"][] = $toAdd;
+                    if ($toAdd != $user && !in_array($toAdd, $contacts[$i]["contacts"])) $contacts[$i]["contacts"][] = $toAdd;
                 }
             }
         }
-        
+
         return $contacts;
     }
 
@@ -226,7 +220,7 @@ class MessagerieController extends AbstractController
         $messages = $this->messageRepository->findOtherAnnonceSendedMessage($user->getId());
         $annonces = array();
         $contacts = array();
-        if($messages != null){
+        if ($messages != null) {
             $annonces[] = $messages[0];
             $toAdd = array();
             $toAdd["annonce"] = $messages[0];
@@ -234,13 +228,13 @@ class MessagerieController extends AbstractController
             $contacts[] = $toAdd;
             foreach ($messages as $value) {
                 $flag = false;
-                for ($i=0; $i < sizeof($annonces); $i++) { 
-                    if($annonces[$i]["id"] == $value["id"]){
+                for ($i = 0; $i < sizeof($annonces); $i++) {
+                    if ($annonces[$i]["id"] == $value["id"]) {
                         $flag = true;
                         break;
                     }
                 }
-                if(!$flag){
+                if (!$flag) {
                     $annonces[] = $value;
                     $toAdd = array();
                     $toAdd["annonce"] = $value;
@@ -251,19 +245,19 @@ class MessagerieController extends AbstractController
         }
         return $contacts;
     }
-    
+
 
     private function formSendMessage(User $to, Request $request, ManagerRegistry $doctrine)
     {
         /** @var User $user */
         $user = $this->getUser();
-        
+
         $form = $this->createFrom();
-            
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $message = $form->getData();
             $message->setExpediteur($user);
             $message->setAnnonce($this->annonceRepository->find($request->get("annonceId")));
@@ -277,11 +271,9 @@ class MessagerieController extends AbstractController
         }
         return $form;
     }
-    
-    public function createFrom() : FormInterface
+
+    public function createFrom(): FormInterface
     {
-        // unset($form);
-        // unset($message);
         $user = $this->getUser();
         $message = new Message;
         $form = $this->createFormBuilder($message)
@@ -290,7 +282,7 @@ class MessagerieController extends AbstractController
             ]])
             ->add('save', SubmitType::class, ['label' => 'Envoyer le message'])
             ->getForm();
-            return $form;
+        return $form;
     }
 
     public function formCalendar(User $to, Request $request, ManagerRegistry $doctrine)
@@ -299,36 +291,34 @@ class MessagerieController extends AbstractController
         $user = $this->getUser();
         $form = $this->createCalendarFrom();
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $manager = $doctrine->getManager();
             /**
              * @var CalendarData $calendar
              */
             $calendar = $form->getData();
-            if($form->getClickedButton() === $form->get('add')){
-                
+            if ($form->getClickedButton() === $form->get('add')) {
+
                 $calendar->setDetenteur($user);
                 $calendar->setAnnonce($this->annonceRepository->find($request->get("annonceId")));
                 $calendar->setDestinataire($to);
-    
+
                 $manager->persist($calendar);
-            }
-            else {
+            } else {
                 $retrieveCalendar = $this->calendarRepository->find($form->get("id")->getData());
-                if( $form->getClickedButton() === $form->get('delete')){
+                if ($form->getClickedButton() === $form->get('delete')) {
                     $manager->remove($retrieveCalendar);
-                }
-                else if( $form->getClickedButton() === $form->get('update')){
+                } else if ($form->getClickedButton() === $form->get('update')) {
                     $retrieveCalendar->setDescription($calendar->getDescription());
                     $retrieveCalendar->setTitre($calendar->getTitre());
                     $retrieveCalendar->setDebut($calendar->getDebut());
                     $retrieveCalendar->setFin($calendar->getFin());
                 }
             }
-            
+
             $manager->flush();
-            
+
             unset($form);
             unset($calendar);
             return $this->createCalendarFrom();
@@ -336,9 +326,9 @@ class MessagerieController extends AbstractController
 
         return $form;
     }
-    public function createCalendarFrom() : FormInterface
+    public function createCalendarFrom(): FormInterface
     {
-        $calendar= new CalendarData();
+        $calendar = new CalendarData();
         return $form = $this->createForm(CalendarType::class, $calendar);
     }
 }

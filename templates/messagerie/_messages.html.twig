@@ -1,14 +1,13 @@
-
 <div>
-{% for message in messages %}
-    <div>
-        {% if user.id == message.expediteur_id %}
-        <p class="message_own">
-        {% else %}
-        <p class="message_other">
-        {% endif %}
-            {{message.contenu }}
-        </p>
-    </div>
-{% endfor %}
-</div>
+	{% for message in messages %}
+		<div>
+			{% if user.id == message.expediteur_id %}
+				<p class="message_own">
+				{% else %}
+					<p class="message_other">
+					{% endif %}
+					{{message.contenu }}
+				</p>
+			</div>
+		{% endfor %}
+	</div>

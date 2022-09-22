@@ -14,11 +14,9 @@ class EtatFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-
         $builder
-            ->add('nom',TextType::class)
-            ->add('save', SubmitType::class, ['label' => 'Create Etat'])
-            ;
+            ->add('nom', TextType::class)
+            ->add('save', SubmitType::class, ['label' => 'Create Etat']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

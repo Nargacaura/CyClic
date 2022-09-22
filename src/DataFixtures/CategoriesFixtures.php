@@ -4,12 +4,11 @@ namespace App\DataFixtures;
 
 use App\Entity\Categorie;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class CategoriesFixtures extends Fixture 
+class CategoriesFixtures extends Fixture
 {
-    private $cats =[
+    private $cats = [
         "Meubles",
         "Appareils",
         "Fournitures",
@@ -23,7 +22,6 @@ class CategoriesFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-
         foreach ($this->cats as $value) {
             $categorie = new Categorie();
             $categorie->setNom($value);
@@ -31,5 +29,4 @@ class CategoriesFixtures extends Fixture
         }
         $manager->flush();
     }
-
 }

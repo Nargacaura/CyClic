@@ -7,8 +7,7 @@
 			{% endblock %}
 		</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link
-		rel="icon" href="{{ asset('icon/CyClic_favicon.ico') }}">
+		<link rel="icon" href="{{ asset('icon/CyClic_favicon.ico') }}">
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
@@ -22,14 +21,20 @@
 				<a href="{{ path('home') }}"><img src="{{ asset('img/wordmark_monochrome.png') }}" class="nav_logo"><img alt="CyClic logo" src="{{ asset('img/CyClic_logo.png') }}" class="portrait_nav_logotype"></a>
 				<ul class="nav_menu">
 					<li>
-						<a href="{{path('new_annonce')}}" title="Publier une nouvelle annonce"><i class="fas fa-upload"></i></a>
+						<a href="{{path('new_annonce')}}" title="Publier une nouvelle annonce">
+							<i class="fas fa-upload"></i>
+						</a>
 					</li>
 					<li>
-						<a href="{{path('annonce')}}" title="Rechercher"><i class="fas fa-search"></i></a>
+						<a href="{{path('annonce')}}" title="Rechercher">
+							<i class="fas fa-search"></i>
+						</a>
 					</li>
 					{% if app.user %}
 						<li>
-							<a href="{{path('messagerie_own')}}" title="Messagerie"><i class="fas fa-comments"></i></a>
+							<a href="{{path('messagerie_own')}}" title="Messagerie">
+								<i class="fas fa-comments"></i>
+							</a>
 						</li>
 						<li>
 							<a href="#" id="userIcon">
@@ -49,12 +54,12 @@
 				</ul>
 			</nav>
 		</header>
-        <div class="error_code_background">
-        <span>{% block errno %}{% endblock %}
-        </div>
-        <div class="err_container">
-            {% block errmsg %}
-            {% endblock %}
-        </div>
-	</body>
-</html>
+		<div class="error_code_background">
+			<span>
+				{% block errno %}{% endblock %}
+			</div>
+			<div class="err_container"> {% block errmsg %}{% endblock %}
+				</div>
+			</body>
+		</body>
+	</html>

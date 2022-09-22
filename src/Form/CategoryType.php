@@ -10,13 +10,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CategoryType extends AbstractType
 {
-    
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('nom')
-            ->add('save', SubmitType::class, ['label' => 'Create Category'])
-        ;
+            ->add('save', SubmitType::class, ['label' => 'Create Category']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -25,5 +24,4 @@ class CategoryType extends AbstractType
             'data_class' => Categorie::class,
         ]);
     }
-
 }
