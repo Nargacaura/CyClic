@@ -3,7 +3,7 @@
         "@hotwired/stimulus": "^3.1.0",
         "@symfony/stimulus-bridge": "^3.2.1",
         "@symfony/webpack-encore": "^4.0.0",
-        "core-js": "^3.25.2",
+        "core-js": "^3.25.3",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.55.0",
         "sass-loader": "^13.0.2",
@@ -21,7 +21,7 @@
         "@fortawesome/fontawesome-free": "^6.2.0",
         "bootstrap": "^5.2.1",
         "jquery": "^3.6.1",
-        "leaflet": "^1.9.0",
+        "leaflet": "^1.9.1",
         "tui-calendar": "^1.15.3"
     }
 }
