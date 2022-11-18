@@ -4,7 +4,7 @@
         "@symfony/stimulus-bridge": "^3.2.1",
         "@symfony/webpack-encore": "^4.1.1",
         "core-js": "^3.26.1",
-        "regenerator-runtime": "^0.13.10",
+        "regenerator-runtime": "^0.13.11",
         "sass": "^1.56.1",
         "sass-loader": "^13.2.0",
         "webpack-notifier": "^1.15.0"
