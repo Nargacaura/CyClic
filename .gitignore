@@ -18,7 +18,8 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
-
+*/.DS_Store
+.DS_Store
 /node_modules
 
 ###> symfony/webpack-encore-bundle ###
