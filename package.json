@@ -3,7 +3,7 @@
         "@hotwired/stimulus": "^3.2.1",
         "@symfony/stimulus-bridge": "^3.2.1",
         "@symfony/webpack-encore": "^4.1.2",
-        "core-js": "^3.26.1",
+        "core-js": "^3.27.1",
         "regenerator-runtime": "^0.13.11",
         "sass": "^1.56.2",
         "sass-loader": "^13.2.0",
