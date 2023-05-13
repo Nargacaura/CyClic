@@ -120,16 +120,11 @@ let addFormToCollection = (e) => {
     ).toString();
   }
   for (let i = 0; i < 3; i++) {
-    $(`#annonce_photos_${[i]}_imageFile_file`).trigger(
-      "change",
-      function () {
-        $(`#annonce_photos_${[i]}_imageFile_file`).addClass("hidden");
-        filePreviewArticle(this, i);
-        (document.querySelector(".vich") as HTMLElement).classList.remove(
-          "vich"
-        );
-      }
-    );
+    $(`#annonce_photos_${[i]}_imageFile_file`).trigger("change", function () {
+      $(`#annonce_photos_${[i]}_imageFile_file`).addClass("hidden");
+      filePreviewArticle(this, i);
+      (document.querySelector(".vich") as HTMLElement).classList.remove("vich");
+    });
   }
 };
 
@@ -154,7 +149,7 @@ let filePreviewArticle = (input: any, i: any) => {
     };
     reader.readAsDataURL(input.files[0]);
   }
-}
+};
 
 let invalidFile = document.querySelector(".is-invalid");
 

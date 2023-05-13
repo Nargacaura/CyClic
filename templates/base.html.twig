@@ -84,7 +84,7 @@
 						{% else %}
 							<li>
 								<a href="{{ path('app_login') }}">
-									<i class="fas fa-sign-in-alt"></i>
+									<i class="fas fa-right-to-bracket"></i>
 								</a>&nbsp; &middot; &nbsp;<a href="register">
 									<i class="fas fa-user-plus"></i>
 								</a>
@@ -109,16 +109,10 @@
 						<li>
 							<a class="footer_link" href="/register">S'inscrire</a>
 						</li>
-						<li>
-							<a class="footer_link" href="#">Team feature</a>
-						</li>
 					</ul>
 					<ul class="list-unstyled text-small">
 						<li>
 							<a class="footer_link" href="/annonce">Annonces</a>
-						</li>
-						<li>
-							<a class="footer_link" href="#">Resource</a>
 						</li>
 						<li>
 							<a class="footer_link" href="/contact">Nous contacter</a>
@@ -126,21 +120,12 @@
 					</ul>
 					<ul class="list-unstyled text-small">
 						<li>
-							<a class="footer_link" href="/home">Home</a>
-						</li>
-						<li>
 							<a class="footer_link" href="{{path('mentions_legales')}}">Mentions légales</a>
 						</li>
 						<li>
 							<a class="footer_link" href="{{path('faq')}}">FAQ</a>
 						</li>
 					</ul>
-				</div>
-
-
-				<div class="logo_social">
-					<a href="https://fr-fr.facebook.com/"><img src="{{ asset('img/logo_facebook.png') }}"></a>
-					<a href="https://twitter.com/?lang=fr"><img src="{{ asset('img/logo_twitter.png') }}"></a>
 				</div>
 			</footer>
 		{% endif %}

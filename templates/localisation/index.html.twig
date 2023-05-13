@@ -18,7 +18,7 @@
 						<button class="bouton showOnMap" data-lat={{ loc.latitude }} data-lon={{ loc.longitude }}>Afficher sur la carte</button>
 					</td>
 					<td>
-						<form method="post" action="{{ path('delete_localisation', {'id': loc.id}) }}" {# onsubmit="return confirm('Voulez-vous vraiment supprimer cette localisation?');" #}>
+						<form method="post" action="{{ path('delete_localisation', {'id': loc.id}) }}">
 							<input type="hidden" name="_method" value="DELETE">
 							<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ loc.id) }}">
 							<button class="bouton_annuler">Supprimer</button>
@@ -51,7 +51,7 @@
 		<div class="row  justify-content-md-center">
 			<div class="col text-center">
 				<button type="button" id="geolocBtn" class="bouton_margin">Trouver mon emplacement
-					<i class="fas fa-map-marker-alt"></i>
+					<i class="fas fa-location-dot"></i>
 				</button>
 			</div>
 		</div>

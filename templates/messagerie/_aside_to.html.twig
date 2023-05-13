@@ -8,8 +8,7 @@
 				<ul>
 					<li>
 						{% for user in contact.contacts %}
-							<form
-								method="post" action="{{ path('message_to', {'annonceId': contact.annonce.id}) }}">
+							<form method="post" action="{{ path('message_to', {'annonceId': contact.annonce.id}) }}">
 								<button class="bouton">
 									{{user.pseudo }}
 								</button>

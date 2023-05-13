@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
 	<div class="container">
 		<div class="selection">
 			<div class="row">
@@ -15,7 +14,6 @@
 				{% if app.request.method == 'POST' %}
 					<div class="row">
 						<div class="col">
-
 							{% if annonces|length == 0 %}
 								<h2>Aucun résultat</h2>
 							{% else %}
@@ -29,7 +27,6 @@
 									{% endif %}
 								</div>
 							</div>
-
 						{% endif %}
 					</div>
 				</div>

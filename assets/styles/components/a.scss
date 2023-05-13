@@ -3,13 +3,13 @@ a {
 	font-family: $font-header;
 	text-decoration: none;
 	font-weight: bold;
+	
+	&:hover {
+		color: $jaune;
+	}
 }
 
-a:hover {
-	color: $jaune;
-}
-
-.fa-map-marker-alt {
+.fa-location-dot {
 	font-size: large;
 
 	@include tablette_view() {
