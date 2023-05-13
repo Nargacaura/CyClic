@@ -1,4 +1,4 @@
-![CyClic](Logos/Final/Colors%20-%2018edb1,%201844ed%20&%20ee7c01/CyClic_wordmark%20(1844ed%20&%20ee7c01).png)
+![CyClic](Logos/Colors%20-%2018edb1,%201844ed%20&%20ee7c01/CyClic_wordmark%20(1844ed%20&%20ee7c01).png)
 
 &copy; 2021-2022 Les Symfonistes Croustillants
 
