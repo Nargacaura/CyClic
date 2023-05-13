@@ -1,6 +1,8 @@
+import jQuery from "jquery";
+
 // the semi-colon before function invocation is a safety net against concatenated
 // scripts and/or other plugins which may not be closed properly.
-(function ($, window, document, undefined) {
+(function ($, _window, _document, _undefined) {
   "use strict";
 
   // Create the defaults once
@@ -35,22 +37,24 @@
       disableEventDetails: false, // disable showing event details
       disableEmptyDetails: false, // disable showing empty date details
       events: [], // List of event
-      onInit: function (calendar) {}, // Callback after first initialization
-      onMonthChange: function (month, year) {}, // Callback on month change
-      onDateSelect: function (date, events) {}, // Callback on date selection
+      onInit: function (_calendar: any) {}, // Callback after first initialization
+      onMonthChange: function (_month: any, _year: any) {}, // Callback on month change
+      onDateSelect: function (_date: any, _events: any) {}, // Callback on date selection
       onEventSelect: function () {}, // Callback fired when an event is selected     - see $(this).data('event')
-      onEventCreate: function ($el) {}, // Callback fired when an HTML event is created - see $(this).data('event')
-      onDayCreate: function ($el, d, m, y) {}, // Callback fired when an HTML day is created   - see $(this).data('today'), .data('todayEvents')
+      onEventCreate: function (_$el: any) {}, // Callback fired when an HTML event is created - see $(this).data('event')
+      onDayCreate: function (_$el: any, _d: any, _m: any, _y: any) {}, // Callback fired when an HTML day is created   - see $(this).data('today'), .data('todayEvents')
     };
 
   // The actual plugin constructor
-  function Plugin(element, options) {
-    this.element = element;
-    this.settings = $.extend({}, defaults, options);
-    this._defaults = defaults;
-    this._name = pluginName;
-    this.currentDate = new Date();
-    this.init();
+  class Plugin {
+    constructor(element: any, options: any) {
+      (this as any).element = element;
+      (this as any).settings = $.extend({}, defaults, options);
+      (this as any)._defaults = defaults;
+      (this as any)._name = pluginName;
+      (this as any).currentDate = new Date();
+      (this as any).init();
+    }
   }
 
   // Avoid Plugin.prototype conflicts
@@ -61,11 +65,7 @@
 
       var calendar = $('<div class="calendar"></div>');
       var header = $(
-        "<header>" +
-          '<h2 class="month"></h2>' +
-          '<a class="simple-calendar-btn btn-prev" href="#"></a>' +
-          '<a class="simple-calendar-btn btn-next" href="#"></a>' +
-          "</header>"
+        `<header><h2 class="month"></h2><a class="simple-calendar-btn btn-prev" href="#"></a><a class="simple-calendar-btn btn-next" href="#"></a></header>`
       );
 
       this.updateHeader(todayDate, header);
@@ -79,7 +79,16 @@
     },
 
     //Update the current month header
-    updateHeader: function (date, header) {
+    updateHeader: function (
+      date: { getMonth: () => string | number; getFullYear: () => string },
+      header: {
+        find: (arg0: string) => {
+          (): any;
+          new (): any;
+          html: { (arg0: any): void; new (): any };
+        };
+      }
+    ) {
       var monthText = this.settings.months[date.getMonth()];
       monthText += this.settings.displayYear
         ? ' <div class="year">' + date.getFullYear()
@@ -88,7 +97,17 @@
     },
 
     //Build calendar of a month from date
-    buildCalendar: function (fromDate, calendar) {
+    buildCalendar: function (
+      fromDate: { getFullYear: () => any; getMonth: () => number },
+      calendar: {
+        find: (arg0: string) => {
+          (): any;
+          new (): any;
+          remove: { (): void; new (): any };
+        };
+        append: (arg0: JQuery<HTMLElement>) => void;
+      }
+    ) {
       var plugin = this;
 
       calendar.find("table").remove();
@@ -128,7 +147,7 @@
       //Header day in a week ( (x to x + 7) % 7 to start the week by monday if x = 1)
       for (var i = startDayOfWeek; i < startDayOfWeek + 7; i++) {
         thead.append(
-          $("<td>" + this.settings.days[i % 7].substring(0, 3) + "</td>")
+          $(`<td>${this.settings.days[i % 7].substring(0, 3)}</td>`)
         );
       }
 
@@ -194,7 +213,7 @@
       calendar.append(body);
       calendar.append(eventContainer);
     },
-    changeMonth: function (value) {
+    changeMonth: function (value: any) {
       this.currentDate.setMonth(this.currentDate.getMonth() + value, 1);
       this.buildCalendar(this.currentDate, $(this.element).find(".calendar"));
       this.updateHeader(
@@ -241,33 +260,24 @@
         plugin.empty(e.pageX, e.pageY);
       });
     },
-    displayEvents: function (events) {
+    displayEvents: function (events: any[]) {
       var plugin = this;
       var container = $(this.element).find(".event-wrapper");
 
-      events.forEach(function (event) {
+      events.forEach(function (event: any) {
         var startDate = new Date(event.startDate);
         var endDate = new Date(event.endDate);
         var $event = $(
-          "" +
-            '<div class="event">' +
-            ' <div class="event-hour">' +
-            startDate.getHours() +
-            ":" +
-            (startDate.getMinutes() < 10 ? "0" : "") +
-            startDate.getMinutes() +
-            "</div>" +
-            ' <div class="event-date">' +
-            plugin.formatDateEvent(startDate, endDate) +
-            "</div>" +
-            ' <div class="event-summary">' +
-            event.summary +
-            "</div>" +
-            "</div>"
+          `<div class="event"> <div class="event-hour">${startDate.getHours()}:${
+            startDate.getMinutes() < 10 ? "0" : ""
+          }${startDate.getMinutes()}</div> <div class="event-date">${plugin.formatDateEvent(
+            startDate,
+            endDate
+          )}</div> <div class="event-summary">${event.summary}</div></div>`
         );
 
         $event.data("event", event);
-        $event.click(plugin.settings.onEventSelect);
+        $event.on("click", plugin.settings.onEventSelect);
 
         // simplify further customization
         plugin.settings.onEventCreate($event);
@@ -275,27 +285,27 @@
         container.append($event);
       });
     },
-    addEvent: function (newEvent) {
+    addEvent: function (newEvent: any) {
       var plugin = this;
       // add the new event to events list
       plugin.settings.events = [...plugin.settings.events, newEvent];
       this.buildCalendar(this.currentDate, $(this.element).find(".calendar"));
     },
-    setEvents: function (newEvents) {
+    setEvents: function (newEvents: any) {
       var plugin = this;
       // add the new event to events list
       plugin.settings.events = newEvents;
       this.buildCalendar(this.currentDate, $(this.element).find(".calendar"));
     },
     //Small effect to fillup a container
-    fillUp: function (x, y) {
+    fillUp: function (x: number, y: number) {
       var plugin = this;
       var elem = $(plugin.element);
       var elemOffset = elem.offset();
 
       var filler = $('<div class="filler" style=""></div>');
-      filler.css("left", x - elemOffset.left);
-      filler.css("top", y - elemOffset.top);
+      filler.css("left", x - (elemOffset as JQueryCoordinates).left);
+      filler.css("top", y - (elemOffset as JQueryCoordinates).top);
 
       elem.find(".calendar").append(filler);
 
@@ -312,7 +322,7 @@
       );
     },
     //Small effect to empty a container
-    empty: function (x, y) {
+    empty: function (_x: any, _y: any) {
       var plugin = this;
       var elem = $(plugin.element);
 
@@ -335,9 +345,12 @@
         }
       );
     },
-    getDateEvents: function (d) {
+    getDateEvents: function (d: string | number | Date) {
       var plugin = this;
-      return plugin.settings.events.filter(function (event) {
+      return plugin.settings.events.filter(function (event: {
+        startDate: string | number | Date;
+        endDate: string | number | Date;
+      }) {
         return plugin.isDayBetween(
           new Date(d),
           new Date(event.startDate),
@@ -345,28 +358,31 @@
         );
       });
     },
-    isDayBetween: function (d, dStart, dEnd) {
+    isDayBetween: function (d: Date, dStart: Date, dEnd: Date) {
       dStart.setHours(0, 0, 0);
       dEnd.setHours(23, 59, 59, 999);
       d.setHours(12, 0, 0);
 
       return dStart <= d && d <= dEnd;
     },
-    formatDateEvent: function (dateStart, dateEnd) {
-      var formatted = "";
-      formatted +=
-        this.settings.days[dateStart.getDay()] +
-        " - " +
-        dateStart.getDate() +
-        " " +
-        this.settings.months[dateStart.getMonth()].substring(0, 3);
+    formatDateEvent: function (
+      dateStart: {
+        getDay: () => string | number;
+        getDate: () => string;
+        getMonth: () => string | number;
+      },
+      dateEnd: { getDate: () => string; getMonth: () => string | number }
+    ) {
+      var formatted = `${
+        this.settings.days[dateStart.getDay()]
+      } - ${dateStart.getDate()} ${this.settings.months[
+        dateStart.getMonth()
+      ].substring(0, 3)}`;
 
       if (dateEnd.getDate() !== dateStart.getDate()) {
-        formatted +=
-          " to " +
-          dateEnd.getDate() +
-          " " +
-          this.settings.months[dateEnd.getMonth()].substring(0, 3);
+        formatted += ` to ${dateEnd.getDate()} ${this.settings.months[
+          dateEnd.getMonth()
+        ].substring(0, 3)}`;
       }
       return formatted;
     },
@@ -374,10 +390,10 @@
 
   // A really lightweight plugin wrapper around the constructor,
   // preventing against multiple instantiations
-  $.fn[pluginName] = function (options) {
+  $.fn[pluginName] = function (options: any) {
     return this.each(function () {
-      if (!$.data(this, "plugin_" + pluginName)) {
-        $.data(this, "plugin_" + pluginName, new Plugin(this, options));
+      if (!$.data(this, `plugin_${pluginName}`)) {
+        $.data(this, `plugin_${pluginName}`, new Plugin(this, options));
       }
     });
   };

@@ -20,16 +20,17 @@ Encore
 	 * Each entry will result in one JavaScript file (e.g. app.js)
 	 * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
 	 */
-	.addEntry("app", "./assets/app.js")
-	.addEntry("collectionType", "./assets/js/collectionType.js")
-	.addEntry("collectionTypeEdit", "./assets/js/collectionTypeEdit.js")
-	.addEntry("calendarAction", "./assets/js/calendarAction.js")
-	.addEntry("triAnnonces", "./assets/js/triAnnonces.js")
-	.addEntry("detailAnnonce", "./assets/js/detailAnnonce.js")
-	.addEntry("geolocation", "./assets/js/geolocation.js")
-	.addEntry("mapping", "./assets/js/mapping.js")
+	.addEntry("app", "./assets/app.ts")
+	.addEntry("collectionType", "./assets/ts/collectionType.ts")
+	.addEntry("collectionTypeEdit", "./assets/ts/collectionTypeEdit.ts")
+	.addEntry("calendarAction", "./assets/ts/calendarAction.ts")
+	.addEntry("triAnnonces", "./assets/ts/triAnnonces.ts")
+	.addEntry("detailAnnonce", "./assets/ts/detailAnnonce.ts")
+	.addEntry("geolocation", "./assets/ts/geolocation.ts")
+	.addEntry("mapping", "./assets/ts/mapping.ts")
 
 	.autoProvidejQuery()
+	.enableTypeScriptLoader()
 
 	// enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
 	.enableStimulusBridge("./assets/controllers.json")

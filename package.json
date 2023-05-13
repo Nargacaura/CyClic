@@ -3,10 +3,13 @@
         "@hotwired/stimulus": "^3.2.1",
         "@symfony/stimulus-bridge": "^3.2.2",
         "@symfony/webpack-encore": "^4.3.0",
+        "@types/jquery": "^3.5.16",
         "core-js": "^3.30.2",
         "regenerator-runtime": "^0.13.11",
         "sass": "^1.62.1",
         "sass-loader": "^13.2.2",
+        "ts-loader": "^9.4.2",
+        "typescript": "^5.0.4",
         "webpack-notifier": "^1.15.0"
     },
     "license": "UNLICENSED",
@@ -15,7 +18,8 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production --progress"
+        "build": "encore production --progress",
+        "tsc": "tsc"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^6.4.0",

@@ -7,9 +7,14 @@ var APIURL = "https://api.opencagedata.com/geocode/v1/json";
 
 let geolocator = document.querySelector(".geolocation");
 if (!geolocator) geolocator = document.getElementById("geolocBtn");
-geolocator.addEventListener("click", geolocate);
+else geolocator.addEventListener("click", geolocate);
 
-function write_geolocation(data, XHReq) {
+function write_geolocation(data: any, XHReq: XMLHttpRequest) {
+  let numero_voie: string;
+  let voie: string;
+  let codePostal: string;
+  let ville: string;
+
   data = JSON.parse(XHReq.responseText);
 
   // Récolte des champs à modifier
@@ -27,7 +32,6 @@ function write_geolocation(data, XHReq) {
   let locUser_ville = document.querySelector(
     "#registration_form_locUser___name___ville"
   );
-  // console.log(locUser_ville);
   let locUser_CP = document.querySelector(
     "#registration_form_locUser___name___codePostal"
   );
@@ -42,54 +46,54 @@ function write_geolocation(data, XHReq) {
   );
 
   if (components.house_number) {
-    var numero_voie = `${components.house_number}`;
+    numero_voie = `${components.house_number}`;
   } else if (components.housenumber) {
-    var numero_voie = `${components.housenumber}`;
+    numero_voie = `${components.housenumber}`;
   } else if (components.street_number) {
-    var numero_voie = `${components.street_number}`;
+    numero_voie = `${components.street_number}`;
   } else if (components.house) {
-    var numero_voie = `${components.house},`;
+    numero_voie = `${components.house},`;
   } else if (components.building) {
-    var numero_voie = `${components.building},`;
+    numero_voie = `${components.building},`;
   } else if (components.public_building) {
-    var numero_voie = `${components.public_building},`;
+    numero_voie = `${components.public_building},`;
   } else if (components.isolated_dwelling) {
-    var numero_voie = `${components.isolated_dwelling},`;
+    numero_voie = `${components.isolated_dwelling},`;
   } else if (components.farmland) {
-    var numero_voie = `${components.farmland},`;
+    numero_voie = `${components.farmland},`;
   } else if (components.allotments) {
-    var numero_voie = `${components.allotents},`;
+    numero_voie = `${components.allotents},`;
   } else {
-    var numero_voie = "";
+    numero_voie = "";
   }
   // voie
   // en attendant de voir comment le reformater en switch case... plein de conditionnelles if...else.
   if (components.road) {
-    var voie = `${numero_voie} ${components.road}`;
+    voie = `${numero_voie} ${components.road}`;
   } else if (components.street) {
-    var voie = `${numero_voie} ${components.street}`;
+    voie = `${numero_voie} ${components.street}`;
   } else if (components.footway) {
-    var voie = `${numero_voie} ${components.footway}`;
+    voie = `${numero_voie} ${components.footway}`;
   } else if (components.path) {
-    var voie = `${numero_voie} ${components.path}`;
+    voie = `${numero_voie} ${components.path}`;
   } else if (components.square) {
-    var voie = `${numero_voie} ${components.square}`;
+    voie = `${numero_voie} ${components.square}`;
   } else if (components.place) {
-    var voie = `${numero_voie} ${components.place}`;
+    voie = `${numero_voie} ${components.place}`;
   } else {
-    var voie = "Voie inconnue";
+    voie = "Voie inconnue";
   }
-  console.log(data);
+
   // code postal
-  var codePostal = components.postcode;
+  codePostal = components.postcode;
 
   // ville
   if (components.city) {
-    var ville = components.city;
+    ville = components.city;
   } else if (components.town) {
-    var ville = components.town;
+    ville = components.town;
   } else {
-    var ville = components.township;
+    ville = components.township;
   }
 
   // dans la page d'accueil...
@@ -98,32 +102,32 @@ function write_geolocation(data, XHReq) {
 
     // Insertion des coordonnées
     var coordinates = localisation;
-    coordInput.value = coordinates;
+    (coordInput as HTMLInputElement).value = coordinates;
   }
 
   // dans les champs de localisation...
   if (inputVoie && inputCP && inputVille) {
-    inputVoie.value = voie;
-    inputCP.value = codePostal;
-    inputVille.value = ville;
-    inputLon.value = longitude;
-    inputLat.value = latitude;
-    window.setMapView(
-      longitude,
-      latitude,
-      "La localisation vous à trouvez ici"
-    );
+    (inputVoie as HTMLInputElement).value = voie;
+    (inputCP as HTMLInputElement).value = codePostal;
+    (inputVille as HTMLInputElement).value = ville;
+    (inputLon as HTMLInputElement).value = longitude;
+    (inputLat as HTMLInputElement).value = latitude;
+    (window as any).setMapView(longitude, latitude, "Vous êtes ici");
   } else if (locUser_ville && locUser_CP && locUser_rue) {
-    locUser_ville.value = ville;
-    locUser_CP.value = codePostal;
-    locUser_rue.value = voie;
-    locUser_longitude.value = data.results[0].geometry.lng;
-    locUser_latitude.value = data.results[0].geometry.lat;
+    (locUser_ville as HTMLInputElement).value = ville;
+    (locUser_CP as HTMLInputElement).value = codePostal;
+    (locUser_rue as HTMLInputElement).value = voie;
+    (locUser_longitude as HTMLInputElement).value =
+      data.results[0].geometry.lng;
+    (locUser_latitude as HTMLInputElement).value = data.results[0].geometry.lat;
 
-    document.querySelector(
-      "#registration_form_autoCompleteLocalisation"
-    ).value =
-      locUser_ville.value + " " + locUser_CP.value + " " + locUser_rue.value;
+    (
+      document.querySelector(
+        "#registration_form_autoCompleteLocalisation"
+      ) as HTMLInputElement
+    ).value = `${(locUser_ville as HTMLInputElement).value} ${
+      (locUser_CP as HTMLInputElement).value
+    } ${(locUser_rue as HTMLInputElement).value}`;
   }
 }
 
@@ -138,7 +142,7 @@ function geolocate() {
     };
 
     let sessionStorage = window.sessionStorage;
-    let data = JSON.parse(sessionStorage.getItem("position"));
+    let data = JSON.parse(sessionStorage.getItem("position") as string);
 
     if (data) {
       onSuccess(data.lon, data.lat);
@@ -152,10 +156,10 @@ function geolocate() {
       onSuccess(`${position.coords.longitude}`, `${position.coords.latitude}`);
     }
 
-    function onSuccess(longitude, latitude) {
+    function onSuccess(longitude: string, latitude: string) {
       // Génération de la requête OpenCage
       var request = `${APIURL}?key=${OpenCageAPIKey}&q=${encodeURIComponent(
-        latitude + "," + longitude
+        `${latitude},${longitude}`
       )}&no_annotations=1&pretty=1`;
 
       var XHReq = new XMLHttpRequest();
@@ -174,10 +178,7 @@ function geolocate() {
           // ... signaler l'erreur
           data = JSON.parse(XHReq.responseText);
           console.error(
-            "Géocodage impossible: erreur " +
-              XHReq.status +
-              ": " +
-              data.status.message
+            `Géocodage impossible: erreur ${XHReq.status}: ${data.status.message}`
           );
         }
 
@@ -201,7 +202,7 @@ function geolocate() {
     }
 
     // Dans le cas contraire, si ça coince quelque part:
-    function fail(error) {
+    function fail(error: any) {
       alert(
         `Une erreur s'est produite: ${error.message} (erreur ${error.code}))`
       );

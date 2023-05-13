@@ -1,82 +1,88 @@
+import $ from "jquery";
+
 const maxAtteint = document.createElement("p");
 maxAtteint.innerText = "Maximum de photos atteint";
 maxAtteint.style.backgroundColor = "red";
 maxAtteint.style.borderRadius = "5px";
 maxAtteint.style.color = "white";
 
+const fileMax = document.querySelector("#annonce_photos_2");
+
 const observer = new MutationObserver(function (mutations_list) {
   mutations_list.forEach(function (mutation) {
     mutation.removedNodes.forEach(function (removed_node) {
-      if (removed_node.id == "annonce_photos_2") {
-        console.log("#child has been removed");
+      if ((removed_node as any).id == "annonce_photos_2") {
         observer.disconnect();
       }
     });
   });
 });
 
-const addTagLink = document.createElement("a");
+let addTagLink = document.createElement("a");
 addTagLink.style.display = "block";
 addTagLink.classList.add("bouton");
 addTagLink.classList.add("add_photo_list");
-addTagLink.style = "margin: auto";
+addTagLink.style.setProperty("margin", "auto");
 addTagLink.href = "#";
 addTagLink.innerText = "Ajouter une photo";
 addTagLink.dataset.collectionHolderClass = "photosEdit";
 
-const newLinkLi = document.createElement("li").append(addTagLink);
+let newLinkLi = document.createElement("li").append(addTagLink);
 
 const collectionHolder = document.querySelector("ul.photosEdit");
 
-const array = document.querySelector("ul#photos").children;
-console.log(array);
+const array = (document.querySelector("ul#photos") as Element).children;
 for (let i = 0; i < array.length; i++) {
-  array[i].id = "li_photos_" + i;
+  array[i].id = `li_photos_${i}`;
 }
 
-document.getElementById("annonce_localisation").before(addTagLink);
+(document.getElementById("annonce_localisation") as HTMLElement).before(
+  addTagLink
+);
 
-const addFormToCollection = (e) => {
+let addFormToCollection = (e: Event) => {
   e.preventDefault();
   const collectionHolder = document.querySelector(
-    "." + e.currentTarget.dataset.collectionHolderClass
+    `.${(e.currentTarget as HTMLElement).dataset.collectionHolderClass}`
   );
-  console.log(collectionHolder);
 
   if (
     !document.querySelector(".vich") &&
     !document.querySelector(
-      "#annonce_photos_" +
-        collectionHolder.dataset.index -
-        1 +
-        "_imageFile_file"
+      `#annonce_photos_${
+        parseInt((collectionHolder as HTMLElement).dataset.index as string) - 1
+      }_imageFile_file`
     ) &&
-    collectionHolder.dataset.index < 3
+    parseInt((collectionHolder as HTMLElement).dataset.index as string) < 3
   ) {
     const item = document.createElement("li");
-    item.id = "li_photos_" + collectionHolder.dataset.index;
+    item.id = `li_photos_${(collectionHolder as HTMLElement).dataset.index}`;
     item.classList.add("vich");
 
-    item.innerHTML = collectionHolder.dataset.prototype.replace(
+    item.innerHTML = (
+      (collectionHolder as HTMLElement).dataset.prototype as string
+    ).replace(
       /__name__/g,
-      collectionHolder.dataset.index
+      (collectionHolder as HTMLElement).dataset.index as string
     );
-    collectionHolder.append(item);
+    (collectionHolder as HTMLElement).append(item);
 
-    collectionHolder.dataset.index++;
+    (collectionHolder as HTMLElement).dataset.index = (
+      parseInt((collectionHolder as HTMLElement).dataset.index as string) + 1
+    ).toString();
 
     for (let i = 0; i < 3; i++) {
-      $("#annonce_photos_" + [i] + "_imageFile_file").change(function () {
-        $("#annonce_photos_" + [i] + "_imageFile_file").addClass("hidden");
+      $(`#annonce_photos_${[i]}_imageFile_file`).on("change", function () {
+        $(`#annonce_photos_${[i]}_imageFile_file`).addClass("hidden");
         filePreviewArticle(this, i);
         let $delCollectionButton = createButton();
-        document.querySelector(".vich").classList.remove("vich");
+        (document.querySelector(".vich") as HTMLElement).classList.remove(
+          "vich"
+        );
 
         item.append($delCollectionButton);
         $delCollectionButton.addEventListener("click", function () {
-          console.log(this);
-          console.log(this.previousSibling);
-          this.previousSibling.remove();
+          (this.previousSibling as HTMLElement).remove();
           decalageIndex(this);
         });
       });
@@ -92,49 +98,46 @@ let previousPics = document.querySelectorAll(".vich-image");
 
 previousPics.forEach((elem) => {
   let $delCollectionButton = createButton();
-  elem.firstChild.classList.add("hidden");
+  (elem.firstChild as HTMLElement).classList.add("hidden");
 
   elem.insertAdjacentElement("beforeend", $delCollectionButton);
-  console.log(elem.insertAdjacentElement("beforeend", $delCollectionButton));
-  console.log("ok");
   $delCollectionButton.addEventListener("click", function () {
-    this.parentNode.remove();
+    (this.parentNode as HTMLElement).remove();
     decalageIndex(this);
   });
 });
 
-function filePreviewArticle(input, i) {
+let filePreviewArticle = (input: any, i: any) => {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function (e) {
-      $("#annonce_photos_" + [i] + "_imageFile_file").after(
-        "<div class='img_col'>" +
-          "<img class='preview' id='preview_" +
-          i +
-          "' src='" +
-          e.target.result +
-          "' width='450' height='auto'/>"
+      $(`#annonce_photos_${[i]}_imageFile_file`).after(
+        `<div class='img_col'><img class='preview' id='preview_${i}' src='${
+          (e.target as FileReader).result
+        }' width='450' height='auto'/>`
       );
     };
     reader.readAsDataURL(input.files[0]);
   }
   testMax();
-}
+};
 
-function decalageIndex(element) {
+function decalageIndex(element: HTMLElement) {
   element.remove();
-  collectionHolder.dataset.index--;
+  (collectionHolder as HTMLElement).dataset.index = (
+    parseInt((collectionHolder as HTMLElement).dataset.index as string) - 1
+  ).toString();
 
   for (let i = 1; i < 4; i++) {
-    $("#annonce_photos_" + [i]).attr("id", "annonce_photos_" + [i - 1]);
+    $(`#annonce_photos_${[i]}`).attr("id", `annonce_photos_${[i - 1]}`);
     // c'est normal que j'enlève le "_imageFile_file" ci-dessous ?...
-    $("#annonce_photos_" + [i] + "_imageFile_file").attr(
+    $(`#annonce_photos_${[i]}_imageFile_file`).attr(
       "id",
-      "annonce_photos_" + [i - 1] + "_imageFile_file"
+      `annonce_photos_${[i - 1]}_imageFile_file`
     );
   }
 
-  observer.observe(document.querySelector("#li_photos_2"), {
+  observer.observe(document.querySelector("#li_photos_2") as HTMLElement, {
     subtree: false,
     childList: true,
   });
@@ -156,10 +159,7 @@ function createButton() {
 }
 
 function testMax() {
-  let fileMax = document.querySelector("#annonce_photos_2");
-  console.log(fileMax);
   if (fileMax != null) {
-    console.log("max atteint");
     addTagLink.replaceWith(maxAtteint);
   }
 }
