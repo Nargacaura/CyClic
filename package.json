@@ -5,7 +5,7 @@
         "@symfony/webpack-encore": "^4.5.0",
         "@types/jquery": "^3.5.29",
         "core-js": "^3.35.0",
-        "regenerator-runtime": "^0.14.0",
+        "regenerator-runtime": "^0.14.1",
         "sass": "^1.69.7",
         "sass-loader": "^13.3.3",
         "ts-loader": "^9.5.1",
