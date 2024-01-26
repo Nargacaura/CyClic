@@ -2,7 +2,7 @@
     "devDependencies": {
         "@hotwired/stimulus": "^3.2.2",
         "@symfony/stimulus-bridge": "^3.2.2",
-        "@symfony/webpack-encore": "^4.5.0",
+        "@symfony/webpack-encore": "^4.6.1",
         "@types/jquery": "^3.5.29",
         "core-js": "^3.35.1",
         "regenerator-runtime": "^0.14.1",
