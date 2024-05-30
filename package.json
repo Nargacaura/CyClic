@@ -6,7 +6,7 @@
         "@types/jquery": "^3.5.29",
         "core-js": "^3.37.0",
         "regenerator-runtime": "^0.14.1",
-        "sass": "^1.76.0",
+        "sass": "^1.77.3",
         "sass-loader": "^14.2.1",
         "ts-loader": "^9.5.1",
         "typescript": "^5.4.5",
