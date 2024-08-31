@@ -33,6 +33,7 @@ yarn-error.log
 !.yarn/releases
 !.yarn/plugins
 
+.env
 public/
 public_html/build/entrypoints.json
 public_html/build/manifest.json

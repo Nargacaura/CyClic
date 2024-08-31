@@ -475,7 +475,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:^22.5.1":
   version: 22.5.1
   resolution: "@types/node@npm:22.5.1"
   dependencies:
@@ -3900,6 +3900,7 @@ __metadata:
     "@symfony/stimulus-bridge": "npm:^3.2.2"
     "@symfony/webpack-encore": "npm:^4.7.0"
     "@types/jquery": "npm:^3.5.30"
+    "@types/node": "npm:^22.5.1"
     bootstrap: "npm:^5.3.3"
     core-js: "npm:^3.38.1"
     jquery: "npm:^3.7.1"
