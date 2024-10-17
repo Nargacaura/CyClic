@@ -475,12 +475,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.5.1":
+"@types/node@npm:*":
   version: 22.5.1
   resolution: "@types/node@npm:22.5.1"
   dependencies:
     undici-types: "npm:~6.19.2"
   checksum: 10c0/35373176d8a1d4e16004a1ed303e68d39e4c6341024dc056f2577982df98c1a045a6b677f12ed557796f09bbf7d621f428f6874cc37ed28f7b336fa604b5f6a6
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^22.7.6":
+  version: 22.7.6
+  resolution: "@types/node@npm:22.7.6"
+  dependencies:
+    undici-types: "npm:~6.19.2"
+  checksum: 10c0/d4406a63afce981c363fb1d1954aaf1759ad2d487c0833ebf667565ea4e45ff217d6fab4b5343badbdeccdf9d2e4a0841d633e0c929ceabcb33c288663dd0c73
   languageName: node
   linkType: hard
 
@@ -3900,7 +3909,7 @@ __metadata:
     "@symfony/stimulus-bridge": "npm:^3.2.2"
     "@symfony/webpack-encore": "npm:^4.7.0"
     "@types/jquery": "npm:^3.5.30"
-    "@types/node": "npm:^22.5.1"
+    "@types/node": "npm:^22.7.6"
     bootstrap: "npm:^5.3.3"
     core-js: "npm:^3.38.1"
     jquery: "npm:^3.7.1"
