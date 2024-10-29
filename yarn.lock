@@ -436,12 +436,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jquery@npm:^3.5.30":
-  version: 3.5.30
-  resolution: "@types/jquery@npm:3.5.30"
+"@types/jquery@npm:^3.5.32":
+  version: 3.5.32
+  resolution: "@types/jquery@npm:3.5.32"
   dependencies:
     "@types/sizzle": "npm:*"
-  checksum: 10c0/7355b2b2cb44eba7a2afa4a1c653157e4bc055be1f14a4c8874e349e6860dd36ca237e538294c2d709f1ffa0d5b12a39ea97be179f3f7fb445e17e12949ccb33
+  checksum: 10c0/4a17ad6819b89026c21323656ab01b0b263f9d470910a87c8740920ff98319d503c7352b85b50134a39724ecbfccabc73aa4c741dfdd460cf8bbe714f9259054
   languageName: node
   linkType: hard
 
@@ -3908,7 +3908,7 @@ __metadata:
     "@hotwired/stimulus": "npm:^3.2.2"
     "@symfony/stimulus-bridge": "npm:^3.2.2"
     "@symfony/webpack-encore": "npm:^4.7.0"
-    "@types/jquery": "npm:^3.5.30"
+    "@types/jquery": "npm:^3.5.32"
     "@types/node": "npm:^22.8.2"
     bootstrap: "npm:^5.3.3"
     core-js: "npm:^3.38.1"
