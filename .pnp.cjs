@@ -31,7 +31,7 @@ const RAW_RUNTIME_STATE =
           ["@hotwired/stimulus", "npm:3.2.2"],\
           ["@symfony/stimulus-bridge", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:3.2.2"],\
           ["@symfony/webpack-encore", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.7.0"],\
-          ["@types/jquery", "npm:3.5.30"],\
+          ["@types/jquery", "npm:3.5.32"],\
           ["@types/node", "npm:22.8.2"],\
           ["bootstrap", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.3.3"],\
           ["core-js", "npm:3.38.1"],\
@@ -738,10 +738,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@types/jquery", [\
-      ["npm:3.5.30", {\
-        "packageLocation": "../../.yarn/berry/cache/@types-jquery-npm-3.5.30-1bf9d0e280-10c0.zip/node_modules/@types/jquery/",\
+      ["npm:3.5.32", {\
+        "packageLocation": "../../.yarn/berry/cache/@types-jquery-npm-3.5.32-f7d77321fa-10c0.zip/node_modules/@types/jquery/",\
         "packageDependencies": [\
-          ["@types/jquery", "npm:3.5.30"],\
+          ["@types/jquery", "npm:3.5.32"],\
           ["@types/sizzle", "npm:2.3.8"]\
         ],\
         "linkType": "HARD"\
@@ -5221,7 +5221,7 @@ const RAW_RUNTIME_STATE =
           ["@hotwired/stimulus", "npm:3.2.2"],\
           ["@symfony/stimulus-bridge", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:3.2.2"],\
           ["@symfony/webpack-encore", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.7.0"],\
-          ["@types/jquery", "npm:3.5.30"],\
+          ["@types/jquery", "npm:3.5.32"],\
           ["@types/node", "npm:22.8.2"],\
           ["bootstrap", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.3.3"],\
           ["core-js", "npm:3.38.1"],\
