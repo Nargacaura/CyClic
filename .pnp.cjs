@@ -34,7 +34,7 @@ const RAW_RUNTIME_STATE =
           ["@types/jquery", "npm:3.5.32"],\
           ["@types/node", "npm:22.10.2"],\
           ["bootstrap", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.3.3"],\
-          ["core-js", "npm:3.38.1"],\
+          ["core-js", "npm:3.39.0"],\
           ["jquery", "npm:3.7.1"],\
           ["leaflet", "npm:1.9.4"],\
           ["regenerator-runtime", "npm:0.14.1"],\
@@ -1193,10 +1193,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["core-js", [\
-      ["npm:3.38.1", {\
-        "packageLocation": "./.yarn/unplugged/core-js-npm-3.38.1-5a2a3b88ee/node_modules/core-js/",\
+      ["npm:3.39.0", {\
+        "packageLocation": "./.yarn/unplugged/core-js-npm-3.39.0-4c420e59a7/node_modules/core-js/",\
         "packageDependencies": [\
-          ["core-js", "npm:3.38.1"]\
+          ["core-js", "npm:3.39.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -3571,7 +3571,7 @@ const RAW_RUNTIME_STATE =
           ["@types/jquery", "npm:3.5.32"],\
           ["@types/node", "npm:22.10.2"],\
           ["bootstrap", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.3.3"],\
-          ["core-js", "npm:3.38.1"],\
+          ["core-js", "npm:3.39.0"],\
           ["jquery", "npm:3.7.1"],\
           ["leaflet", "npm:1.9.4"],\
           ["regenerator-runtime", "npm:0.14.1"],\
