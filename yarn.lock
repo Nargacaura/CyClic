@@ -301,18 +301,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@symfony/stimulus-bridge@npm:^3.2.2":
-  version: 3.2.2
-  resolution: "@symfony/stimulus-bridge@npm:3.2.2"
+"@symfony/stimulus-bridge@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "@symfony/stimulus-bridge@npm:4.0.0"
   dependencies:
     "@hotwired/stimulus-webpack-helpers": "npm:^1.0.1"
     "@types/webpack-env": "npm:^1.16.4"
-    acorn: "npm:^8.0.5"
-    loader-utils: "npm:^2.0.0"
-    schema-utils: "npm:^3.0.0"
+    loader-utils: "npm:^2.0.0 || ^3.0.0"
+    schema-utils: "npm:^3.0.0 || ^4.0.0"
   peerDependencies:
     "@hotwired/stimulus": ^3.0
-  checksum: 10c0/3ba997685b45eaf7214807847d9626835011641a580286fc9c90c595da2c3d6cda67b358e15dca0d95c719941fd4074b77655902dd2dc710850ac8840fb5d266
+  checksum: 10c0/16cb3386f3abfc4817dba3a4648d09c23d4b1682e229c8e4988e56a2591f0bd21cf1120841631fbd5157744cf59d126b04125fc68359411924a3fcd282553b55
   languageName: node
   linkType: hard
 
@@ -532,7 +531,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn@npm:^8.0.5, acorn@npm:^8.8.2":
+"acorn@npm:^8.8.2":
   version: 8.12.1
   resolution: "acorn@npm:8.12.1"
   bin:
@@ -1769,6 +1768,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"loader-utils@npm:^2.0.0 || ^3.0.0":
+  version: 3.3.1
+  resolution: "loader-utils@npm:3.3.1"
+  checksum: 10c0/f2af4eb185ac5bf7e56e1337b666f90744e9f443861ac521b48f093fb9e8347f191c8960b4388a3365147d218913bc23421234e7788db69f385bacfefa0b4758
+  languageName: node
+  linkType: hard
+
 "locate-path@npm:^7.1.0":
   version: 7.2.0
   resolution: "locate-path@npm:7.2.0"
@@ -2659,7 +2665,7 @@ __metadata:
   dependencies:
     "@fortawesome/fontawesome-free": "npm:^6.7.2"
     "@hotwired/stimulus": "npm:^3.2.2"
-    "@symfony/stimulus-bridge": "npm:^3.2.2"
+    "@symfony/stimulus-bridge": "npm:^4.0.0"
     "@symfony/webpack-encore": "npm:^5.0.1"
     "@types/jquery": "npm:^3.5.32"
     "@types/node": "npm:^22.10.2"
@@ -2734,7 +2740,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"schema-utils@npm:^3.0.0, schema-utils@npm:^3.1.1":
+"schema-utils@npm:^3.0.0 || ^4.0.0":
+  version: 4.3.0
+  resolution: "schema-utils@npm:4.3.0"
+  dependencies:
+    "@types/json-schema": "npm:^7.0.9"
+    ajv: "npm:^8.9.0"
+    ajv-formats: "npm:^2.1.1"
+    ajv-keywords: "npm:^5.1.0"
+  checksum: 10c0/c23f0fa73ef71a01d4a2bb7af4c91e0d356ec640e071aa2d06ea5e67f042962bb7ac7c29a60a295bb0125878801bc3209197a2b8a833dd25bd38e37c3ed21427
+  languageName: node
+  linkType: hard
+
+"schema-utils@npm:^3.1.1":
   version: 3.3.0
   resolution: "schema-utils@npm:3.3.0"
   dependencies:
