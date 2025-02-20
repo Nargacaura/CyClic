@@ -40,7 +40,7 @@ const RAW_RUNTIME_STATE =
           ["regenerator-runtime", "npm:0.14.1"],\
           ["sass", "npm:1.83.0"],\
           ["sass-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:16.0.4"],\
-          ["ts-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.5.1"],\
+          ["ts-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.5.2"],\
           ["tui-calendar", "npm:1.15.3"],\
           ["typescript", "patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=8c6c40"],\
           ["webpack-notifier", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:1.15.0"]\
@@ -503,7 +503,7 @@ const RAW_RUNTIME_STATE =
           ["tapable", "npm:2.2.1"],\
           ["terser-webpack-plugin", "virtual:5ce35f4ad8ce868aa7df4a04c5f4881cd900f5b946c392b3265429bde5037b674d689246852f7986aa0a8029ec52eb6046345eb1a806173b6104438c4e1baecc#npm:5.3.10"],\
           ["tmp", "npm:0.2.3"],\
-          ["ts-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.5.1"],\
+          ["ts-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.5.2"],\
           ["typescript", "patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=8c6c40"],\
           ["vue", null],\
           ["vue-loader", null],\
@@ -3577,7 +3577,7 @@ const RAW_RUNTIME_STATE =
           ["regenerator-runtime", "npm:0.14.1"],\
           ["sass", "npm:1.83.0"],\
           ["sass-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:16.0.4"],\
-          ["ts-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.5.1"],\
+          ["ts-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.5.2"],\
           ["tui-calendar", "npm:1.15.3"],\
           ["typescript", "patch:typescript@npm%3A5.7.2#optional!builtin<compat/typescript>::version=5.7.2&hash=8c6c40"],\
           ["webpack-notifier", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:1.15.0"]\
@@ -4061,17 +4061,17 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["ts-loader", [\
-      ["npm:9.5.1", {\
-        "packageLocation": "../../.yarn/berry/cache/ts-loader-npm-9.5.1-c8a0456e30-10c0.zip/node_modules/ts-loader/",\
+      ["npm:9.5.2", {\
+        "packageLocation": "../../.yarn/berry/cache/ts-loader-npm-9.5.2-15fe2fd8a6-10c0.zip/node_modules/ts-loader/",\
         "packageDependencies": [\
-          ["ts-loader", "npm:9.5.1"]\
+          ["ts-loader", "npm:9.5.2"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.5.1", {\
-        "packageLocation": "./.yarn/__virtual__/ts-loader-virtual-267b2c3fde/3/.yarn/berry/cache/ts-loader-npm-9.5.1-c8a0456e30-10c0.zip/node_modules/ts-loader/",\
+      ["virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.5.2", {\
+        "packageLocation": "./.yarn/__virtual__/ts-loader-virtual-bcb2f6a22b/3/.yarn/berry/cache/ts-loader-npm-9.5.2-15fe2fd8a6-10c0.zip/node_modules/ts-loader/",\
         "packageDependencies": [\
-          ["ts-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.5.1"],\
+          ["ts-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.5.2"],\
           ["@types/typescript", null],\
           ["@types/webpack", null],\
           ["chalk", "npm:4.1.2"],\
