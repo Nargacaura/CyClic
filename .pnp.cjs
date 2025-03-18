@@ -38,7 +38,7 @@ const RAW_RUNTIME_STATE =
           ["jquery", "npm:3.7.1"],\
           ["leaflet", "npm:1.9.4"],\
           ["regenerator-runtime", "npm:0.14.1"],\
-          ["sass", "npm:1.85.0"],\
+          ["sass", "npm:1.86.0"],\
           ["sass-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:16.0.4"],\
           ["ts-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.5.1"],\
           ["tui-calendar", "npm:1.15.3"],\
@@ -494,7 +494,7 @@ const RAW_RUNTIME_STATE =
           ["postcss-loader", null],\
           ["pretty-error", "npm:4.0.0"],\
           ["resolve-url-loader", "npm:5.0.0"],\
-          ["sass", "npm:1.85.0"],\
+          ["sass", "npm:1.86.0"],\
           ["sass-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:16.0.4"],\
           ["semver", "npm:7.6.3"],\
           ["style-loader", "virtual:5ce35f4ad8ce868aa7df4a04c5f4881cd900f5b946c392b3265429bde5037b674d689246852f7986aa0a8029ec52eb6046345eb1a806173b6104438c4e1baecc#npm:3.3.4"],\
@@ -3581,7 +3581,7 @@ const RAW_RUNTIME_STATE =
           ["jquery", "npm:3.7.1"],\
           ["leaflet", "npm:1.9.4"],\
           ["regenerator-runtime", "npm:0.14.1"],\
-          ["sass", "npm:1.85.0"],\
+          ["sass", "npm:1.86.0"],\
           ["sass-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:16.0.4"],\
           ["ts-loader", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:9.5.1"],\
           ["tui-calendar", "npm:1.15.3"],\
@@ -3610,10 +3610,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["sass", [\
-      ["npm:1.85.0", {\
-        "packageLocation": "../../.yarn/berry/cache/sass-npm-1.85.0-2e8f85cae4-10c0.zip/node_modules/sass/",\
+      ["npm:1.86.0", {\
+        "packageLocation": "../../.yarn/berry/cache/sass-npm-1.86.0-56b821d79d-10c0.zip/node_modules/sass/",\
         "packageDependencies": [\
-          ["sass", "npm:1.85.0"],\
+          ["sass", "npm:1.86.0"],\
           ["@parcel/watcher", "npm:2.4.1"],\
           ["chokidar", "npm:4.0.1"],\
           ["immutable", "npm:5.0.3"],\
@@ -3642,7 +3642,7 @@ const RAW_RUNTIME_STATE =
           ["@types/webpack", null],\
           ["neo-async", "npm:2.6.2"],\
           ["node-sass", null],\
-          ["sass", "npm:1.85.0"],\
+          ["sass", "npm:1.86.0"],\
           ["sass-embedded", null],\
           ["webpack", null]\
         ],\
