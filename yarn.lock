@@ -301,9 +301,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@symfony/stimulus-bridge@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "@symfony/stimulus-bridge@npm:4.0.0"
+"@symfony/stimulus-bridge@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@symfony/stimulus-bridge@npm:4.0.1"
   dependencies:
     "@hotwired/stimulus-webpack-helpers": "npm:^1.0.1"
     "@types/webpack-env": "npm:^1.16.4"
@@ -311,7 +311,7 @@ __metadata:
     schema-utils: "npm:^3.0.0 || ^4.0.0"
   peerDependencies:
     "@hotwired/stimulus": ^3.0
-  checksum: 10c0/16cb3386f3abfc4817dba3a4648d09c23d4b1682e229c8e4988e56a2591f0bd21cf1120841631fbd5157744cf59d126b04125fc68359411924a3fcd282553b55
+  checksum: 10c0/c904619b00cfb75a1b95d746c55ef853309ce74c6ec25e3edcaa1532a04f68ecb9e28045b8663d0743445ce3a6090561e3d07fb010df636b1b9bbb2740321ec3
   languageName: node
   linkType: hard
 
@@ -2665,7 +2665,7 @@ __metadata:
   dependencies:
     "@fortawesome/fontawesome-free": "npm:^6.7.2"
     "@hotwired/stimulus": "npm:^3.2.2"
-    "@symfony/stimulus-bridge": "npm:^4.0.0"
+    "@symfony/stimulus-bridge": "npm:^4.0.1"
     "@symfony/webpack-encore": "npm:^5.0.1"
     "@types/jquery": "npm:^3.5.32"
     "@types/node": "npm:^22.10.2"
