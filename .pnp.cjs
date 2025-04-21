@@ -29,7 +29,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@fortawesome/fontawesome-free", "npm:6.7.2"],\
           ["@hotwired/stimulus", "npm:3.2.2"],\
-          ["@symfony/stimulus-bridge", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.0.0"],\
+          ["@symfony/stimulus-bridge", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.0.1"],\
           ["@symfony/webpack-encore", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.0.1"],\
           ["@types/jquery", "npm:3.5.32"],\
           ["@types/node", "npm:22.10.2"],\
@@ -74,10 +74,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:97d7dca25d76a51efcdf2befb9d92583cab98f4c4167119bb2666b29051e40856cc7154368fd16107574d44de14b295e73956aba9426342af41c16ba03500ac6#npm:1.0.1", {\
-        "packageLocation": "./.yarn/__virtual__/@hotwired-stimulus-webpack-helpers-virtual-a64081ef42/3/.yarn/berry/cache/@hotwired-stimulus-webpack-helpers-npm-1.0.1-91fa2baa17-10c0.zip/node_modules/@hotwired/stimulus-webpack-helpers/",\
+      ["virtual:9ee313387a828a7d7fb6967b51dfbb53cb22613145ad64c485bbb7509313aa7a94dd50d3229cb2992a03b1a3c148fb565a48fe2ee199e195d6a73d80e227ff31#npm:1.0.1", {\
+        "packageLocation": "./.yarn/__virtual__/@hotwired-stimulus-webpack-helpers-virtual-602de55ee4/3/.yarn/berry/cache/@hotwired-stimulus-webpack-helpers-npm-1.0.1-91fa2baa17-10c0.zip/node_modules/@hotwired/stimulus-webpack-helpers/",\
         "packageDependencies": [\
-          ["@hotwired/stimulus-webpack-helpers", "virtual:97d7dca25d76a51efcdf2befb9d92583cab98f4c4167119bb2666b29051e40856cc7154368fd16107574d44de14b295e73956aba9426342af41c16ba03500ac6#npm:1.0.1"],\
+          ["@hotwired/stimulus-webpack-helpers", "virtual:9ee313387a828a7d7fb6967b51dfbb53cb22613145ad64c485bbb7509313aa7a94dd50d3229cb2992a03b1a3c148fb565a48fe2ee199e195d6a73d80e227ff31#npm:1.0.1"],\
           ["@hotwired/stimulus", "npm:3.2.2"],\
           ["@types/hotwired__stimulus", null]\
         ],\
@@ -401,19 +401,19 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@symfony/stimulus-bridge", [\
-      ["npm:4.0.0", {\
-        "packageLocation": "../../.yarn/berry/cache/@symfony-stimulus-bridge-npm-4.0.0-53d1a00de8-10c0.zip/node_modules/@symfony/stimulus-bridge/",\
+      ["npm:4.0.1", {\
+        "packageLocation": "../../.yarn/berry/cache/@symfony-stimulus-bridge-npm-4.0.1-38c97ea69b-10c0.zip/node_modules/@symfony/stimulus-bridge/",\
         "packageDependencies": [\
-          ["@symfony/stimulus-bridge", "npm:4.0.0"]\
+          ["@symfony/stimulus-bridge", "npm:4.0.1"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.0.0", {\
-        "packageLocation": "./.yarn/__virtual__/@symfony-stimulus-bridge-virtual-97d7dca25d/3/.yarn/berry/cache/@symfony-stimulus-bridge-npm-4.0.0-53d1a00de8-10c0.zip/node_modules/@symfony/stimulus-bridge/",\
+      ["virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.0.1", {\
+        "packageLocation": "./.yarn/__virtual__/@symfony-stimulus-bridge-virtual-9ee313387a/3/.yarn/berry/cache/@symfony-stimulus-bridge-npm-4.0.1-38c97ea69b-10c0.zip/node_modules/@symfony/stimulus-bridge/",\
         "packageDependencies": [\
-          ["@symfony/stimulus-bridge", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.0.0"],\
+          ["@symfony/stimulus-bridge", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.0.1"],\
           ["@hotwired/stimulus", "npm:3.2.2"],\
-          ["@hotwired/stimulus-webpack-helpers", "virtual:97d7dca25d76a51efcdf2befb9d92583cab98f4c4167119bb2666b29051e40856cc7154368fd16107574d44de14b295e73956aba9426342af41c16ba03500ac6#npm:1.0.1"],\
+          ["@hotwired/stimulus-webpack-helpers", "virtual:9ee313387a828a7d7fb6967b51dfbb53cb22613145ad64c485bbb7509313aa7a94dd50d3229cb2992a03b1a3c148fb565a48fe2ee199e195d6a73d80e227ff31#npm:1.0.1"],\
           ["@types/hotwired__stimulus", null],\
           ["@types/webpack-env", "npm:1.18.5"],\
           ["loader-utils", "npm:3.3.1"],\
@@ -444,7 +444,7 @@ const RAW_RUNTIME_STATE =
           ["@babel/preset-react", null],\
           ["@babel/preset-typescript", null],\
           ["@nuxt/friendly-errors-webpack-plugin", "virtual:5ce35f4ad8ce868aa7df4a04c5f4881cd900f5b946c392b3265429bde5037b674d689246852f7986aa0a8029ec52eb6046345eb1a806173b6104438c4e1baecc#npm:2.6.0"],\
-          ["@symfony/stimulus-bridge", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.0.0"],\
+          ["@symfony/stimulus-bridge", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.0.1"],\
           ["@types/babel__core", null],\
           ["@types/babel__plugin-transform-react-jsx", null],\
           ["@types/babel__preset-env", null],\
@@ -3572,7 +3572,7 @@ const RAW_RUNTIME_STATE =
           ["root-workspace-0b6124", "workspace:."],\
           ["@fortawesome/fontawesome-free", "npm:6.7.2"],\
           ["@hotwired/stimulus", "npm:3.2.2"],\
-          ["@symfony/stimulus-bridge", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.0.0"],\
+          ["@symfony/stimulus-bridge", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:4.0.1"],\
           ["@symfony/webpack-encore", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.0.1"],\
           ["@types/jquery", "npm:3.5.32"],\
           ["@types/node", "npm:22.10.2"],\
