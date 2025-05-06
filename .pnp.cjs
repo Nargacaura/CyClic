@@ -33,7 +33,7 @@ const RAW_RUNTIME_STATE =
           ["@symfony/webpack-encore", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.0.1"],\
           ["@types/jquery", "npm:3.5.32"],\
           ["@types/node", "npm:22.10.2"],\
-          ["bootstrap", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.3.3"],\
+          ["bootstrap", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.3.6"],\
           ["core-js", "npm:3.40.0"],\
           ["jquery", "npm:3.7.1"],\
           ["leaflet", "npm:1.9.4"],\
@@ -923,17 +923,17 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["bootstrap", [\
-      ["npm:5.3.3", {\
-        "packageLocation": "../../.yarn/berry/cache/bootstrap-npm-5.3.3-da08e2f0fe-10c0.zip/node_modules/bootstrap/",\
+      ["npm:5.3.6", {\
+        "packageLocation": "../../.yarn/berry/cache/bootstrap-npm-5.3.6-b8161f1c8a-10c0.zip/node_modules/bootstrap/",\
         "packageDependencies": [\
-          ["bootstrap", "npm:5.3.3"]\
+          ["bootstrap", "npm:5.3.6"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.3.3", {\
-        "packageLocation": "./.yarn/__virtual__/bootstrap-virtual-2c24090b13/3/.yarn/berry/cache/bootstrap-npm-5.3.3-da08e2f0fe-10c0.zip/node_modules/bootstrap/",\
+      ["virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.3.6", {\
+        "packageLocation": "./.yarn/__virtual__/bootstrap-virtual-4f0328dfd3/3/.yarn/berry/cache/bootstrap-npm-5.3.6-b8161f1c8a-10c0.zip/node_modules/bootstrap/",\
         "packageDependencies": [\
-          ["bootstrap", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.3.3"],\
+          ["bootstrap", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.3.6"],\
           ["@popperjs/core", null],\
           ["@types/popperjs__core", null]\
         ],\
@@ -3576,7 +3576,7 @@ const RAW_RUNTIME_STATE =
           ["@symfony/webpack-encore", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.0.1"],\
           ["@types/jquery", "npm:3.5.32"],\
           ["@types/node", "npm:22.10.2"],\
-          ["bootstrap", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.3.3"],\
+          ["bootstrap", "virtual:dc3fc578bfa5e06182a4d2be39ede0bc5b74940b1ffe0d70c26892ab140a4699787750fba175dc306292e80b4aa2c8c5f68c2a821e69b2c37e360c0dff36ff66#npm:5.3.6"],\
           ["core-js", "npm:3.40.0"],\
           ["jquery", "npm:3.7.1"],\
           ["leaflet", "npm:1.9.4"],\
